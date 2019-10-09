@@ -1,0 +1,6 @@
+out
+.gradle
+.idea
+/build
+
+hs_err*.log
