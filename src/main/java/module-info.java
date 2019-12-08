@@ -1,21 +1,35 @@
-module jtrakt {
-    exports com.wexalian.jtrakt;
-    // exports com.wexalian.jtrakt2.auth;
-    exports com.wexalian.jtrakt.calendars;
-    exports com.wexalian.jtrakt.checkin;
-    exports com.wexalian.jtrakt.comments;
-    exports com.wexalian.jtrakt.episodes;
-    exports com.wexalian.jtrakt.genres;
-    exports com.wexalian.jtrakt.movies;
-    exports com.wexalian.jtrakt.people;
-    exports com.wexalian.jtrakt.recommendations;
-    exports com.wexalian.jtrakt.scrobble;
-    exports com.wexalian.jtrakt.search;
-    exports com.wexalian.jtrakt.seasons;
-    exports com.wexalian.jtrakt.shows;
-    exports com.wexalian.jtrakt.sync;
-    exports com.wexalian.jtrakt.users;
+module com.wexalian.jtrakt {
     
     requires java.net.http;
-    requires gson;
+    requires com.google.gson;
+    requires com.google.common;
+    requires jsr305;
+    
+    exports com.wexalian.jtrakt;
+    
+    exports com.wexalian.jtrakt.media;
+    exports com.wexalian.jtrakt.media.info;
+    
+    exports com.wexalian.jtrakt.http;
+    exports com.wexalian.jtrakt.http.query;
+    
+    exports com.wexalian.jtrakt.endpoint.auth;
+    // exports com.wexalian.jtrakt.endpoint.auth.device;
+    // exports com.wexalian.jtrakt.endpoint.auth.oauth2;
+    exports com.wexalian.jtrakt.endpoint.calendars;
+    exports com.wexalian.jtrakt.endpoint.checkin;
+    exports com.wexalian.jtrakt.endpoint.comments;
+    exports com.wexalian.jtrakt.endpoint.episodes;
+    exports com.wexalian.jtrakt.endpoint.genres;
+    exports com.wexalian.jtrakt.endpoint.movies;
+    exports com.wexalian.jtrakt.endpoint.people;
+    exports com.wexalian.jtrakt.endpoint.recommendations;
+    exports com.wexalian.jtrakt.endpoint.scrobble;
+    exports com.wexalian.jtrakt.endpoint.search;
+    exports com.wexalian.jtrakt.endpoint.seasons;
+    exports com.wexalian.jtrakt.endpoint.shows;
+    exports com.wexalian.jtrakt.endpoint.sync;
+    exports com.wexalian.jtrakt.endpoint.users;
+    
+    opens com.wexalian.jtrakt.json to com.google.gson;
 }
