@@ -1,39 +1,30 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.calendars.TraktCalenders;
-import com.wexalian.jtrakt.checkin.TraktCheckin;
-import com.wexalian.jtrakt.comments.TraktComments;
-import com.wexalian.jtrakt.episodes.TraktEpisodes;
-import com.wexalian.jtrakt.genres.TraktGenres;
-import com.wexalian.jtrakt.movies.TraktMovies;
-import com.wexalian.jtrakt.people.TraktPeople;
-import com.wexalian.jtrakt.recommendations.TraktRecommendations;
-import com.wexalian.jtrakt.scrobble.TraktScrobble;
-import com.wexalian.jtrakt.search.TraktSearch;
-import com.wexalian.jtrakt.seasons.TraktSeasons;
-import com.wexalian.jtrakt.shows.TraktShows;
-import com.wexalian.jtrakt.sync.TraktSync;
-import com.wexalian.jtrakt.users.TraktUsers;
+import com.wexalian.jtrakt.endpoint.auth.TraktAuthentication;
+import com.wexalian.jtrakt.endpoint.calendars.TraktCalenders;
+import com.wexalian.jtrakt.endpoint.checkin.TraktCheckin;
+import com.wexalian.jtrakt.endpoint.comments.TraktComments;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodes;
+import com.wexalian.jtrakt.endpoint.genres.TraktGenres;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovies;
+import com.wexalian.jtrakt.endpoint.people.TraktPeople;
+import com.wexalian.jtrakt.endpoint.recommendations.TraktRecommendations;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobble;
+import com.wexalian.jtrakt.endpoint.search.TraktSearch;
+import com.wexalian.jtrakt.endpoint.seasons.TraktSeasons;
+import com.wexalian.jtrakt.endpoint.shows.TraktShows;
+import com.wexalian.jtrakt.endpoint.sync.TraktSync;
+import com.wexalian.jtrakt.endpoint.users.TraktUsers;
+import com.wexalian.jtrakt.http.TraktHTTP;
 
 public final class JTraktV2
 {
-    public static final String API_HOST = "api.trakt.tv";
-    public static final String API_URL = "https://" + API_HOST + "/";
-    public static final String API_VERSION = "2";
+    //api
+    private final String clientId;
+    private final String secretId;
     
-    public static final String SITE_URL = "https://trakt.tv";
-    public static final String OAUTH2_AUTHORIZATION_URL = SITE_URL + "/oauth/authorize";
-    public static final String OAUTH2_TOKEN_URL = SITE_URL + "/oauth/token";
-    
-    public static final String HEADER_AUTHORIZATION = "Authorization";
-    public static final String HEADER_CONTENT_TYPE = "Content-Type";
-    public static final String CONTENT_TYPE_JSON = "application/json";
-    public static final String HEADER_TRAKT_API_VERSION = "trakt-api-version";
-    public static final String HEADER_TRAKT_API_KEY = "trakt-api-key";
-    
-    private final String apiKey;
-    private final String clientSecret;
-    
+    //api endpoints
+    private TraktAuthentication authentication;
     private TraktCalenders calenders;
     private TraktCheckin checkin;
     private TraktComments comments;
@@ -49,94 +40,104 @@ public final class JTraktV2
     private TraktSync sync;
     private TraktUsers users;
     
-    public JTraktV2(String apiKey)
+    //http
+    private TraktHTTP http;
+    
+    public JTraktV2(String clientId)
     {
-        this(apiKey, "");
+        this(clientId, "");
     }
     
-    public JTraktV2(String apiKey, String clientSecret)
+    public JTraktV2(String clientId, String secretId)
     {
-        this.apiKey = apiKey;
-        this.clientSecret = clientSecret;
+        this.clientId = clientId;
+        this.secretId = secretId;
+        this.http = new TraktHTTP(this);
     }
     
-    public String getApiKey()
+    public String getClientId()
     {
-        return apiKey;
+        return clientId;
     }
     
-    public String getClientSecret()
+    public String getSecretId()
     {
-        return clientSecret;
+        return secretId;
+    }
+    
+    public TraktAuthentication getAuthentication()
+    {
+        return authentication == null ? authentication = new TraktAuthentication(this, http) : authentication;
     }
     
     public TraktCalenders getCalenders()
     {
-        return calenders == null ? calenders = new TraktCalenders() : calenders;
+        return calenders == null ? calenders = new TraktCalenders(http) : calenders;
     }
     
     public TraktCheckin getCheckin()
     {
-        return checkin == null ? checkin = new TraktCheckin() : checkin;
+        return checkin == null ? checkin = new TraktCheckin(http) : checkin;
     }
     
     public TraktComments getComments()
     {
-        return comments == null ? comments = new TraktComments() : comments;
+        return comments == null ? comments = new TraktComments(http) : comments;
     }
     
     public TraktEpisodes getEpisodes()
     {
-        return episodes == null ? episodes = new TraktEpisodes() : episodes;
+        return episodes == null ? episodes = new TraktEpisodes(http) : episodes;
     }
     
     public TraktGenres getGenres()
     {
-        return genres == null ? genres = new TraktGenres() : genres;
+        return genres == null ? genres = new TraktGenres(http) : genres;
     }
     
     public TraktMovies getMovies()
     {
-        return movies == null ? movies = new TraktMovies() : movies;
+        return movies == null ? movies = new TraktMovies(http) : movies;
     }
     
     public TraktPeople getPeople()
     {
-        return people == null ? people = new TraktPeople() : people;
+        return people == null ? people = new TraktPeople(http) : people;
     }
     
     public TraktRecommendations getRecommendations()
     {
-        return recommendations == null ? recommendations = new TraktRecommendations() : recommendations;
+        return recommendations == null ? recommendations = new TraktRecommendations(http) : recommendations;
     }
     
     public TraktScrobble getScrobble()
     {
-        return scrobble == null ? scrobble = new TraktScrobble() : scrobble;
+        return scrobble == null ? scrobble = new TraktScrobble(http) : scrobble;
     }
     
     public TraktSearch getSearch()
     {
-        return search == null ? search = new TraktSearch() : search;
+        return search == null ? search = new TraktSearch(http) : search;
     }
     
     public TraktSeasons getSeasons()
     {
-        return seasons == null ? seasons = new TraktSeasons() : seasons;
+        return seasons == null ? seasons = new TraktSeasons(http) : seasons;
     }
     
     public TraktShows getShows()
     {
-        return shows == null ? shows = new TraktShows() : shows;
+        return shows == null ? shows = new TraktShows(http) : shows;
     }
     
     public TraktSync getSync()
     {
-        return sync == null ? sync = new TraktSync() : sync;
+        return sync == null ? sync = new TraktSync(http) : sync;
     }
     
     public TraktUsers getUsers()
     {
-        return users == null ? users = new TraktUsers() : users;
+        return users == null ? users = new TraktUsers(http) : users;
     }
+    
 }
