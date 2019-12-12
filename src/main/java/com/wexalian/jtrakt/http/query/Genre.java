@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.http.query;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public enum Genre
@@ -39,23 +38,21 @@ public enum Genre
     WAR("war"),
     WESTERN("western");
     
-    private final String slug;
-    
-    private static final HashMap<String, Genre> SLUG_TO_GENRE = new HashMap<>();
+    private static final HashMap<String, Genre> STRING_MAPPING = new HashMap<>();
     
     static
     {
-        Arrays.stream(Genre.values()).forEach(genre -> SLUG_TO_GENRE.put(genre.getSlug(), genre));
+        for (Genre genre : values())
+        {
+            STRING_MAPPING.put(genre.toString(), genre);
+        }
     }
+    
+    private final String slug;
     
     Genre(String slug)
     {
         this.slug = slug;
-    }
-    
-    public String getSlug()
-    {
-        return slug;
     }
     
     @Override
@@ -64,8 +61,13 @@ public enum Genre
         return getSlug();
     }
     
+    public String getSlug()
+    {
+        return slug;
+    }
+    
     public static Genre fromSlug(String slug)
     {
-        return SLUG_TO_GENRE.get(slug);
+        return STRING_MAPPING.get(slug);
     }
 }

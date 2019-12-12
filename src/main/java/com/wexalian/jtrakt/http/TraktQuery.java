@@ -50,15 +50,14 @@ public class TraktQuery
         return this;
     }
     
-    @SafeVarargs
-    public final <T> TraktQuery filter(Filter.FilterEntry<T>... filterEntries)
+    public final TraktQuery filter(Filter.FilterEntry... filterEntries)
     {
         if (filterEntries == null || filterEntries.length == 0) return this;
-        
-        for (Filter.FilterEntry<T> filterEntry : filterEntries)
+    
+        for (Filter.FilterEntry filterEntry : filterEntries)
         {
-            Filter<T> filter = filterEntry.getFilter();
-            T value = filterEntry.getValue();
+            Filter filter = filterEntry.getFilter();
+            Object value = filterEntry.getValue();
             
             List<String> values = filters.get(filter);
             if (values == null)

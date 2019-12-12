@@ -3,8 +3,15 @@ package com.wexalian.jtrakt.json;
 import com.google.gson.reflect.TypeToken;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.endpoint.auth.device.TraktAuthCode;
-import com.wexalian.jtrakt.media.*;
+import com.wexalian.jtrakt.media.TraktCast;
+import com.wexalian.jtrakt.media.TraktEpisode;
+import com.wexalian.jtrakt.media.TraktUser;
+import com.wexalian.jtrakt.media.calender.TraktCalenderEpisode;
 import com.wexalian.jtrakt.media.info.*;
+import com.wexalian.jtrakt.media.show.TraktCollectionProgress;
+import com.wexalian.jtrakt.media.show.TraktList;
+import com.wexalian.jtrakt.media.show.TraktShow;
+import com.wexalian.jtrakt.media.show.TraktWatchedProgress;
 
 import java.util.List;
 
@@ -17,6 +24,10 @@ public final class TraktTypeTokens
     
     //oauth device
     public static final TypeToken<TraktAuthCode> AUTH_CODE = new TypeToken<>() {};
+    
+    //calender
+    public static final TypeToken<List<TraktCalenderEpisode>> CALENDER_EPISODE = new TypeToken<>() {};
+    public static final TypeToken<List<TraktCalenderEpisode>> CALENDER_MOVIE = new TypeToken<>() {};
     
     //shows
     public static final TypeToken<List<TraktShow.Trending>> TRENDING_SHOWS = new TypeToken<>() {};

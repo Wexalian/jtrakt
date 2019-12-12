@@ -29,15 +29,15 @@ public class Comment
         
         Sort(String sort) {this.sort = sort;}
         
-        public String getSort()
-        {
-            return sort;
-        }
-        
         @Override
         public String toString()
         {
             return getSort();
+        }
+    
+        public String getSort()
+        {
+            return sort;
         }
     }
 }

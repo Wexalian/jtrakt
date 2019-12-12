@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt;
 
 import com.wexalian.jtrakt.endpoint.auth.TraktAuthentication;
-import com.wexalian.jtrakt.endpoint.calendars.TraktCalenders;
+import com.wexalian.jtrakt.endpoint.calendars.TraktCalendars;
 import com.wexalian.jtrakt.endpoint.checkin.TraktCheckin;
 import com.wexalian.jtrakt.endpoint.comments.TraktComments;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodes;
@@ -25,7 +25,7 @@ public final class JTraktV2
     
     //api endpoints
     private TraktAuthentication authentication;
-    private TraktCalenders calenders;
+    private TraktCalendars calenders;
     private TraktCheckin checkin;
     private TraktComments comments;
     private TraktEpisodes episodes;
@@ -70,9 +70,9 @@ public final class JTraktV2
         return authentication == null ? authentication = new TraktAuthentication(this, http) : authentication;
     }
     
-    public TraktCalenders getCalenders()
+    public TraktCalendars getCalenders()
     {
-        return calenders == null ? calenders = new TraktCalenders(http) : calenders;
+        return calenders == null ? calenders = new TraktCalendars(http) : calenders;
     }
     
     public TraktCheckin getCheckin()

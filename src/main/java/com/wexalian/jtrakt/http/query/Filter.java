@@ -9,13 +9,13 @@ public class Filter<T>
     public static final Filter<Range> YEARS = new Filter<>("years", false);
     public static final Filter<Genre[]> GENRES = new Filter<>("genres", true);
     public static final Filter<Language> LANGUAGES = new Filter<>("languages", true);
-    // public static final Filter<String> COUNTRIES = new Filter<>("countries", true); TODO maybe?
+    // TODO maybe? public static final Filter<String> COUNTRIES = new Filter<>("countries", true);
     public static final Filter<Range> RUNTIMES = new Filter<>("runtimes", false);
     public static final Filter<Range> RATINGS = new Filter<>("ratings", false);
-    // public static final Filter<ContentCertification> CERTIFICATIONS = new Filter<>("certifications", true); TODO maybe?
+    // TODO maybe? public static final Filter<ContentCertification> CERTIFICATIONS = new Filter<>("certifications", true);
     
     //show filters
-    // public static final Filter<Network> NETWORKS = new Filter<Network>("networks", true); TODO maybe?
+    // TODO maybe? public static final Filter<Network> NETWORKS = new Filter<Network>("networks", true);
     public static final Filter<Status> STATUS = new Filter<Status>("status", true);
     
     private final String parameter;
@@ -32,14 +32,14 @@ public class Filter<T>
         return new FilterEntry<>(this, value);
     }
     
-    public String getParameter()
-    {
-        return parameter;
-    }
-    
     public boolean multiplesAllowed()
     {
         return multiples;
+    }
+    
+    public String getParameter()
+    {
+        return parameter;
     }
     
     public static class FilterEntry<T>

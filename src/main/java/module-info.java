@@ -8,14 +8,14 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt;
     
     exports com.wexalian.jtrakt.media;
+    exports com.wexalian.jtrakt.media.calender;
     exports com.wexalian.jtrakt.media.info;
+    exports com.wexalian.jtrakt.media.show;
     
     exports com.wexalian.jtrakt.http;
     exports com.wexalian.jtrakt.http.query;
     
     exports com.wexalian.jtrakt.endpoint.auth;
-    // exports com.wexalian.jtrakt.endpoint.auth.device;
-    // exports com.wexalian.jtrakt.endpoint.auth.oauth2;
     exports com.wexalian.jtrakt.endpoint.calendars;
     exports com.wexalian.jtrakt.endpoint.checkin;
     exports com.wexalian.jtrakt.endpoint.comments;

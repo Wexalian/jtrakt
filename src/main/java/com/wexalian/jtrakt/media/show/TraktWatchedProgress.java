@@ -1,4 +1,7 @@
-package com.wexalian.jtrakt.media;
+package com.wexalian.jtrakt.media.show;
+
+import com.wexalian.jtrakt.media.TraktEpisode;
+import com.wexalian.jtrakt.media.TraktSeason;
 
 import java.time.OffsetDateTime;
 import java.util.List;
