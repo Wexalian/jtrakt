@@ -5,7 +5,7 @@ import com.wexalian.jtrakt.media.show.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktCalenderEpisode
+public class TraktCalendarEpisode
 {
     private OffsetDateTime first_aired;
     private TraktEpisode episode;

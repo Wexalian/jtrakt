@@ -4,7 +4,10 @@ import com.google.gson.*;
 
 import java.lang.reflect.Type;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 public class OffsetDateTimeTypeAdapter implements JsonSerializer<OffsetDateTime>, JsonDeserializer<OffsetDateTime>
 {
@@ -13,7 +16,16 @@ public class OffsetDateTimeTypeAdapter implements JsonSerializer<OffsetDateTime>
     @Override
     public OffsetDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
     {
-        return OffsetDateTime.parse(json.getAsString());
+        try
+        {
+            return OffsetDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        }
+        catch (DateTimeParseException e)
+        {
+            Date date = context.deserialize(json, Date.class);
+            return date.toInstant()
+                       .atOffset(ZoneOffset.UTC);
+        }
     }
     
     @Override

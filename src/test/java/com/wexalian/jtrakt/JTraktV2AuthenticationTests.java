@@ -12,7 +12,8 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests
     @Test
     public void testDeviceAuth()
     {
-        TraktAccessToken accessToken = TRAKT.getAuthentication().setupDeviceOAuth(System.out::println, this::browse);
+        TraktAccessToken accessToken = TRAKT.getAuthentication()
+                                            .setupDeviceOAuth(System.out::println, this::browse);
         
         System.out.println(accessToken);
     }
@@ -21,7 +22,8 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests
     {
         try
         {
-            Desktop.getDesktop().browse(URI.create(url));
+            Desktop.getDesktop()
+                   .browse(URI.create(url));
         }
         catch (IOException e)
         {
@@ -32,7 +34,8 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests
     @Test
     public void testRefreshToken()
     {
-        TraktAccessToken accessToken = TRAKT.getAuthentication().refreshAccessToken(ACCESS_TOKEN);
+        TraktAccessToken accessToken = TRAKT.getAuthentication()
+                                            .refreshAccessToken(ACCESS_TOKEN);
         
         System.out.println(accessToken);
     }
