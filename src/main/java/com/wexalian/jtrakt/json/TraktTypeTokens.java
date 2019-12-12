@@ -6,7 +6,8 @@ import com.wexalian.jtrakt.endpoint.auth.device.TraktAuthCode;
 import com.wexalian.jtrakt.media.TraktCast;
 import com.wexalian.jtrakt.media.TraktEpisode;
 import com.wexalian.jtrakt.media.TraktUser;
-import com.wexalian.jtrakt.media.calender.TraktCalenderEpisode;
+import com.wexalian.jtrakt.media.calender.TraktCalendarEpisode;
+import com.wexalian.jtrakt.media.calender.TraktCalendarMovie;
 import com.wexalian.jtrakt.media.info.*;
 import com.wexalian.jtrakt.media.show.TraktCollectionProgress;
 import com.wexalian.jtrakt.media.show.TraktList;
@@ -26,8 +27,8 @@ public final class TraktTypeTokens
     public static final TypeToken<TraktAuthCode> AUTH_CODE = new TypeToken<>() {};
     
     //calender
-    public static final TypeToken<List<TraktCalenderEpisode>> CALENDER_EPISODE = new TypeToken<>() {};
-    public static final TypeToken<List<TraktCalenderEpisode>> CALENDER_MOVIE = new TypeToken<>() {};
+    public static final TypeToken<List<TraktCalendarEpisode>> CALENDAR_EPISODES = new TypeToken<>() {};
+    public static final TypeToken<List<TraktCalendarMovie>> CALENDAR_MOVIES = new TypeToken<>() {};
     
     //shows
     public static final TypeToken<List<TraktShow.Trending>> TRENDING_SHOWS = new TypeToken<>() {};

@@ -96,7 +96,7 @@ public class TraktShows
     public List<TraktShow.Updated> getUpdates(@Nonnull OffsetDateTime date, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
     {
         TraktQuery query = TraktQuery.create("shows/updates/{date}")
-                                     .path("date", date.format(DateTimeFormatter.ISO_DATE))
+                                     .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
                                      .pagination(pagination)
                                      .extended(extended)
                                      .filter(filters);
