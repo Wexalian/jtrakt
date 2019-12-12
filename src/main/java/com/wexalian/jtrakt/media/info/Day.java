@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.media.info;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,10 @@ public enum Day
     
     static
     {
-        Arrays.stream(Day.values()).forEach(day -> STRING_MAPPING.put(day.toString(), day));
+        for (Day day : values())
+        {
+            STRING_MAPPING.put(day.toString(), day);
+        }
     }
     
     private String name;

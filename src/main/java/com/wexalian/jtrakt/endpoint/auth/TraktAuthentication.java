@@ -17,7 +17,8 @@ import java.util.function.Consumer;
 
 public class TraktAuthentication
 {
-    private static final long ONE_MONTH_SECONDS = Duration.ofDays(31).getSeconds();
+    private static final long ONE_MONTH_SECONDS = Duration.ofDays(31)
+                                                          .getSeconds();
     
     private final JTraktV2 jtrakt;
     private final TraktHTTP http;

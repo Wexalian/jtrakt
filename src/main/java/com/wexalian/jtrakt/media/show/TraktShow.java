@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.media;
+package com.wexalian.jtrakt.media.show;
 
 import com.wexalian.jtrakt.http.query.Genre;
 import com.wexalian.jtrakt.http.query.Language;

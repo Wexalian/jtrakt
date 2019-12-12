@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.http.query;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public enum Language
@@ -159,15 +158,18 @@ public enum Language
     ZHUANG("za", "Zhuang; Chuang"),
     ZULU("zu", "Zulu");
     
-    private final String code;
-    private final String name;
-    
-    private static final HashMap<String, Language> CODE_TO_LANGUAGE = new HashMap<>();
+    private static final HashMap<String, Language> STRING_MAPPING = new HashMap<>();
     
     static
     {
-        Arrays.stream(Language.values()).forEach(language -> CODE_TO_LANGUAGE.put(language.getCode(), language));
+        for (Language language : values())
+        {
+            STRING_MAPPING.put(language.toString(), language);
+        }
     }
+    
+    private final String code;
+    private final String name;
     
     Language(String code, String name)
     {
@@ -175,24 +177,24 @@ public enum Language
         this.name = name;
     }
     
-    public String getCode()
-    {
-        return code;
-    }
-    
     public String getName()
     {
         return name;
-    }
-    
-    public static Language fromCode(String code)
-    {
-        return CODE_TO_LANGUAGE.get(code);
     }
     
     @Override
     public String toString()
     {
         return getCode();
+    }
+    
+    public String getCode()
+    {
+        return code;
+    }
+    
+    public static Language fromCode(String code)
+    {
+        return STRING_MAPPING.get(code);
     }
 }

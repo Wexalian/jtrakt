@@ -31,7 +31,10 @@ public class TraktHTTP
     public TraktHTTP(JTraktV2 traktApi)
     {
         this.traktApi = traktApi;
-        this.client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).followRedirects(HttpClient.Redirect.NORMAL).build();
+        this.client = HttpClient.newBuilder()
+                                .version(HttpClient.Version.HTTP_2)
+                                .followRedirects(HttpClient.Redirect.NORMAL)
+                                .build();
     }
     
     public <T> T getAndParse(@Nonnull TraktQuery query, @Nonnull TypeToken<T> typeToken)
@@ -52,8 +55,11 @@ public class TraktHTTP
         {
             builder = builder.header(HEADER_AUTHORIZATION, HEADER_AUTHORIZATION_BEARER + accessToken.getAccessToken());
         }
-        
-        return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body).thenApply(s -> TraktJSON.fromJson(s, typeToken)).join();
+    
+        return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString())
+                     .thenApply(HttpResponse::body)
+                     .thenApply(s -> TraktJSON.fromJson(s, typeToken))
+                     .join();
     }
     
     public <T> T postAndParse(@Nonnull TraktQuery query, @Nonnull Object postData, @Nonnull TypeToken<T> typeToken)
@@ -74,7 +80,10 @@ public class TraktHTTP
         {
             builder = builder.header(HEADER_AUTHORIZATION, "Bearer " + accessToken.getAccessToken());
         }
-        
-        return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body).thenApply(s -> TraktJSON.fromJson(s, typeToken)).join();
+    
+        return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString())
+                     .thenApply(HttpResponse::body)
+                     .thenApply(s -> TraktJSON.fromJson(s, typeToken))
+                     .join();
     }
 }

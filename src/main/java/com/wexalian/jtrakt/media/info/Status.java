@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.media.info;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,10 @@ public enum Status
     
     static
     {
-        Arrays.stream(Status.values()).forEach(s -> STRING_MAPPING.put(s.toString(), s));
+        for (Status status : values())
+        {
+            STRING_MAPPING.put(status.toString(), status);
+        }
     }
     
     private final String value;
