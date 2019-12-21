@@ -7,6 +7,7 @@ import com.wexalian.jtrakt.http.query.Genre;
 import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.json.adapter.*;
 import com.wexalian.jtrakt.media.info.Day;
+import com.wexalian.jtrakt.media.info.MediaType;
 import com.wexalian.jtrakt.media.info.Status;
 
 import java.time.LocalTime;
@@ -20,6 +21,7 @@ public class TraktJSON
                                                       .registerTypeAdapter(Genre.class, GenreTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(Language.class, LanguageTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(LocalTime.class, LocalTimeTypeAdapter.INSTANCE)
+                                                      .registerTypeAdapter(MediaType.class, MediaTypeTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(OffsetDateTime.class, OffsetDateTimeTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(Status.class, StatusTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(ZoneId.class, ZoneIdTypeAdapter.INSTANCE)
@@ -32,6 +34,7 @@ public class TraktJSON
     
     public static String toJson(Object src)
     {
+        if (src == null) return "";
         return GSON.toJson(src);
     }
 }

@@ -1,22 +1,23 @@
-package com.wexalian.jtrakt.media.info;
+package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.TraktUser;
+import com.wexalian.jtrakt.media.checkin.TraktSharing;
 
 import java.time.OffsetDateTime;
 
-public class Comment
+public class TraktComment
 {
     private int id;
-    private String comment;
-    private boolean spoiler;
-    private boolean review;
     private int parent_id;
     private OffsetDateTime created_at;
     private OffsetDateTime updated_at;
+    private String comment;
+    private boolean spoiler;
+    private boolean review;
     private int replies;
     private int likes;
     private int user_rating;
     private TraktUser user;
+    private TraktSharing sharing;
     
     public enum Sort
     {
@@ -32,12 +33,24 @@ public class Comment
         @Override
         public String toString()
         {
-            return getSort();
-        }
-    
-        public String getSort()
-        {
             return sort;
+        }
+    }
+    
+    public enum Type
+    {
+        ALL("all"),
+        REVIEWS("reviews"),
+        SHOUTS("shouts");
+        
+        private final String type;
+        
+        Type(String type) {this.type = type;}
+        
+        @Override
+        public String toString()
+        {
+            return type;
         }
     }
 }

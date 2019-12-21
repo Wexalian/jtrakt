@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint.auth.device;
+package com.wexalian.jtrakt.endpoint.auth.data;
 
 public class TraktAuthCode
 {

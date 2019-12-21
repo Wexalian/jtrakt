@@ -2,24 +2,20 @@ package com.wexalian.jtrakt.endpoint.auth;
 
 import com.google.common.base.Strings;
 import com.wexalian.jtrakt.JTraktV2;
-import com.wexalian.jtrakt.endpoint.auth.device.TraktAuthCode;
-import com.wexalian.jtrakt.endpoint.auth.device.TraktClientID;
-import com.wexalian.jtrakt.endpoint.auth.device.TraktPollTokenData;
-import com.wexalian.jtrakt.endpoint.auth.refresh.TraktRefreshTokenData;
+import com.wexalian.jtrakt.endpoint.auth.data.TraktAuthCode;
+import com.wexalian.jtrakt.endpoint.auth.data.TraktClientID;
+import com.wexalian.jtrakt.endpoint.auth.data.TraktPollTokenData;
+import com.wexalian.jtrakt.endpoint.auth.data.TraktRefreshTokenData;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.time.Duration;
 import java.util.function.Consumer;
 
 public class TraktAuthentication
 {
-    private static final long ONE_MONTH_SECONDS = Duration.ofDays(31)
-                                                          .getSeconds();
-    
     private final JTraktV2 jtrakt;
     private final TraktHTTP http;
     
@@ -32,19 +28,6 @@ public class TraktAuthentication
     @Nullable
     public TraktAccessToken setupDeviceOAuth(Consumer<String> userCodeConsumer, Consumer<String> verificationUrlConsumer)
     {
-        // if (oldToken != null)
-        // {
-        //     long time = System.currentTimeMillis() - oldToken.getCreatedAt();
-        //     if (time > ONE_MONTH_SECONDS)
-        //     {
-        //         return refreshAccessToken(oldToken);
-        //     }
-        //     return null;
-        // }
-        // else
-        // {
-        //request token
-        
         TraktClientID clientId = new TraktClientID(jtrakt.getClientId());
         TraktQuery codeQuery = TraktQuery.create("oauth/device/code");
         TraktAuthCode authCode = http.postAndParse(codeQuery, clientId, TraktTypeTokens.AUTH_CODE);

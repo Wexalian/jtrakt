@@ -6,13 +6,12 @@ import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.*;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.TraktCast;
-import com.wexalian.jtrakt.media.TraktEpisode;
-import com.wexalian.jtrakt.media.TraktUser;
-import com.wexalian.jtrakt.media.info.*;
+import com.wexalian.jtrakt.media.*;
+import com.wexalian.jtrakt.media.info.Alias;
+import com.wexalian.jtrakt.media.info.Ratings;
+import com.wexalian.jtrakt.media.info.Stats;
+import com.wexalian.jtrakt.media.info.Translation;
 import com.wexalian.jtrakt.media.show.TraktCollectionProgress;
-import com.wexalian.jtrakt.media.show.TraktList;
-import com.wexalian.jtrakt.media.show.TraktShow;
 import com.wexalian.jtrakt.media.show.TraktWatchedProgress;
 
 import javax.annotation.Nonnull;
@@ -131,7 +130,7 @@ public class TraktShows
         return http.getAndParse(query, TraktTypeTokens.TRANSLATIONS);
     }
     
-    public List<Comment> getComments(@Nonnull String showId, @Nullable Comment.Sort sort, @Nullable Pagination pagination)
+    public List<TraktComment> getComments(@Nonnull String showId, @Nullable TraktComment.Sort sort, @Nullable Pagination pagination)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/comments/{sort}")
                                      .path("id", showId)
@@ -157,7 +156,7 @@ public class TraktShows
         return http.getAndParse(query, TraktTypeTokens.LISTS);
     }
     
-    public TraktCollectionProgress.Show getCollectionProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nonnull TraktAccessToken accessToken)
+    public TraktCollectionProgress.Show getCollectionProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/progress/collection")
                                      .path("id", showId)
@@ -168,7 +167,7 @@ public class TraktShows
         return http.getAndParse(query, TraktTypeTokens.COLLECTED_PROGRESS, accessToken);
     }
     
-    public TraktWatchedProgress.Show getWatchedProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nonnull TraktAccessToken accessToken)
+    public TraktWatchedProgress.Show getWatchedProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/progress/watched")
                                      .path("id", showId)
