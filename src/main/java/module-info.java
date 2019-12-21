@@ -9,6 +9,8 @@ module com.wexalian.jtrakt {
     
     exports com.wexalian.jtrakt.media;
     exports com.wexalian.jtrakt.media.calender;
+    exports com.wexalian.jtrakt.media.checkin;
+    exports com.wexalian.jtrakt.media.comment;
     exports com.wexalian.jtrakt.media.info;
     exports com.wexalian.jtrakt.media.show;
     
@@ -17,11 +19,15 @@ module com.wexalian.jtrakt {
     
     exports com.wexalian.jtrakt.endpoint.auth;
     exports com.wexalian.jtrakt.endpoint.calendars;
+    exports com.wexalian.jtrakt.endpoint.certifications;
     exports com.wexalian.jtrakt.endpoint.checkin;
     exports com.wexalian.jtrakt.endpoint.comments;
+    exports com.wexalian.jtrakt.endpoint.countries;
     exports com.wexalian.jtrakt.endpoint.episodes;
     exports com.wexalian.jtrakt.endpoint.genres;
+    exports com.wexalian.jtrakt.endpoint.languages;
     exports com.wexalian.jtrakt.endpoint.movies;
+    exports com.wexalian.jtrakt.endpoint.networks;
     exports com.wexalian.jtrakt.endpoint.people;
     exports com.wexalian.jtrakt.endpoint.recommendations;
     exports com.wexalian.jtrakt.endpoint.scrobble;

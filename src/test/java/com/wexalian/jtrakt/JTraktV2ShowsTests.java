@@ -2,13 +2,12 @@ package com.wexalian.jtrakt;
 
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.TimePeriod;
-import com.wexalian.jtrakt.media.TraktCast;
-import com.wexalian.jtrakt.media.TraktEpisode;
-import com.wexalian.jtrakt.media.TraktUser;
-import com.wexalian.jtrakt.media.info.*;
+import com.wexalian.jtrakt.media.*;
+import com.wexalian.jtrakt.media.info.Alias;
+import com.wexalian.jtrakt.media.info.Ratings;
+import com.wexalian.jtrakt.media.info.Stats;
+import com.wexalian.jtrakt.media.info.Translation;
 import com.wexalian.jtrakt.media.show.TraktCollectionProgress;
-import com.wexalian.jtrakt.media.show.TraktList;
-import com.wexalian.jtrakt.media.show.TraktShow;
 import com.wexalian.jtrakt.media.show.TraktWatchedProgress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -115,8 +114,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testComments()
     {
-        List<Comment> comments = TRAKT.getShows()
-                                      .getComments("tt2193021", Comment.Sort.NEWEST, null);
+        List<TraktComment> comments = TRAKT.getShows()
+                                           .getComments("tt2193021", TraktComment.Sort.NEWEST, null);
         
         Assertions.assertNotNull(comments, "comments are null");
     }

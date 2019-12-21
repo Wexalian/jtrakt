@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint.auth.refresh;
+package com.wexalian.jtrakt.endpoint.auth.data;
 
 public class TraktRefreshTokenData
 {

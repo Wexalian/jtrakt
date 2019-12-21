@@ -6,66 +6,110 @@ import java.util.List;
 
 public class TraktCast
 {
-    private List<TraktPerson.CastMember> cast;
+    private List<CastMember> cast;
     private Crew crew;
     
     public static class Crew
     {
-        private List<TraktPerson.CrewMember> production;
-        private List<TraktPerson.CrewMember> art;
-        private List<TraktPerson.CrewMember> crew;
+        private List<CrewMember> production;
+        private List<CrewMember> art;
+        private List<CrewMember> crew;
         @SerializedName("costume & make-up")
-        private List<TraktPerson.CrewMember> costume_and_makeup;
-        private List<TraktPerson.CrewMember> directing;
-        private List<TraktPerson.CrewMember> writing;
-        private List<TraktPerson.CrewMember> sound;
-        private List<TraktPerson.CrewMember> camera;
+        private List<CrewMember> costume_and_makeup;
+        private List<CrewMember> directing;
+        private List<CrewMember> writing;
+        private List<CrewMember> sound;
+        private List<CrewMember> camera;
         @SerializedName("visual effects")
-        private List<TraktPerson.CrewMember> visual_effects;
-        
-        public List<TraktPerson.CrewMember> getProduction()
+        private List<CrewMember> visual_effects;
+    
+        public List<CrewMember> getProduction()
         {
             return production;
         }
-        
-        public List<TraktPerson.CrewMember> getArt()
+    
+        public List<CrewMember> getArt()
         {
             return art;
         }
-        
-        public List<TraktPerson.CrewMember> getCrew()
+    
+        public List<CrewMember> getCrew()
         {
             return crew;
         }
-        
-        public List<TraktPerson.CrewMember> getCostumeAndMakeup()
+    
+        public List<CrewMember> getCostumeAndMakeup()
         {
             return costume_and_makeup;
         }
-        
-        public List<TraktPerson.CrewMember> getDirecting()
+    
+        public List<CrewMember> getDirecting()
         {
             return directing;
         }
-        
-        public List<TraktPerson.CrewMember> getWriting()
+    
+        public List<CrewMember> getWriting()
         {
             return writing;
         }
-        
-        public List<TraktPerson.CrewMember> getSound()
+    
+        public List<CrewMember> getSound()
         {
             return sound;
         }
-        
-        public List<TraktPerson.CrewMember> getCamera()
+    
+        public List<CrewMember> getCamera()
         {
             return camera;
         }
-        
-        public List<TraktPerson.CrewMember> getVisualEffects()
+    
+        public List<CrewMember> getVisualEffects()
         {
             return visual_effects;
+        }
+    }
+    
+    public static class CastMember
+    {
+        private List<String> characters;
+        private int episode_count;
+        private TraktPerson person;
+        
+        public List<String> getCharacters()
+        {
+            return characters;
+        }
+        
+        public int getEpisodeCount()
+        {
+            return episode_count;
+        }
+        
+        public TraktPerson getPerson()
+        {
+            return person;
+        }
+    }
+    
+    public static class CrewMember
+    {
+        private List<String> jobs;
+        private int episode_count;
+        private TraktPerson person;
+        
+        public List<String> getJobs()
+        {
+            return jobs;
+        }
+        
+        public int getEpisodeCount()
+        {
+            return episode_count;
+        }
+        
+        public TraktPerson getPerson()
+        {
+            return person;
         }
     }
 }

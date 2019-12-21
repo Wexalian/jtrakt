@@ -10,5 +10,9 @@ public class TraktSearch
      */
     private final TraktHTTP http;
     
-    public TraktSearch(TraktHTTP http) {this.http = http;}
+    public TraktSearch(TraktHTTP http)
+    {
+        this.http = http;
+    }
+    
 }

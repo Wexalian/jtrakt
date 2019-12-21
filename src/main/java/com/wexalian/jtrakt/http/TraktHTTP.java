@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+@SuppressWarnings("DuplicatedCode")
 public class TraktHTTP
 {
     public static final String API_HOST = "api.trakt.tv";
@@ -55,19 +56,19 @@ public class TraktHTTP
         {
             builder = builder.header(HEADER_AUTHORIZATION, HEADER_AUTHORIZATION_BEARER + accessToken.getAccessToken());
         }
-    
+        
         return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString())
-                     .thenApply(HttpResponse::body)
+                     .thenApply(this::body)
                      .thenApply(s -> TraktJSON.fromJson(s, typeToken))
                      .join();
     }
     
-    public <T> T postAndParse(@Nonnull TraktQuery query, @Nonnull Object postData, @Nonnull TypeToken<T> typeToken)
+    private <T> T body(HttpResponse<T> httpResponse)
     {
-        return postAndParse(query, postData, typeToken, null);
+        return httpResponse.body();
     }
     
-    public <T> T postAndParse(@Nonnull TraktQuery query, @Nonnull Object postData, @Nonnull TypeToken<T> typeToken, @Nullable TraktAccessToken accessToken)
+    public void post(@Nonnull TraktQuery query, @Nullable Object postData, @Nullable TraktAccessToken accessToken)
     {
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                                                  .POST(HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData)))
@@ -80,10 +81,50 @@ public class TraktHTTP
         {
             builder = builder.header(HEADER_AUTHORIZATION, "Bearer " + accessToken.getAccessToken());
         }
+        
+        client.sendAsync(builder.build(), HttpResponse.BodyHandlers.discarding());
+    }
     
+    public <T> T postAndParse(@Nonnull TraktQuery query, @Nullable Object postData, @Nonnull TypeToken<T> typeToken)
+    {
+        return postAndParse(query, postData, typeToken, null);
+    }
+    
+    public <T> T postAndParse(@Nonnull TraktQuery query, @Nullable Object postData, @Nonnull TypeToken<T> typeToken, @Nullable TraktAccessToken accessToken)
+    {
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
+                                                 .POST(HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData)))
+                                                 .uri(URI.create(query.format()))
+                                                 .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
+                                                 .header(HEADER_TRAKT_API_VERSION, API_VERSION)
+                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+        
+        if (accessToken != null)
+        {
+            builder = builder.header(HEADER_AUTHORIZATION, "Bearer " + accessToken.getAccessToken());
+        }
+        
         return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString())
                      .thenApply(HttpResponse::body)
                      .thenApply(s -> TraktJSON.fromJson(s, typeToken))
                      .join();
+    }
+    
+    public void delete(@Nonnull TraktQuery query, @Nullable TraktAccessToken accessToken)
+    {
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
+                                                 .DELETE()
+                                                 .uri(URI.create(query.format()))
+                                                 .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
+                                                 .header(HEADER_TRAKT_API_VERSION, API_VERSION)
+                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+        
+        if (accessToken != null)
+        {
+            builder = builder.header(HEADER_AUTHORIZATION, HEADER_AUTHORIZATION_BEARER + accessToken.getAccessToken());
+        }
+        
+        client.sendAsync(builder.build(), HttpResponse.BodyHandlers.discarding())
+              .join();
     }
 }
