@@ -23,6 +23,7 @@ public class TraktJSON
                                                       .registerTypeAdapter(LocalTime.class, LocalTimeTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(MediaType.class, MediaTypeTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(OffsetDateTime.class, OffsetDateTimeTypeAdapter.INSTANCE)
+                                                      .registerTypeAdapter(ScrobbleActionTypeAdapter.class, ScrobbleActionTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(Status.class, StatusTypeAdapter.INSTANCE)
                                                       .registerTypeAdapter(ZoneId.class, ZoneIdTypeAdapter.INSTANCE)
                                                       .create();

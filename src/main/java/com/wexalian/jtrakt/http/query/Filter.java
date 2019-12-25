@@ -1,5 +1,6 @@
 package com.wexalian.jtrakt.http.query;
 
+import com.wexalian.jtrakt.media.info.Certification;
 import com.wexalian.jtrakt.media.info.Status;
 
 public class Filter<T>
@@ -12,11 +13,14 @@ public class Filter<T>
     // TODO maybe? public static final Filter<String> COUNTRIES = new Filter<>("countries", true);
     public static final Filter<Range> RUNTIMES = new Filter<>("runtimes", false);
     public static final Filter<Range> RATINGS = new Filter<>("ratings", false);
-    // TODO maybe? public static final Filter<ContentCertification> CERTIFICATIONS = new Filter<>("certifications", true);
+    public static final Filter<Certification> CERTIFICATIONS = new Filter<>("certifications", true);
     
     //show filters
     // TODO maybe? public static final Filter<Network> NETWORKS = new Filter<Network>("networks", true);
-    public static final Filter<Status> STATUS = new Filter<Status>("status", true);
+    public static final Filter<Status> STATUS = new Filter<>("status", true);
+    
+    //search filters
+    public static final Filter<String> SEARCH_FIELDS = new Filter<>("fields", true);
     
     private final String parameter;
     private final boolean multiples;

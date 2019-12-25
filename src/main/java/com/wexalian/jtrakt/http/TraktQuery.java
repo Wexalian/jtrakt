@@ -38,19 +38,19 @@ public class TraktQuery
         return this;
     }
     
-    public TraktQuery extended(Extended extended)
+    public TraktQuery query(Extended extended)
     {
         this.extended = extended;
         return this;
     }
     
-    public TraktQuery pagination(Pagination pagination)
+    public TraktQuery query(Pagination pagination)
     {
         this.pagination = pagination;
         return this;
     }
     
-    public final TraktQuery filter(Filter.FilterEntry... filterEntries)
+    public final TraktQuery query(Filter.FilterEntry... filterEntries)
     {
         if (filterEntries == null || filterEntries.length == 0) return this;
     

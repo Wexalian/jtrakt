@@ -1,24 +1,24 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.endpoint.auth.TraktAuthentication;
-import com.wexalian.jtrakt.endpoint.calendars.TraktCalendars;
-import com.wexalian.jtrakt.endpoint.certifications.TraktCertifications;
-import com.wexalian.jtrakt.endpoint.checkin.TraktCheckin;
-import com.wexalian.jtrakt.endpoint.comments.TraktComments;
-import com.wexalian.jtrakt.endpoint.countries.TraktCountries;
-import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodes;
-import com.wexalian.jtrakt.endpoint.genres.TraktGenres;
-import com.wexalian.jtrakt.endpoint.languages.TraktLanguages;
-import com.wexalian.jtrakt.endpoint.movies.TraktMovies;
-import com.wexalian.jtrakt.endpoint.networks.TraktNetworks;
-import com.wexalian.jtrakt.endpoint.people.TraktPeople;
-import com.wexalian.jtrakt.endpoint.recommendations.TraktRecommendations;
-import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobble;
-import com.wexalian.jtrakt.endpoint.search.TraktSearch;
-import com.wexalian.jtrakt.endpoint.seasons.TraktSeasons;
-import com.wexalian.jtrakt.endpoint.shows.TraktShows;
-import com.wexalian.jtrakt.endpoint.sync.TraktSync;
-import com.wexalian.jtrakt.endpoint.users.TraktUsers;
+import com.wexalian.jtrakt.endpoint.auth.TraktAuthenticationEndpoint;
+import com.wexalian.jtrakt.endpoint.calendars.TraktCalendarsEndpoint;
+import com.wexalian.jtrakt.endpoint.certifications.TraktCertificationsEndpoint;
+import com.wexalian.jtrakt.endpoint.checkin.TraktCheckinEndpoint;
+import com.wexalian.jtrakt.endpoint.comments.TraktCommentsEndpoint;
+import com.wexalian.jtrakt.endpoint.countries.TraktCountriesEndpoint;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodesEndpoint;
+import com.wexalian.jtrakt.endpoint.genres.TraktGenresEndpoint;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguagesEndpoint;
+import com.wexalian.jtrakt.endpoint.movies.TraktMoviesEndpoint;
+import com.wexalian.jtrakt.endpoint.networks.TraktNetworksEndpoint;
+import com.wexalian.jtrakt.endpoint.people.TraktPeopleEndpoint;
+import com.wexalian.jtrakt.endpoint.recommendations.TraktRecommendationsEndpoint;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleEndpoint;
+import com.wexalian.jtrakt.endpoint.search.TraktSearchEndpoint;
+import com.wexalian.jtrakt.endpoint.seasons.TraktSeasonsEndpoint;
+import com.wexalian.jtrakt.endpoint.shows.TraktShowsEndpoint;
+import com.wexalian.jtrakt.endpoint.sync.TraktSyncEndpoint;
+import com.wexalian.jtrakt.endpoint.users.TraktUsersEndpoint;
 import com.wexalian.jtrakt.http.TraktHTTP;
 
 public final class JTraktV2
@@ -28,25 +28,25 @@ public final class JTraktV2
     private final String secretId;
     
     //api endpoints
-    private TraktAuthentication authentication;
-    private TraktCalendars calenders;
-    private TraktCertifications certifications;
-    private TraktCheckin checkin;
-    private TraktComments comments;
-    private TraktCountries countries;
-    private TraktEpisodes episodes;
-    private TraktGenres genres;
-    private TraktLanguages languages;
-    private TraktMovies movies;
-    private TraktNetworks networks;
-    private TraktPeople people;
-    private TraktRecommendations recommendations;
-    private TraktScrobble scrobble;
-    private TraktSearch search;
-    private TraktSeasons seasons;
-    private TraktShows shows;
-    private TraktSync sync;
-    private TraktUsers users;
+    private TraktAuthenticationEndpoint authentication;
+    private TraktCalendarsEndpoint calenders;
+    private TraktCertificationsEndpoint certifications;
+    private TraktCheckinEndpoint checkin;
+    private TraktCommentsEndpoint comments;
+    private TraktCountriesEndpoint countries;
+    private TraktEpisodesEndpoint episodes;
+    private TraktGenresEndpoint genres;
+    private TraktLanguagesEndpoint languages;
+    private TraktMoviesEndpoint movies;
+    private TraktNetworksEndpoint networks;
+    private TraktPeopleEndpoint people;
+    private TraktRecommendationsEndpoint recommendations;
+    private TraktScrobbleEndpoint scrobble;
+    private TraktSearchEndpoint search;
+    private TraktSeasonsEndpoint seasons;
+    private TraktShowsEndpoint shows;
+    private TraktSyncEndpoint sync;
+    private TraktUsersEndpoint users;
     
     //http
     private TraktHTTP http;
@@ -73,99 +73,99 @@ public final class JTraktV2
         return secretId;
     }
     
-    public TraktAuthentication getAuthentication()
+    public TraktAuthenticationEndpoint getAuthentication()
     {
-        return authentication == null ? authentication = new TraktAuthentication(this, http) : authentication;
+        return authentication == null ? authentication = new TraktAuthenticationEndpoint(this, http) : authentication;
     }
     
-    public TraktCalendars getCalenders()
+    public TraktCalendarsEndpoint getCalenders()
     {
-        return calenders == null ? calenders = new TraktCalendars(http) : calenders;
+        return calenders == null ? calenders = new TraktCalendarsEndpoint(http) : calenders;
     }
     
-    public TraktCertifications getCertifications()
+    public TraktCertificationsEndpoint getCertifications()
     {
-        return certifications == null ? certifications = new TraktCertifications(http) : certifications;
+        return certifications == null ? certifications = new TraktCertificationsEndpoint(http) : certifications;
     }
     
-    public TraktCheckin getCheckin()
+    public TraktCheckinEndpoint getCheckin()
     {
-        return checkin == null ? checkin = new TraktCheckin(http) : checkin;
+        return checkin == null ? checkin = new TraktCheckinEndpoint(http) : checkin;
     }
     
-    public TraktComments getComments()
+    public TraktCommentsEndpoint getComments()
     {
-        return comments == null ? comments = new TraktComments(http) : comments;
+        return comments == null ? comments = new TraktCommentsEndpoint(http) : comments;
     }
     
-    public TraktCountries getCountries()
+    public TraktCountriesEndpoint getCountries()
     {
-        return countries == null ? countries = new TraktCountries(http) : countries;
+        return countries == null ? countries = new TraktCountriesEndpoint(http) : countries;
     }
     
-    public TraktEpisodes getEpisodes()
+    public TraktEpisodesEndpoint getEpisodes()
     {
-        return episodes == null ? episodes = new TraktEpisodes(http) : episodes;
+        return episodes == null ? episodes = new TraktEpisodesEndpoint(http) : episodes;
     }
     
-    public TraktGenres getGenres()
+    public TraktGenresEndpoint getGenres()
     {
-        return genres == null ? genres = new TraktGenres(http) : genres;
+        return genres == null ? genres = new TraktGenresEndpoint(http) : genres;
     }
     
-    public TraktLanguages getLanguages()
+    public TraktLanguagesEndpoint getLanguages()
     {
-        return languages == null ? languages = new TraktLanguages(http) : languages;
+        return languages == null ? languages = new TraktLanguagesEndpoint(http) : languages;
     }
     
-    public TraktMovies getMovies()
+    public TraktMoviesEndpoint getMovies()
     {
-        return movies == null ? movies = new TraktMovies(http) : movies;
+        return movies == null ? movies = new TraktMoviesEndpoint(http) : movies;
     }
     
-    public TraktNetworks getNetworks()
+    public TraktNetworksEndpoint getNetworks()
     {
-        return networks == null ? networks = new TraktNetworks(http) : networks;
+        return networks == null ? networks = new TraktNetworksEndpoint(http) : networks;
     }
     
-    public TraktPeople getPeople()
+    public TraktPeopleEndpoint getPeople()
     {
-        return people == null ? people = new TraktPeople(http) : people;
+        return people == null ? people = new TraktPeopleEndpoint(http) : people;
     }
     
-    public TraktRecommendations getRecommendations()
+    public TraktRecommendationsEndpoint getRecommendations()
     {
-        return recommendations == null ? recommendations = new TraktRecommendations(http) : recommendations;
+        return recommendations == null ? recommendations = new TraktRecommendationsEndpoint(http) : recommendations;
     }
     
-    public TraktScrobble getScrobble()
+    public TraktScrobbleEndpoint getScrobble()
     {
-        return scrobble == null ? scrobble = new TraktScrobble(http) : scrobble;
+        return scrobble == null ? scrobble = new TraktScrobbleEndpoint(http) : scrobble;
     }
     
-    public TraktSearch getSearch()
+    public TraktSearchEndpoint getSearch()
     {
-        return search == null ? search = new TraktSearch(http) : search;
+        return search == null ? search = new TraktSearchEndpoint(http) : search;
     }
     
-    public TraktSeasons getSeasons()
+    public TraktSeasonsEndpoint getSeasons()
     {
-        return seasons == null ? seasons = new TraktSeasons(http) : seasons;
+        return seasons == null ? seasons = new TraktSeasonsEndpoint(http) : seasons;
     }
     
-    public TraktShows getShows()
+    public TraktShowsEndpoint getShows()
     {
-        return shows == null ? shows = new TraktShows(http) : shows;
+        return shows == null ? shows = new TraktShowsEndpoint(http) : shows;
     }
     
-    public TraktSync getSync()
+    public TraktSyncEndpoint getSync()
     {
-        return sync == null ? sync = new TraktSync(http) : sync;
+        return sync == null ? sync = new TraktSyncEndpoint(http) : sync;
     }
     
-    public TraktUsers getUsers()
+    public TraktUsersEndpoint getUsers()
     {
-        return users == null ? users = new TraktUsers(http) : users;
+        return users == null ? users = new TraktUsersEndpoint(http) : users;
     }
     
 }

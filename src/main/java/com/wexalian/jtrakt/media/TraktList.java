@@ -90,4 +90,48 @@ public class TraktList
     {
         return user;
     }
+    
+    public enum Type
+    {
+        ALL("all"),
+        PERSONAL("personal"),
+        OFFICIAL("official"),
+        WATCHLISTS("watchlists");
+        
+        private final String type;
+        
+        Type(String type)
+        {
+            this.type = type;
+        }
+        
+        @Override
+        public String toString()
+        {
+            return type;
+        }
+    }
+    
+    public enum Sort
+    {
+        POPULAR("popular"),
+        LIKES("likes"),
+        COMMENTS("comments"),
+        ITEMS("items"),
+        ADDED("added"),
+        UPDATED("updated");
+        
+        private final String sort;
+        
+        Sort(String sort)
+        {
+            this.sort = sort;
+        }
+        
+        @Override
+        public String toString()
+        {
+            return sort;
+        }
+    }
 }
