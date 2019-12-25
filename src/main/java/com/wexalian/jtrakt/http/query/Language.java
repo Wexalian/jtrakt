@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public enum Language
 {
+    ALL("all", "All Languages"),
     ABKHAZIAN("ab", "Abkhazian"),
     AFAR("aa", "Afar"),
     AFRIKAANS("af", "Afrikaans"),

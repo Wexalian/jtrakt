@@ -3,6 +3,7 @@ package com.wexalian.jtrakt.media;
 import com.wexalian.jtrakt.http.query.Genre;
 import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.media.info.Airs;
+import com.wexalian.jtrakt.media.info.Certification;
 import com.wexalian.jtrakt.media.info.Ids;
 import com.wexalian.jtrakt.media.info.Status;
 
@@ -21,7 +22,7 @@ public class TraktShow
     private OffsetDateTime first_aired;
     private Airs airs;
     private int runtime;
-    private String certification;
+    private Certification certification;
     private String network;
     private String country;
     private OffsetDateTime updated_at;
@@ -80,7 +81,7 @@ public class TraktShow
         return runtime;
     }
     
-    public String getCertification()
+    public Certification getCertification()
     {
         return certification;
     }
@@ -150,85 +151,4 @@ public class TraktShow
         return aired_episodes;
     }
     
-    public static class Listed
-    {
-        private int list_count;
-        private TraktShow show;
-        
-        public int getListCount()
-        {
-            return list_count;
-        }
-        
-        public TraktShow getShow()
-        {
-            return show;
-        }
-    }
-    
-    public static class Trending
-    {
-        private int watchers;
-        private TraktShow show;
-        
-        public int getWatchers()
-        {
-            return watchers;
-        }
-        
-        public TraktShow getShow()
-        {
-            return show;
-        }
-    }
-    
-    public static class Updated
-    {
-        private OffsetDateTime updated_at;
-        private TraktShow show;
-        
-        public OffsetDateTime getUpdatedAt()
-        {
-            return updated_at;
-        }
-        
-        public TraktShow getShow()
-        {
-            return show;
-        }
-    }
-    
-    public static class Watched
-    {
-        private int watcher_count;
-        private int play_count;
-        private int collected_count;
-        private int collector_count;
-        private TraktShow show;
-        
-        public int getWatcherCount()
-        {
-            return watcher_count;
-        }
-        
-        public int getPlayCount()
-        {
-            return play_count;
-        }
-        
-        public int getCollectedCount()
-        {
-            return collected_count;
-        }
-        
-        public int getCollectorCount()
-        {
-            return collector_count;
-        }
-        
-        public TraktShow getShow()
-        {
-            return show;
-        }
-    }
 }

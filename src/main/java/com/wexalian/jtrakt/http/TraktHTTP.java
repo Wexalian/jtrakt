@@ -58,14 +58,9 @@ public class TraktHTTP
         }
         
         return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString())
-                     .thenApply(this::body)
+                     .thenApply(HttpResponse::body)
                      .thenApply(s -> TraktJSON.fromJson(s, typeToken))
                      .join();
-    }
-    
-    private <T> T body(HttpResponse<T> httpResponse)
-    {
-        return httpResponse.body();
     }
     
     public void post(@Nonnull TraktQuery query, @Nullable Object postData, @Nullable TraktAccessToken accessToken)

@@ -7,8 +7,7 @@ import com.wexalian.jtrakt.media.info.Alias;
 import com.wexalian.jtrakt.media.info.Ratings;
 import com.wexalian.jtrakt.media.info.Stats;
 import com.wexalian.jtrakt.media.info.Translation;
-import com.wexalian.jtrakt.media.show.TraktCollectionProgress;
-import com.wexalian.jtrakt.media.show.TraktWatchedProgress;
+import com.wexalian.jtrakt.media.show.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +21,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testTrending()
     {
-        List<TraktShow.Trending> trendingShows = TRAKT.getShows()
-                                                      .getTrending(null, null);
+        List<TraktTrendingShow.Trending> trendingShows = TRAKT.getShows()
+                                                              .getTrending(null, null);
         
         Assertions.assertNotNull(trendingShows, "trending shows is null");
     }
@@ -40,8 +39,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testMostPlayed()
     {
-        List<TraktShow.Watched> mostPlayed = TRAKT.getShows()
-                                                  .getMostPlayed(TimePeriod.WEEKLY, null, null);
+        List<TraktWatchedShow.Watched> mostPlayed = TRAKT.getShows()
+                                                         .getMostPlayed(TimePeriod.WEEKLY, null, null);
         
         Assertions.assertNotNull(mostPlayed, "most played is null");
     }
@@ -49,8 +48,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testMostWatched()
     {
-        List<TraktShow.Watched> mostWatched = TRAKT.getShows()
-                                                   .getMostWatched(TimePeriod.WEEKLY, null, null);
+        List<TraktWatchedShow.Watched> mostWatched = TRAKT.getShows()
+                                                          .getMostWatched(TimePeriod.WEEKLY, null, null);
         
         Assertions.assertNotNull(mostWatched, "most watched is null");
     }
@@ -58,8 +57,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testMostCollected()
     {
-        List<TraktShow.Watched> mostCollected = TRAKT.getShows()
-                                                     .getMostCollected(TimePeriod.WEEKLY, null, null);
+        List<TraktWatchedShow.Watched> mostCollected = TRAKT.getShows()
+                                                            .getMostCollected(TimePeriod.WEEKLY, null, null);
         
         Assertions.assertNotNull(mostCollected, "most collected is null");
     }
@@ -67,8 +66,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testMostAnticipated()
     {
-        List<TraktShow.Listed> mostAnticipated = TRAKT.getShows()
-                                                      .getMostAnticipated(null, null);
+        List<TraktListedShow.Listed> mostAnticipated = TRAKT.getShows()
+                                                            .getMostAnticipated(null, null);
         
         Assertions.assertNotNull(mostAnticipated, "most anticipated is null");
     }
@@ -76,8 +75,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testRecentlyUpdated()
     {
-        List<TraktShow.Updated> recentlyUpdated = TRAKT.getShows()
-                                                       .getUpdates(OffsetDateTime.now()
+        List<TraktUpdatedShow.Updated> recentlyUpdated = TRAKT.getShows()
+                                                              .getUpdates(OffsetDateTime.now()
                                                                                  .minus(Period.ofWeeks(1)), null, null);
         
         Assertions.assertNotNull(recentlyUpdated, "recently updated is null");
@@ -87,7 +86,7 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     void testSummary()
     {
         TraktShow show = TRAKT.getShows()
-                              .getSummary("tt2193021", Extended.FULL);
+                              .get("tt2193021", Extended.FULL);
         
         Assertions.assertNotNull(show, "summary for show is null");
     }
@@ -151,8 +150,8 @@ class JTraktV2ShowsTests extends JTraktV2Tests
     @Test
     void testPeople()
     {
-        TraktCast cast = TRAKT.getShows()
-                              .getPeople("tt2193021", null);
+        TraktShowCast cast = TRAKT.getShows()
+                                  .getPeople("tt2193021", null);
         
         Assertions.assertNotNull(cast, "cast is null");
     }
