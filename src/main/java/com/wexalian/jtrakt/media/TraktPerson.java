@@ -1,15 +1,15 @@
 package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 public class TraktPerson
 {
     private String name;
-    private Ids ids;
+    private TraktIds ids;
     
     public TraktPerson() {}
     
-    public TraktPerson(String name, Ids ids)
+    public TraktPerson(String name, TraktIds ids)
     {
         this.name = name;
         this.ids = ids;
@@ -20,7 +20,7 @@ public class TraktPerson
         return name;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

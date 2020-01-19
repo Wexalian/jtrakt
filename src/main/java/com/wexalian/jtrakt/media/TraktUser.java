@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.media;
 
 import com.google.gson.annotations.SerializedName;
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 public class TraktUser
 {
@@ -11,7 +11,7 @@ public class TraktUser
     private String name;
     private boolean vip;
     private boolean vip_ep;
-    private Ids ids;
+    private TraktIds ids;
     
     public String getUsername()
     {
@@ -38,7 +38,7 @@ public class TraktUser
         return vip_ep;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

@@ -6,7 +6,8 @@ public enum Extended
     NO_SEASONS("noseasons"), //only works with sync/getWatched
     EPISODES("episodes"),
     FULL_EPISODES("full,episodes"),
-    GUEST_STARS("guest_stars");
+    GUEST_STARS("guest_stars"),
+    METADATA("metadata");
     
     private final String value;
     

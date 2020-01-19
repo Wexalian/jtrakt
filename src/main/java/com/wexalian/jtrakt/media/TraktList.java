@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 import java.time.OffsetDateTime;
 
@@ -18,7 +18,7 @@ public class TraktList
     private int item_count;
     private int comment_count;
     private int likes;
-    private Ids ids;
+    private TraktIds ids;
     private TraktUser user;
     
     public String getName()
@@ -81,7 +81,7 @@ public class TraktList
         return likes;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

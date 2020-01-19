@@ -1,17 +1,17 @@
 package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 public class TraktEpisode
 {
     private int season;
     private int number;
     private String title;
-    private Ids ids;
+    private TraktIds ids;
     
     public TraktEpisode() {}
     
-    public TraktEpisode(int season, int number, String title, Ids ids)
+    public TraktEpisode(int season, int number, String title, TraktIds ids)
     {
         this.season = season;
         this.number = number;
@@ -34,7 +34,7 @@ public class TraktEpisode
         return title;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

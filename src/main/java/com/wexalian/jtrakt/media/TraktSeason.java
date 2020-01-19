@@ -1,15 +1,15 @@
 package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 public class TraktSeason
 {
     private int number;
-    private Ids ids;
+    private TraktIds ids;
     
     public TraktSeason() {}
     
-    public TraktSeason(int number, Ids ids)
+    public TraktSeason(int number, TraktIds ids)
     {
         this.number = number;
         this.ids = ids;
@@ -20,7 +20,7 @@ public class TraktSeason
         return number;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

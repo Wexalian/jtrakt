@@ -11,20 +11,12 @@ targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = co
 group 'com.wexalian.jtrakt'
 version 'unreleased'
 
-test {
-    useJUnit()
-    maxHeapSize = '1G'
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 
     compile 'com.google.code.findbugs:jsr305:3.0.2'
     compile 'com.google.guava:guava:26.0-jre'
@@ -38,7 +30,4 @@ compileJava {
         ]
         classpath = files()
     }
-}
-test {
-    useJUnitPlatform()
 }
