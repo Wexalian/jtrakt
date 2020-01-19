@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.media.info;
 
-public class Ids
+public class TraktIds
 {
     private int trakt;
     private String slug;
@@ -9,9 +9,9 @@ public class Ids
     private int tmdb;
     private int tvrage;
     
-    public Ids() {}
+    public TraktIds() {}
     
-    public Ids(int trakt, String slug, int tvdb, String imdb, int tmdb, int tvrage)
+    public TraktIds(int trakt, String slug, int tvdb, String imdb, int tmdb, int tvrage)
     {
         this.trakt = trakt;
         this.slug = slug;

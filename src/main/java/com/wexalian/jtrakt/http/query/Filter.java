@@ -10,13 +10,13 @@ public class Filter<T>
     public static final Filter<Range> YEARS = new Filter<>("years", false);
     public static final Filter<Genre[]> GENRES = new Filter<>("genres", true);
     public static final Filter<Language> LANGUAGES = new Filter<>("languages", true);
-    // TODO maybe? public static final Filter<String> COUNTRIES = new Filter<>("countries", true);
+    public static final Filter<String> COUNTRIES = new Filter<>("countries", true); //TODO Change to enum?
     public static final Filter<Range> RUNTIMES = new Filter<>("runtimes", false);
     public static final Filter<Range> RATINGS = new Filter<>("ratings", false);
     public static final Filter<Certification> CERTIFICATIONS = new Filter<>("certifications", true);
     
     //show filters
-    // TODO maybe? public static final Filter<Network> NETWORKS = new Filter<Network>("networks", true);
+    public static final Filter<String> NETWORKS = new Filter<>("networks", true);
     public static final Filter<Status> STATUS = new Filter<>("status", true);
     
     //search filters

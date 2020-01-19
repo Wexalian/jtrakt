@@ -1,16 +1,16 @@
 package com.wexalian.jtrakt.media;
 
-import com.wexalian.jtrakt.media.info.Ids;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 public class TraktMovie
 {
     private String title;
     private int year;
-    private Ids ids;
+    private TraktIds ids;
     
     public TraktMovie() {}
     
-    public TraktMovie(String title, int year, Ids ids)
+    public TraktMovie(String title, int year, TraktIds ids)
     {
         this.title = title;
         this.year = year;
@@ -27,7 +27,7 @@ public class TraktMovie
         return year;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

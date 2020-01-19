@@ -22,6 +22,18 @@ import com.wexalian.jtrakt.media.scrobble.TraktScrobbleMovie;
 import com.wexalian.jtrakt.media.scrobble.TraktScrobbleShow;
 import com.wexalian.jtrakt.media.search.TraktSearchMedia;
 import com.wexalian.jtrakt.media.show.*;
+import com.wexalian.jtrakt.media.sync.TraktBaseSyncItem;
+import com.wexalian.jtrakt.media.sync.TraktPlayback;
+import com.wexalian.jtrakt.media.sync.TraktSyncUpdate;
+import com.wexalian.jtrakt.media.sync.activity.TraktActivity;
+import com.wexalian.jtrakt.media.sync.collection.TraktCollectionMovie;
+import com.wexalian.jtrakt.media.sync.collection.TraktCollectionShow;
+import com.wexalian.jtrakt.media.sync.history.TraktHistoryItem;
+import com.wexalian.jtrakt.media.sync.rating.TraktRatedItem;
+import com.wexalian.jtrakt.media.sync.rating.TraktRatedSyncItem;
+import com.wexalian.jtrakt.media.sync.watched.TraktWatchedMovie;
+import com.wexalian.jtrakt.media.sync.watched.TraktWatchedShow;
+import com.wexalian.jtrakt.media.sync.watchlist.TraktWatchlistItem;
 
 import java.util.List;
 
@@ -67,7 +79,7 @@ public final class TraktTypeTokens
     //movies
     public static final TypeToken<List<TraktMovie>> MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktTrendingMovie>> TRENDING_MOVIES = new TypeToken<>() {};
-    public static final TypeToken<List<TraktWatchedMovie>> WATCHED_MOVIES = new TypeToken<>() {};
+    public static final TypeToken<List<com.wexalian.jtrakt.media.movie.TraktWatchedMovie>> WATCHED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktListedMovie>> LISTED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktUpdatedMovie>> UPDATED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktBoxOfficeMovie>> BOX_OFFICE_MOVIES = new TypeToken<>() {};
@@ -95,7 +107,7 @@ public final class TraktTypeTokens
     //shows
     public static final TypeToken<List<TraktTrendingShow>> TRENDING_SHOWS = new TypeToken<>() {};
     public static final TypeToken<List<TraktShow>> SHOWS = new TypeToken<>() {};
-    public static final TypeToken<List<TraktWatchedShow>> WATCHED_SHOWS = new TypeToken<>() {};
+    public static final TypeToken<List<com.wexalian.jtrakt.media.show.TraktWatchedShow>> WATCHED_SHOWS = new TypeToken<>() {};
     public static final TypeToken<List<TraktListedShow>> LISTED_SHOWS = new TypeToken<>() {};
     public static final TypeToken<List<TraktUpdatedShow>> UPDATED_SHOWS = new TypeToken<>() {};
     public static final TypeToken<List<Alias>> ALIASES = new TypeToken<>() {};
@@ -112,4 +124,17 @@ public final class TraktTypeTokens
     //episodes
     public static final TypeToken<List<TraktEpisode>> EPISODES = new TypeToken<>() {};
     public static final TypeToken<TraktEpisodeCast> EPISODE_CAST = new TypeToken<>() {};
+    
+    //sync
+    public static final TypeToken<TraktActivity> LAST_ACTIVITY = new TypeToken<>() {};
+    public static final TypeToken<TraktPlayback> PLAYBACK = new TypeToken<>() {};
+    public static final TypeToken<List<TraktCollectionMovie>> MOVIE_COLLECTION = new TypeToken<>() {};
+    public static final TypeToken<List<TraktCollectionShow>> SHOW_COLLECTION = new TypeToken<>() {};
+    public static final TypeToken<TraktSyncUpdate<TraktBaseSyncItem>> SYNC_UPDATE = new TypeToken<>() {};
+    public static final TypeToken<List<TraktWatchedShow>> SYNC_WATCHED_SHOW = new TypeToken<>() {};
+    public static final TypeToken<List<TraktWatchedMovie>> SYNC_WATCHED_MOVIE = new TypeToken<>() {};
+    public static final TypeToken<List<TraktHistoryItem>> HISTORY_MEDIA = new TypeToken<>() {};
+    public static final TypeToken<List<TraktRatedItem>> RATED_ITEM = new TypeToken<>() {};
+    public static final TypeToken<TraktSyncUpdate<TraktRatedSyncItem>> SYNC_RATED_UPDATE = new TypeToken<>() {};
+    public static final TypeToken<List<TraktWatchlistItem>> WATCHLIST_ITEM = new TypeToken<>() {};
 }

@@ -4,8 +4,8 @@ import com.wexalian.jtrakt.http.query.Genre;
 import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.media.info.Airs;
 import com.wexalian.jtrakt.media.info.Certification;
-import com.wexalian.jtrakt.media.info.Ids;
 import com.wexalian.jtrakt.media.info.Status;
+import com.wexalian.jtrakt.media.info.TraktIds;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -15,7 +15,7 @@ public class TraktShow
     //standard
     private String title;
     private int year;
-    private Ids ids;
+    private TraktIds ids;
     
     //extended
     private String overview;
@@ -39,7 +39,7 @@ public class TraktShow
     
     public TraktShow() {}
     
-    public TraktShow(String title, int year, Ids ids)
+    public TraktShow(String title, int year, TraktIds ids)
     {
         this.title = title;
         this.year = year;
@@ -56,7 +56,7 @@ public class TraktShow
         return year;
     }
     
-    public Ids getIds()
+    public TraktIds getIds()
     {
         return ids;
     }

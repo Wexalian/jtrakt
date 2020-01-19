@@ -18,6 +18,13 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt.media.scrobble;
     exports com.wexalian.jtrakt.media.search;
     exports com.wexalian.jtrakt.media.show;
+    exports com.wexalian.jtrakt.media.sync;
+    exports com.wexalian.jtrakt.media.sync.activity;
+    exports com.wexalian.jtrakt.media.sync.collection;
+    exports com.wexalian.jtrakt.media.sync.history;
+    exports com.wexalian.jtrakt.media.sync.watched;
+    exports com.wexalian.jtrakt.media.sync.rating;
+    exports com.wexalian.jtrakt.media.sync.watchlist;
     
     exports com.wexalian.jtrakt.http;
     exports com.wexalian.jtrakt.http.query;
