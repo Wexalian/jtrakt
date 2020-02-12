@@ -99,47 +99,47 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.UPDATED_SHOWS);
     }
     
-    public TraktShow get(@Nonnull String showId, @Nullable Extended extended)
+    public TraktShow getSummary(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(extended);
-        
+    
         return http.getAndParse(query, TraktTypeTokens.SHOW);
     }
     
-    public List<TraktAlias> getAliases(@Nonnull String showId, @Nullable TraktLanguage lang)
+    public List<TraktAlias> getAliases(@Nonnull String id, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/aliases/{lang}")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .path("lang", lang);
         
         return http.getAndParse(query, TraktTypeTokens.ALIASES);
     }
     
-    public List<TraktTranslation> getTranslations(@Nonnull String showId, @Nullable TraktLanguage lang)
+    public List<TraktTranslation> getTranslations(@Nonnull String id, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/translations/{lang}")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .path("lang", lang);
         
         return http.getAndParse(query, TraktTypeTokens.TRANSLATIONS);
     }
     
-    public List<TraktComment> getComments(@Nonnull String showId, @Nullable TraktComment.Sort sort, @Nullable Pagination pagination)
+    public List<TraktComment> getComments(@Nonnull String id, @Nullable TraktComment.Sort sort, @Nullable Pagination pagination)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/comments/{sort}")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .path("sort", sort)
                                      .query(pagination);
         
         return http.getAndParse(query, TraktTypeTokens.COMMENTS);
     }
     
-    public List<TraktList> getLists(@Nonnull String showId, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
+    public List<TraktList> getLists(@Nonnull String id, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/lists/{type}/{sort}")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .path("type", type)
                                      .path("sort", sort)
                                      .query(pagination);
@@ -147,10 +147,10 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.LISTS);
     }
     
-    public TraktCollectionProgress.Show getCollectionProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
+    public TraktCollectionProgress.Show getCollectionProgress(@Nonnull String id, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/progress/collection")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query("hidden", hidden)
                                      .query("specials", specials)
                                      .query("count_specials", count_specials);
@@ -158,10 +158,10 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.COLLECTED_PROGRESS, accessToken);
     }
     
-    public TraktWatchedProgress.Show getWatchedProgress(@Nonnull String showId, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
+    public TraktWatchedProgress.Show getWatchedProgress(@Nonnull String id, boolean hidden, boolean specials, boolean count_specials, @Nullable TraktAccessToken accessToken)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/progress/watched")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query("hidden", hidden)
                                      .query("specials", specials)
                                      .query("count_specials", count_specials);
@@ -169,63 +169,63 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_PROGRESS, accessToken);
     }
     
-    public TraktShowCast getPeople(@Nonnull String showId, @Nullable Extended extended)
+    public TraktShowCast getPeople(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/people")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(extended);
-    
+        
         return http.getAndParse(query, TraktTypeTokens.SHOW_CAST);
     }
     
-    public TraktRating getRatings(@Nonnull String showId)
+    public TraktRating getRatings(@Nonnull String id)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/ratings")
-                                     .path("id", showId);
+                                     .path("id", id);
         
         return http.getAndParse(query, TraktTypeTokens.RATINGS);
     }
     
-    public List<TraktShow> getRelated(@Nonnull String showId, @Nullable Pagination pagination, @Nullable Extended extended)
+    public List<TraktShow> getRelated(@Nonnull String id, @Nullable Pagination pagination, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/related")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(pagination)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.SHOWS);
     }
     
-    public TraktStats getStats(@Nonnull String showId)
+    public TraktStats getStats(@Nonnull String id)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/stats")
-                                     .path("id", showId);
+                                     .path("id", id);
         
         return http.getAndParse(query, TraktTypeTokens.STATS);
     }
     
-    public List<TraktUser> getWatchingUsers(@Nonnull String showId, @Nullable Extended extended)
+    public List<TraktUser> getWatchingUsers(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/watching")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.USERS);
     }
     
-    public TraktEpisode getNextEpisode(@Nonnull String showId, @Nullable Extended extended)
+    public TraktEpisode getNextEpisode(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/next_episode")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.EPISODE);
     }
     
-    public TraktEpisode getLastEpisode(@Nonnull String showId, @Nullable Extended extended)
+    public TraktEpisode getLastEpisode(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/last_episode")
-                                     .path("id", showId)
+                                     .path("id", id)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.EPISODE);

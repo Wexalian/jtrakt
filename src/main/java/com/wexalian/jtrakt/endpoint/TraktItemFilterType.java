@@ -10,7 +10,10 @@ public enum TraktItemFilterType
     SHOW("shows"),
     SEASON("seasons"),
     EPISODE("episodes"),
-    LIST("lists");
+    LIST("lists"),
+    // PERSON("persons"),
+    // COMMENT("comment")
+    ;
     
     private static final Map<String, TraktItemFilterType> STRING_MAPPING = new HashMap<>();
     
@@ -40,3 +43,4 @@ public enum TraktItemFilterType
         return STRING_MAPPING.get(value);
     }
 }
+

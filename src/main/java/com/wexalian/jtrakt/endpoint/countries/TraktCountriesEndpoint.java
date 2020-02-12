@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.countries;
 
-import com.wexalian.jtrakt.endpoint.TraktType;
+import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
@@ -17,7 +17,7 @@ public class TraktCountriesEndpoint
         this.http = http;
     }
     
-    public List<TraktCountry> getCountries(@Nonnull TraktType type)
+    public List<TraktCountry> getCountries(@Nonnull TraktItemFilterType type)
     {
         TraktQuery query = TraktQuery.create("countries/{type}")
                                      .path("type", type);

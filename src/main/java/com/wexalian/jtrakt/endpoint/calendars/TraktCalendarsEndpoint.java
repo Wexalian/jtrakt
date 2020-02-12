@@ -22,7 +22,7 @@ public class TraktCalendarsEndpoint
         this.http = http;
     }
     
-    public List<TraktCalendarEpisode> getMyShows(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getMyShows(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/my/shows/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -33,7 +33,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES, token);
     }
     
-    public List<TraktCalendarEpisode> getMyNewShows(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getMyNewShows(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/my/shows/new/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -44,7 +44,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES, token);
     }
     
-    public List<TraktCalendarEpisode> getMySeasonPremieres(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getMySeasonPremieres(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/my/shows/premieres/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -55,7 +55,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES, token);
     }
     
-    public List<TraktCalendarMovie> getMyMovies(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarMovie> getMyMovies(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/my/movies/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -66,7 +66,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_MOVIES, token);
     }
     
-    public List<TraktCalendarEpisode> getMyDvd(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getMyDvd(@Nonnull OffsetDateTime date, int days, @Nonnull TraktAccessToken token, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/my/dvd/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -77,7 +77,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES, token);
     }
     
-    public List<TraktCalendarEpisode> getAllShows(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getAllShows(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/all/shows/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -88,7 +88,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES);
     }
     
-    public List<TraktCalendarEpisode> getAllNewShows(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getAllNewShows(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/all/shows/new/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -99,7 +99,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES);
     }
     
-    public List<TraktCalendarEpisode> getAllSeasonPremieres(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getAllSeasonPremieres(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/all/shows/premieres/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -110,7 +110,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_EPISODES);
     }
     
-    public List<TraktCalendarMovie> getAllMovies(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarMovie> getAllMovies(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/all/movies/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -121,7 +121,7 @@ public class TraktCalendarsEndpoint
         return http.getAndParse(query, TraktTypeTokens.CALENDAR_MOVIES);
     }
     
-    public List<TraktCalendarEpisode> getAllDvd(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktCalendarEpisode> getAllDvd(@Nonnull OffsetDateTime date, int days, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("calendars/all/dvd/{date}/{days}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
