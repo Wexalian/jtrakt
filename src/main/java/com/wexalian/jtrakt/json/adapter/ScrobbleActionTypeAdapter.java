@@ -1,22 +1,22 @@
 package com.wexalian.jtrakt.json.adapter;
 
 import com.google.gson.*;
-import com.wexalian.jtrakt.media.info.ScrobbleAction;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleAction;
 
 import java.lang.reflect.Type;
 
-public class ScrobbleActionTypeAdapter implements JsonSerializer<ScrobbleAction>, JsonDeserializer<ScrobbleAction>
+public class ScrobbleActionTypeAdapter implements JsonSerializer<TraktScrobbleAction>, JsonDeserializer<TraktScrobbleAction>
 {
     public static ScrobbleActionTypeAdapter INSTANCE = new ScrobbleActionTypeAdapter();
     
     @Override
-    public ScrobbleAction deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
+    public TraktScrobbleAction deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
     {
-        return ScrobbleAction.get(json.getAsString());
+        return TraktScrobbleAction.get(json.getAsString());
     }
     
     @Override
-    public JsonElement serialize(ScrobbleAction src, Type typeOfSrc, JsonSerializationContext context)
+    public JsonElement serialize(TraktScrobbleAction src, Type typeOfSrc, JsonSerializationContext context)
     {
         return new JsonPrimitive(src.toString());
     }

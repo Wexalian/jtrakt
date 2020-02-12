@@ -1,7 +1,9 @@
 package com.wexalian.jtrakt.http.query;
 
-import com.wexalian.jtrakt.media.info.Certification;
-import com.wexalian.jtrakt.media.info.Status;
+import com.wexalian.jtrakt.endpoint.Genre;
+import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.shows.TraktStatus;
 
 public class Filter<T>
 {
@@ -9,15 +11,15 @@ public class Filter<T>
     public static final Filter<String> QUERY = new Filter<>("query", false);
     public static final Filter<Range> YEARS = new Filter<>("years", false);
     public static final Filter<Genre[]> GENRES = new Filter<>("genres", true);
-    public static final Filter<Language> LANGUAGES = new Filter<>("languages", true);
+    public static final Filter<TraktLanguage> LANGUAGES = new Filter<>("languages", true);
     public static final Filter<String> COUNTRIES = new Filter<>("countries", true); //TODO Change to enum?
     public static final Filter<Range> RUNTIMES = new Filter<>("runtimes", false);
     public static final Filter<Range> RATINGS = new Filter<>("ratings", false);
-    public static final Filter<Certification> CERTIFICATIONS = new Filter<>("certifications", true);
+    public static final Filter<TraktCertification> CERTIFICATIONS = new Filter<>("certifications", true);
     
     //show filters
     public static final Filter<String> NETWORKS = new Filter<>("networks", true);
-    public static final Filter<Status> STATUS = new Filter<>("status", true);
+    public static final Filter<TraktStatus> STATUS = new Filter<>("status", true);
     
     //search filters
     public static final Filter<String> SEARCH_FIELDS = new Filter<>("fields", true);

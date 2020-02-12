@@ -1,12 +1,12 @@
 package com.wexalian.jtrakt.endpoint.recommendations;
 
+import com.wexalian.jtrakt.endpoint.TraktMovie;
+import com.wexalian.jtrakt.endpoint.TraktShow;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.TraktMovie;
-import com.wexalian.jtrakt.media.TraktShow;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

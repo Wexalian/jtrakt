@@ -1,19 +1,12 @@
 package com.wexalian.jtrakt.endpoint.episodes;
 
+import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
-import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.TraktComment;
-import com.wexalian.jtrakt.media.TraktEpisode;
-import com.wexalian.jtrakt.media.TraktList;
-import com.wexalian.jtrakt.media.TraktUser;
-import com.wexalian.jtrakt.media.episode.TraktEpisodeCast;
-import com.wexalian.jtrakt.media.info.Ratings;
-import com.wexalian.jtrakt.media.info.Stats;
-import com.wexalian.jtrakt.media.info.Translation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -40,7 +33,7 @@ public class TraktEpisodesEndpoint
         return http.getAndParse(query, TraktTypeTokens.EPISODE);
     }
     
-    public List<Translation> getTranslations(@Nonnull String id, int season, int episode, @Nullable Language language)
+    public List<TraktTranslation> getTranslations(@Nonnull String id, int season, int episode, @Nullable TraktLanguage language)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}/episodes/{episode}/language/{language}")
                                      .path("id", id)
@@ -87,7 +80,7 @@ public class TraktEpisodesEndpoint
         return http.getAndParse(query, TraktTypeTokens.EPISODE_CAST);
     }
     
-    public Ratings getRatings(@Nonnull String id, int season, int episode)
+    public TraktRating getRatings(@Nonnull String id, int season, int episode)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}/episodes/{episode}/ratings")
                                      .path("id", id)
@@ -97,7 +90,7 @@ public class TraktEpisodesEndpoint
         return http.getAndParse(query, TraktTypeTokens.RATINGS);
     }
     
-    public Stats getStats(@Nonnull String id, int season, int episode)
+    public TraktStats getStats(@Nonnull String id, int season, int episode)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}/episodes/{episode}/stats")
                                      .path("id", id)

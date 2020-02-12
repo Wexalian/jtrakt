@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.json.adapter;
 
 import com.google.gson.*;
-import com.wexalian.jtrakt.http.query.Genre;
+import com.wexalian.jtrakt.endpoint.Genre;
 
 import java.lang.reflect.Type;
 

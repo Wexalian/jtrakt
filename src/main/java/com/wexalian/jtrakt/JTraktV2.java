@@ -73,97 +73,97 @@ public final class JTraktV2
         return secretId;
     }
     
-    public TraktAuthenticationEndpoint getAuthentication()
+    public TraktAuthenticationEndpoint getAuthenticationEndpoint()
     {
         return authentication == null ? authentication = new TraktAuthenticationEndpoint(this, http) : authentication;
     }
     
-    public TraktCalendarsEndpoint getCalenders()
+    public TraktCalendarsEndpoint getCalendersEndpoint()
     {
         return calenders == null ? calenders = new TraktCalendarsEndpoint(http) : calenders;
     }
     
-    public TraktCertificationsEndpoint getCertifications()
+    public TraktCertificationsEndpoint getCertificationsEndpoint()
     {
         return certifications == null ? certifications = new TraktCertificationsEndpoint(http) : certifications;
     }
     
-    public TraktCheckinEndpoint getCheckin()
+    public TraktCheckinEndpoint getCheckinEndpoint()
     {
         return checkin == null ? checkin = new TraktCheckinEndpoint(http) : checkin;
     }
     
-    public TraktCommentsEndpoint getComments()
+    public TraktCommentsEndpoint getCommentsEndpoint()
     {
         return comments == null ? comments = new TraktCommentsEndpoint(http) : comments;
     }
     
-    public TraktCountriesEndpoint getCountries()
+    public TraktCountriesEndpoint getCountriesEndpoint()
     {
         return countries == null ? countries = new TraktCountriesEndpoint(http) : countries;
     }
     
-    public TraktEpisodesEndpoint getEpisodes()
+    public TraktEpisodesEndpoint getEpisodesEndpoint()
     {
         return episodes == null ? episodes = new TraktEpisodesEndpoint(http) : episodes;
     }
     
-    public TraktGenresEndpoint getGenres()
+    public TraktGenresEndpoint getGenresEndpoint()
     {
         return genres == null ? genres = new TraktGenresEndpoint(http) : genres;
     }
     
-    public TraktLanguagesEndpoint getLanguages()
+    public TraktLanguagesEndpoint getLanguagesEndpoint()
     {
         return languages == null ? languages = new TraktLanguagesEndpoint(http) : languages;
     }
     
-    public TraktMoviesEndpoint getMovies()
+    public TraktMoviesEndpoint getMoviesEndpoint()
     {
         return movies == null ? movies = new TraktMoviesEndpoint(http) : movies;
     }
     
-    public TraktNetworksEndpoint getNetworks()
+    public TraktNetworksEndpoint getNetworksEndpoint()
     {
         return networks == null ? networks = new TraktNetworksEndpoint(http) : networks;
     }
     
-    public TraktPeopleEndpoint getPeople()
+    public TraktPeopleEndpoint getPeopleEndpoint()
     {
         return people == null ? people = new TraktPeopleEndpoint(http) : people;
     }
     
-    public TraktRecommendationsEndpoint getRecommendations()
+    public TraktRecommendationsEndpoint getRecommendationsEndpoint()
     {
         return recommendations == null ? recommendations = new TraktRecommendationsEndpoint(http) : recommendations;
     }
     
-    public TraktScrobbleEndpoint getScrobble()
+    public TraktScrobbleEndpoint getScrobbleEndpoint()
     {
         return scrobble == null ? scrobble = new TraktScrobbleEndpoint(http) : scrobble;
     }
     
-    public TraktSearchEndpoint getSearch()
+    public TraktSearchEndpoint getSearchEndpoint()
     {
         return search == null ? search = new TraktSearchEndpoint(http) : search;
     }
     
-    public TraktSeasonsEndpoint getSeasons()
+    public TraktSeasonsEndpoint getSeasonsEndpoint()
     {
         return seasons == null ? seasons = new TraktSeasonsEndpoint(http) : seasons;
     }
     
-    public TraktShowsEndpoint getShows()
+    public TraktShowsEndpoint getShowsEndpoint()
     {
         return shows == null ? shows = new TraktShowsEndpoint(http) : shows;
     }
     
-    public TraktSyncEndpoint getSync()
+    public TraktSyncEndpoint getSyncEndpoint()
     {
         return sync == null ? sync = new TraktSyncEndpoint(http) : sync;
     }
     
-    public TraktUsersEndpoint getUsers()
+    public TraktUsersEndpoint getUsersEndpoint()
     {
         return users == null ? users = new TraktUsersEndpoint(http) : users;
     }

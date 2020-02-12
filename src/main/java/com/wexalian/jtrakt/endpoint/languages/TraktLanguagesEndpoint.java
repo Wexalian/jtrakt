@@ -1,10 +1,11 @@
 package com.wexalian.jtrakt.endpoint.languages;
 
+import com.wexalian.jtrakt.endpoint.TraktType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
-import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class TraktLanguagesEndpoint
@@ -16,16 +17,10 @@ public class TraktLanguagesEndpoint
         this.http = http;
     }
     
-    public List<Language> getShowLanguages()
+    public List<TraktLanguage> getLanguages(@Nonnull TraktType type)
     {
-        TraktQuery query = TraktQuery.create("languages/shows");
-        
-        return http.getAndParse(query, TraktTypeTokens.LANGUAGES);
-    }
-    
-    public List<Language> getMovieLanguages()
-    {
-        TraktQuery query = TraktQuery.create("languages/movies");
+        TraktQuery query = TraktQuery.create("languages/{type}")
+                                     .path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.LANGUAGES);
     }

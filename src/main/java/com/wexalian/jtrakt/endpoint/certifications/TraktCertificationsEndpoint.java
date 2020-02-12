@@ -1,9 +1,11 @@
 package com.wexalian.jtrakt.endpoint.certifications;
 
+import com.wexalian.jtrakt.endpoint.TraktType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.certification.TraktCertifications;
+
+import javax.annotation.Nonnull;
 
 public class TraktCertificationsEndpoint
 {
@@ -14,16 +16,10 @@ public class TraktCertificationsEndpoint
         this.http = http;
     }
     
-    public TraktCertifications getShowCertifications()
+    public TraktCertifications getCertifications(@Nonnull TraktType type)
     {
-        TraktQuery query = TraktQuery.create("certifications/shows");
-        
-        return http.getAndParse(query, TraktTypeTokens.CERTIFICATIONS);
-    }
-    
-    public TraktCertifications getMovieCertifications()
-    {
-        TraktQuery query = TraktQuery.create("certifications/movies");
+        TraktQuery query = TraktQuery.create("certifications/{type}")
+                                     .path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.CERTIFICATIONS);
     }

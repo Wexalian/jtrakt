@@ -1,15 +1,13 @@
 package com.wexalian.jtrakt.endpoint.seasons;
 
+import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.shows.TraktShowCast;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
-import com.wexalian.jtrakt.http.query.Language;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.*;
-import com.wexalian.jtrakt.media.info.Ratings;
-import com.wexalian.jtrakt.media.info.Stats;
-import com.wexalian.jtrakt.media.show.TraktShowCast;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -33,7 +31,7 @@ public class TraktSeasonsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SEASONS);
     }
     
-    public List<TraktEpisode> getEpisodes(@Nonnull String id, int season, @Nullable Language language, @Nullable Extended extended)
+    public List<TraktEpisode> getEpisodes(@Nonnull String id, int season, @Nullable TraktLanguage language, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}")
                                      .path("id", id)
@@ -77,7 +75,7 @@ public class TraktSeasonsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOW_CAST);
     }
     
-    public Ratings getRatings(@Nonnull String id, int season)
+    public TraktRating getRatings(@Nonnull String id, int season)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}/ratings")
                                      .path("id", id)
@@ -86,7 +84,7 @@ public class TraktSeasonsEndpoint
         return http.getAndParse(query, TraktTypeTokens.RATINGS);
     }
     
-    public Stats getStats(@Nonnull String id, int season)
+    public TraktStats getStats(@Nonnull String id, int season)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/seasons/{season}/stats")
                                      .path("id", id)

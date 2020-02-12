@@ -1,19 +1,13 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-import com.google.common.base.Strings;
+import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
-import com.wexalian.jtrakt.http.query.*;
+import com.wexalian.jtrakt.http.query.Extended;
+import com.wexalian.jtrakt.http.query.Filter;
+import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.TraktComment;
-import com.wexalian.jtrakt.media.TraktList;
-import com.wexalian.jtrakt.media.TraktMovie;
-import com.wexalian.jtrakt.media.TraktUser;
-import com.wexalian.jtrakt.media.info.Alias;
-import com.wexalian.jtrakt.media.info.Ratings;
-import com.wexalian.jtrakt.media.info.Stats;
-import com.wexalian.jtrakt.media.info.Translation;
-import com.wexalian.jtrakt.media.movie.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -30,7 +24,7 @@ public class TraktMoviesEndpoint
         this.http = http;
     }
     
-    public List<TraktTrendingMovie> getTrending(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktTrendingMovie> getTrending(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/trending")
                                      .query(pagination)
@@ -40,7 +34,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.TRENDING_MOVIES);
     }
     
-    public List<TraktMovie> getPopular(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktMovie> getPopular(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/popular")
                                      .query(pagination)
@@ -50,7 +44,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostPlayed(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedMovie> getMostPlayed(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/played/{period}")
                                      .path("period", period)
@@ -61,7 +55,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostWatched(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedMovie> getMostWatched(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/watched/{period}")
                                      .path("period", period)
@@ -72,7 +66,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostCollected(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedMovie> getMostCollected(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/collected/{period}")
                                      .path("period", period)
@@ -83,7 +77,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_MOVIES);
     }
     
-    public List<TraktListedMovie> getMostAnticipated(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktListedMovie> getMostAnticipated(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/anticipated")
                                      .query(pagination)
@@ -101,7 +95,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.BOX_OFFICE_MOVIES);
     }
     
-    public List<TraktUpdatedMovie> getUpdates(@Nonnull OffsetDateTime date, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktUpdatedMovie> getUpdates(@Nonnull OffsetDateTime date, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("movies/updates/{date}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -121,7 +115,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.MOVIE);
     }
     
-    public List<Alias> getAliases(@Nonnull String movieId, @Nullable Language lang)
+    public List<TraktAlias> getAliases(@Nonnull String movieId, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/aliases/{lang}")
                                      .path("id", movieId)
@@ -130,7 +124,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.ALIASES);
     }
     
-    public List<MovieRelease> getReleases(@Nonnull String movieId, @Nullable String country)
+    public List<TraktMovieRelease> getReleases(@Nonnull String movieId, @Nullable String country)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/releases/{country}")
                                      .path("id", movieId)
@@ -139,7 +133,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.RELEASES);
     }
     
-    public List<Translation> getTranslations(@Nonnull String movieId, @Nullable Language lang)
+    public List<TraktTranslation> getTranslations(@Nonnull String movieId, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/translations/{lang}")
                                      .path("id", movieId)
@@ -160,11 +154,6 @@ public class TraktMoviesEndpoint
     
     public List<TraktList> getLists(@Nonnull String movieId, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
     {
-        if (!Strings.isNullOrEmpty(sort) && Strings.isNullOrEmpty(sort))
-        {
-            throw new RuntimeException("If 'sort' isn't empty, 'type' can't be either");
-        }
-        
         TraktQuery query = TraktQuery.create("movies/{id}/lists/{type}/{sort}")
                                      .path("id", movieId)
                                      .path("type", type)
@@ -183,7 +172,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.MOVIE_CAST);
     }
     
-    public Ratings getRatings(@Nonnull String movieId)
+    public TraktRating getRatings(@Nonnull String movieId)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/ratings")
                                      .path("id", movieId);
@@ -201,7 +190,7 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.MOVIES);
     }
     
-    public Stats getStats(@Nonnull String movieId)
+    public TraktStats getStats(@Nonnull String movieId)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/stats")
                                      .path("id", movieId);

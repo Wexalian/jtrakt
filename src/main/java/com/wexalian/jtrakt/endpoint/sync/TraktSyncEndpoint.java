@@ -1,26 +1,18 @@
 package com.wexalian.jtrakt.endpoint.sync;
 
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
+import com.wexalian.jtrakt.endpoint.sync.activity.TraktActivity;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionMovie;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionShow;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionUpdate;
+import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatedItem;
+import com.wexalian.jtrakt.endpoint.sync.watched.TraktWatchedItem;
+import com.wexalian.jtrakt.endpoint.sync.watched.TraktWatchedUpdate;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.sync.TraktBaseSyncItem;
-import com.wexalian.jtrakt.media.sync.TraktPlayback;
-import com.wexalian.jtrakt.media.sync.TraktSyncItems;
-import com.wexalian.jtrakt.media.sync.TraktSyncUpdate;
-import com.wexalian.jtrakt.media.sync.activity.TraktActivity;
-import com.wexalian.jtrakt.media.sync.collection.TraktCollectionMovie;
-import com.wexalian.jtrakt.media.sync.collection.TraktCollectionShow;
-import com.wexalian.jtrakt.media.sync.collection.TraktCollectionUpdate;
-import com.wexalian.jtrakt.media.sync.history.TraktHistoryItem;
-import com.wexalian.jtrakt.media.sync.rating.TraktRatedItem;
-import com.wexalian.jtrakt.media.sync.rating.TraktRatedSyncItem;
-import com.wexalian.jtrakt.media.sync.watched.TraktWatchedMovie;
-import com.wexalian.jtrakt.media.sync.watched.TraktWatchedShow;
-import com.wexalian.jtrakt.media.sync.watched.TraktWatchedUpdate;
-import com.wexalian.jtrakt.media.sync.watchlist.TraktWatchlistItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -75,34 +67,27 @@ public class TraktSyncEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOW_COLLECTION, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> addToCollection(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate addToCollection(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/collection");
         
         return http.postAndParse(query, items, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> removeFromCollection(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate removeFromCollection(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/collection/remove");
         
         return http.postAndParse(query, items, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktWatchedMovie> getWatchedMovies(@Nullable Extended extended, @Nonnull TraktAccessToken token)
+    public List<TraktWatchedItem> getWatchedItems(@Nullable String type, @Nullable Extended extended, @Nonnull TraktAccessToken token)
     {
-        TraktQuery query = TraktQuery.create("sync/watched/movies")
+        TraktQuery query = TraktQuery.create("sync/watched/{type}")
+                                     .path("type", type)
                                      .query(extended);
         
-        return http.getAndParse(query, TraktTypeTokens.SYNC_WATCHED_MOVIE, token);
-    }
-    
-    public List<TraktWatchedShow> getWatchedShows(@Nullable Extended extended, @Nonnull TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("sync/watched/shows")
-                                     .query(extended);
-        
-        return http.getAndParse(query, TraktTypeTokens.SYNC_WATCHED_SHOW, token);
+        return http.getAndParse(query, TraktTypeTokens.SYNC_WATCHED_ITEMS, token);
     }
     
     public List<TraktHistoryItem> getHistory(@Nullable String type, @Nullable String id, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token)
@@ -114,18 +99,18 @@ public class TraktSyncEndpoint
                                      .query("end_at", end_at)
                                      .query(pagination)
                                      .query(extended);
-        
-        return http.getAndParse(query, TraktTypeTokens.HISTORY_MEDIA, token);
+    
+        return http.getAndParse(query, TraktTypeTokens.HISTORY_ITEMS, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> addToHistory(@Nonnull TraktSyncItems<TraktWatchedUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate addToHistory(@Nonnull TraktSyncItems<TraktWatchedUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/history");
         
         return http.postAndParse(query, items, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> removeFromHistory(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate removeFromHistory(@Nonnull TraktSyncItems<TraktCollectionUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/history/remove");
         
@@ -139,18 +124,18 @@ public class TraktSyncEndpoint
                                      .path("rating", rating)
                                      .query(pagination)
                                      .query(extended);
-        
-        return http.getAndParse(query, TraktTypeTokens.RATED_ITEM, token);
+    
+        return http.getAndParse(query, TraktTypeTokens.RATED_ITEMS, token);
     }
     
-    public TraktSyncUpdate<TraktRatedSyncItem> addToRatings(@Nonnull TraktSyncItems<TraktRatedItem> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate addToRatings(@Nonnull TraktSyncItems<TraktRatedItem> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/ratings");
         
-        return http.postAndParse(query, items, TraktTypeTokens.SYNC_RATED_UPDATE, token);
+        return http.postAndParse(query, items, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> removeFromRatings(@Nonnull TraktSyncItems<TraktRatedItem> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate removeFromRatings(@Nonnull TraktSyncItems<TraktRatedItem> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/ratings/remove");
         
@@ -164,18 +149,18 @@ public class TraktSyncEndpoint
                                      .path("sort", sort)
                                      .query(pagination)
                                      .query(extended);
-        
-        return http.getAndParse(query, TraktTypeTokens.WATCHLIST_ITEM, token);
+    
+        return http.getAndParse(query, TraktTypeTokens.WATCHLIST_ITEMS, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> addToWatchlist(@Nonnull TraktSyncItems<TraktWatchlistItem> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate addToWatchlist(@Nonnull TraktSyncItems<TraktWatchlistItem> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/watchlist");
         
         return http.postAndParse(query, items, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public TraktSyncUpdate<TraktBaseSyncItem> removeFromWatchlist(@Nonnull TraktSyncItems<TraktWatchlistItem> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate removeFromWatchlist(@Nonnull TraktSyncItems<TraktWatchlistItem> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("sync/watchlist/remove");
         

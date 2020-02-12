@@ -1,10 +1,11 @@
 package com.wexalian.jtrakt.endpoint.networks;
 
+import com.wexalian.jtrakt.endpoint.TraktType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.info.Network;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class TraktNetworksEndpoint
@@ -16,16 +17,10 @@ public class TraktNetworksEndpoint
         this.http = http;
     }
     
-    public List<Network> getShowNetworks()
+    public List<TraktNetwork> getShowNetworks(@Nonnull TraktType type)
     {
-        TraktQuery query = TraktQuery.create("networks/shows");
-        
-        return http.getAndParse(query, TraktTypeTokens.NETWORKS);
-    }
-    
-    public List<Network> getMovieNetworks()
-    {
-        TraktQuery query = TraktQuery.create("networks/movies");
+        TraktQuery query = TraktQuery.create("networks/{type}")
+                                     .path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.NETWORKS);
     }
