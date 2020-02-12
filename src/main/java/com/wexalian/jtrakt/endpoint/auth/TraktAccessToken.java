@@ -6,11 +6,11 @@ public class TraktAccessToken
     private String refresh_token;
     private long created_at;
     
-    public TraktAccessToken(String accessToken, String refreshToken, long createdAt)
+    public TraktAccessToken(String access_token, String refresh_token, long created_at)
     {
-        this.access_token = accessToken;
-        this.refresh_token = refreshToken;
-        this.created_at = createdAt;
+        this.access_token = access_token;
+        this.refresh_token = refresh_token;
+        this.created_at = created_at;
     }
     
     public String getAccessToken()

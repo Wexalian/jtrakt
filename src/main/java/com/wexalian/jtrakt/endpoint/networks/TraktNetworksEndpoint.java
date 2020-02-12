@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.networks;
 
-import com.wexalian.jtrakt.endpoint.TraktType;
+import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
@@ -17,7 +17,7 @@ public class TraktNetworksEndpoint
         this.http = http;
     }
     
-    public List<TraktNetwork> getShowNetworks(@Nonnull TraktType type)
+    public List<TraktNetwork> getShowNetworks(@Nonnull TraktItemFilterType type)
     {
         TraktQuery query = TraktQuery.create("networks/{type}")
                                      .path("type", type);

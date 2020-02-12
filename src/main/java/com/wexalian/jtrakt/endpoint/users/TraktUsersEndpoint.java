@@ -1,9 +1,6 @@
 package com.wexalian.jtrakt.endpoint.users;
 
-import com.wexalian.jtrakt.endpoint.TraktComment;
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
-import com.wexalian.jtrakt.endpoint.TraktList;
-import com.wexalian.jtrakt.endpoint.TraktUser;
+import com.wexalian.jtrakt.endpoint.*;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.endpoint.comments.TraktItemComment;
 import com.wexalian.jtrakt.endpoint.sync.TraktHistoryItem;
@@ -71,7 +68,7 @@ public class TraktUsersEndpoint
         http.delete(query, token);
     }
     
-    public List<TraktHiddenItem> getHiddenItems(@Nonnull String section, @Nullable String type, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token)
+    public List<TraktHiddenItem> getHiddenItems(@Nonnull String section, @Nullable TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/hidden/{section}/{type}")
                                      .path("section", section)
@@ -98,7 +95,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktLikedItem> getLikes(@Nullable String type, @Nullable Pagination pagination, @Nonnull TraktAccessToken token)
+    public List<TraktLikedItem> getLikes(@Nullable TraktItemType type, @Nullable Pagination pagination, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/likes/{type}")
                                      .path("type", type)
@@ -134,11 +131,11 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOW_COLLECTION, token);
     }
     
-    public List<TraktItemComment> getComments(@Nonnull String id, @Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, @Nullable String include_replies, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktItemComment> getComments(@Nonnull String id, @Nullable TraktComment.Type comment_type, @Nullable TraktItemFilterType type, @Nullable String include_replies, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/comments/{comment_type}/{type}")
                                      .path("id", id)
-                                     .path("comment_type", commentType)
+                                     .path("comment_type", comment_type)
                                      .path("type", type)
                                      .query("include_replies", include_replies)
                                      .query(pagination)
@@ -173,20 +170,20 @@ public class TraktUsersEndpoint
         return http.postAndParse(query, reorder, TraktTypeTokens.LIST_REORDER_UPDATE, token);
     }
     
-    public TraktList getList(@Nonnull String id, @Nonnull String listId, @Nonnull TraktAccessToken token)
+    public TraktList getList(@Nonnull String id, @Nonnull String list_id, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/lists/{list_id}")
                                      .path("id", id)
-                                     .path("list_id", listId);
+                                     .path("list_id", list_id);
         
         return http.getAndParse(query, TraktTypeTokens.LIST, token);
     }
     
-    public TraktList updateList(@Nonnull String id, @Nonnull String listId, @Nonnull TraktListInfo listInfo, @Nonnull TraktAccessToken token)
+    public TraktList updateList(@Nonnull String id, @Nonnull String list_id, @Nonnull TraktListInfo listInfo, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/lists/{list_id}")
                                      .path("id", id)
-                                     .path("list_id", listId);
+                                     .path("list_id", list_id);
         
         return http.postAndParse(query, listInfo, TraktTypeTokens.LIST, token);
     }
@@ -218,7 +215,7 @@ public class TraktUsersEndpoint
         http.delete(query, token);
     }
     
-    public List<TraktListItem> getListItems(@Nonnull String id, @Nonnull String list_id, @Nullable String type, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktListItem> getListItems(@Nonnull String id, @Nonnull String list_id, @Nullable TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/lists/{list_id}/items/{type}")
                                      .path("id", id)
@@ -311,7 +308,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.USER_FRIENDS, token);
     }
     
-    public List<TraktHistoryItem> getHistory(@Nonnull String id, @Nullable String type, int item_id, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktHistoryItem> getHistory(@Nonnull String id, @Nullable TraktItemType type, int item_id, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/history/{type}/{item_id}")
                                      .path("id", id)
@@ -325,7 +322,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.HISTORY_ITEMS, token);
     }
     
-    public List<TraktRatedItem> getRatings(@Nonnull String id, @Nullable String type, @Nullable Integer rating, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktRatedItem> getRatings(@Nonnull String id, @Nullable TraktItemType type, @Nullable Integer rating, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/ratings/{type}/{rating}")
                                      .path("id", id)
@@ -337,7 +334,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.RATED_ITEMS, token);
     }
     
-    public List<TraktWatchlistItem> getWatchlist(@Nonnull String id, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktWatchlistItem> getWatchlist(@Nonnull String id, @Nullable TraktItemType type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/watchlist/{type}/{sort}")
                                      .path("id", id)
@@ -358,7 +355,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHING_ITEM, token);
     }
     
-    public List<TraktWatchedItem> getWatchedItems(@Nonnull String id, @Nonnull String type, @Nullable Extended extended, @Nullable TraktAccessToken token)
+    public List<TraktWatchedItem> getWatchedItems(@Nonnull String id, @Nonnull TraktItemType type, @Nullable Extended extended, @Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/{id}/watched/{type}")
                                      .path("id", id)

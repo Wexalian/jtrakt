@@ -106,56 +106,56 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.UPDATED_MOVIES);
     }
     
-    public TraktMovie getSummary(@Nonnull String movieId, @Nullable Extended extended)
+    public TraktMovie getSummary(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("movies/{id}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .query(extended);
-        
+    
         return http.getAndParse(query, TraktTypeTokens.MOVIE);
     }
     
-    public List<TraktAlias> getAliases(@Nonnull String movieId, @Nullable TraktLanguage lang)
+    public List<TraktAlias> getAliases(@Nonnull String id, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/aliases/{lang}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .path("lang", lang);
         
         return http.getAndParse(query, TraktTypeTokens.ALIASES);
     }
     
-    public List<TraktMovieRelease> getReleases(@Nonnull String movieId, @Nullable String country)
+    public List<TraktMovieRelease> getReleases(@Nonnull String id, @Nullable String country)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/releases/{country}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .path("country", country);
         
         return http.getAndParse(query, TraktTypeTokens.RELEASES);
     }
     
-    public List<TraktTranslation> getTranslations(@Nonnull String movieId, @Nullable TraktLanguage lang)
+    public List<TraktTranslation> getTranslations(@Nonnull String id, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/translations/{lang}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .path("lang", lang);
         
         return http.getAndParse(query, TraktTypeTokens.TRANSLATIONS);
     }
     
-    public List<TraktComment> getComments(@Nonnull String movieId, @Nullable TraktComment.Sort sort, @Nullable Pagination pagination)
+    public List<TraktComment> getComments(@Nonnull String id, @Nullable TraktComment.Sort sort, @Nullable Pagination pagination)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/comments/{sort}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .path("sort", sort)
                                      .query(pagination);
         
         return http.getAndParse(query, TraktTypeTokens.COMMENTS);
     }
     
-    public List<TraktList> getLists(@Nonnull String movieId, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
+    public List<TraktList> getLists(@Nonnull String id, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/lists/{type}/{sort}")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .path("type", type)
                                      .path("sort", sort)
                                      .query(pagination);
@@ -163,45 +163,45 @@ public class TraktMoviesEndpoint
         return http.getAndParse(query, TraktTypeTokens.LISTS);
     }
     
-    public TraktMovieCast getPeople(@Nonnull String movieId, @Nullable Extended extended)
+    public TraktMovieCast getPeople(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/people")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.MOVIE_CAST);
     }
     
-    public TraktRating getRatings(@Nonnull String movieId)
+    public TraktRating getRatings(@Nonnull String id)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/ratings")
-                                     .path("id", movieId);
+                                     .path("id", id);
         
         return http.getAndParse(query, TraktTypeTokens.RATINGS);
     }
     
-    public List<TraktMovie> getRelated(@Nonnull String movieId, @Nullable Pagination pagination, @Nullable Extended extended)
+    public List<TraktMovie> getRelated(@Nonnull String id, @Nullable Pagination pagination, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/related")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .query(pagination)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.MOVIES);
     }
     
-    public TraktStats getStats(@Nonnull String movieId)
+    public TraktStats getStats(@Nonnull String id)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/stats")
-                                     .path("id", movieId);
+                                     .path("id", id);
         
         return http.getAndParse(query, TraktTypeTokens.STATS);
     }
     
-    public List<TraktUser> getWatchingUsers(@Nonnull String movieId, @Nullable Extended extended)
+    public List<TraktUser> getWatchingUsers(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("movies/{id}/watching")
-                                     .path("id", movieId)
+                                     .path("id", id)
                                      .query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.USERS);

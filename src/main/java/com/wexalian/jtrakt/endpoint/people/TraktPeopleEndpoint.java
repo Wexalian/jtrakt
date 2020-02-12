@@ -18,12 +18,12 @@ public class TraktPeopleEndpoint
     
     public TraktPeopleEndpoint(TraktHTTP http) {this.http = http;}
     
-    public TraktPerson get(@Nonnull String id, @Nullable Extended extended)
+    public TraktPerson getPerson(@Nonnull String id, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("people/{id}")
                                      .path("id", id)
                                      .query(extended);
-        
+    
         return http.getAndParse(query, TraktTypeTokens.PERSON);
     }
     

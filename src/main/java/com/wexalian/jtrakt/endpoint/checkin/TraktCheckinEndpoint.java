@@ -24,7 +24,7 @@ public class TraktCheckinEndpoint
         return http.postAndParse(query, data, TraktTypeTokens.CHECKIN, token);
     }
     
-    public void deleteCheckins(@Nullable TraktAccessToken token)
+    public void deleteAllCheckins(@Nullable TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("checkin");
     
