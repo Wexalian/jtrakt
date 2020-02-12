@@ -1,10 +1,11 @@
 package com.wexalian.jtrakt.endpoint.countries;
 
+import com.wexalian.jtrakt.endpoint.TraktType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.info.Country;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class TraktCountriesEndpoint
@@ -16,17 +17,12 @@ public class TraktCountriesEndpoint
         this.http = http;
     }
     
-    public List<Country> getShowCountries()
+    public List<TraktCountry> getCountries(@Nonnull TraktType type)
     {
-        TraktQuery query = TraktQuery.create("countries/shows");
+        TraktQuery query = TraktQuery.create("countries/{type}")
+                                     .path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.COUNTRIES);
     }
     
-    public List<Country> getMovieCountries()
-    {
-        TraktQuery query = TraktQuery.create("countries/movies");
-        
-        return http.getAndParse(query, TraktTypeTokens.COUNTRIES);
-    }
 }

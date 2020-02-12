@@ -1,17 +1,14 @@
 package com.wexalian.jtrakt.endpoint.shows;
 
-import com.google.common.base.Strings;
+import com.wexalian.jtrakt.endpoint.*;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
+import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
-import com.wexalian.jtrakt.http.query.*;
+import com.wexalian.jtrakt.http.query.Extended;
+import com.wexalian.jtrakt.http.query.Filter;
+import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.*;
-import com.wexalian.jtrakt.media.info.Alias;
-import com.wexalian.jtrakt.media.info.Ratings;
-import com.wexalian.jtrakt.media.info.Stats;
-import com.wexalian.jtrakt.media.info.Translation;
-import com.wexalian.jtrakt.media.show.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,7 +25,7 @@ public class TraktShowsEndpoint
         this.http = http;
     }
     
-    public List<TraktTrendingShow> getTrending(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktTrendingShow> getTrending(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/trending")
                                      .query(pagination)
@@ -38,7 +35,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.TRENDING_SHOWS);
     }
     
-    public List<TraktShow> getPopular(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktShow> getPopular(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/popular")
                                      .query(pagination)
@@ -48,7 +45,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostPlayed(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedShow> getMostPlayed(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/played/{period}")
                                      .path("period", period)
@@ -59,7 +56,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostWatched(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedShow> getMostWatched(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/watched/{period}")
                                      .path("period", period)
@@ -70,7 +67,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostCollected(@Nonnull TimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktWatchedShow> getMostCollected(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/collected/{period}")
                                      .path("period", period)
@@ -81,7 +78,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.WATCHED_SHOWS);
     }
     
-    public List<TraktListedShow> getMostAnticipated(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktListedShow> getMostAnticipated(@Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/anticipated")
                                      .query(pagination)
@@ -91,7 +88,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.LISTED_SHOWS);
     }
     
-    public List<TraktUpdatedShow> getUpdates(@Nonnull OffsetDateTime date, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktUpdatedShow> getUpdates(@Nonnull OffsetDateTime date, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("shows/updates/{date}")
                                      .path("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE))
@@ -111,7 +108,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOW);
     }
     
-    public List<Alias> getAliases(@Nonnull String showId, @Nullable Language lang)
+    public List<TraktAlias> getAliases(@Nonnull String showId, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/aliases/{lang}")
                                      .path("id", showId)
@@ -120,7 +117,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.ALIASES);
     }
     
-    public List<Translation> getTranslations(@Nonnull String showId, @Nullable Language lang)
+    public List<TraktTranslation> getTranslations(@Nonnull String showId, @Nullable TraktLanguage lang)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/translations/{lang}")
                                      .path("id", showId)
@@ -141,11 +138,6 @@ public class TraktShowsEndpoint
     
     public List<TraktList> getLists(@Nonnull String showId, @Nullable String type, @Nullable String sort, @Nullable Pagination pagination)
     {
-        if (!Strings.isNullOrEmpty(sort) && Strings.isNullOrEmpty(sort))
-        {
-            throw new RuntimeException("If 'sort' isn't empty, 'type' can't be either");
-        }
-    
         TraktQuery query = TraktQuery.create("shows/{id}/lists/{type}/{sort}")
                                      .path("id", showId)
                                      .path("type", type)
@@ -186,7 +178,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOW_CAST);
     }
     
-    public Ratings getRatings(@Nonnull String showId)
+    public TraktRating getRatings(@Nonnull String showId)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/ratings")
                                      .path("id", showId);
@@ -204,7 +196,7 @@ public class TraktShowsEndpoint
         return http.getAndParse(query, TraktTypeTokens.SHOWS);
     }
     
-    public Stats getStats(@Nonnull String showId)
+    public TraktStats getStats(@Nonnull String showId)
     {
         TraktQuery query = TraktQuery.create("shows/{id}/stats")
                                      .path("id", showId);

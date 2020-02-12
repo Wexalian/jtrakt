@@ -1,14 +1,12 @@
 package com.wexalian.jtrakt.endpoint.people;
 
+import com.wexalian.jtrakt.endpoint.TraktList;
+import com.wexalian.jtrakt.endpoint.TraktPerson;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.TraktList;
-import com.wexalian.jtrakt.media.TraktPerson;
-import com.wexalian.jtrakt.media.people.TraktPersonMovieCast;
-import com.wexalian.jtrakt.media.people.TraktPersonShowCast;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

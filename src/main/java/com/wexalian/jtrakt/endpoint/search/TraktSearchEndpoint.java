@@ -1,10 +1,12 @@
 package com.wexalian.jtrakt.endpoint.search;
 
+import com.wexalian.jtrakt.endpoint.TraktItemType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
-import com.wexalian.jtrakt.http.query.*;
+import com.wexalian.jtrakt.http.query.Extended;
+import com.wexalian.jtrakt.http.query.Filter;
+import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.search.TraktSearchMedia;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -19,7 +21,7 @@ public class TraktSearchEndpoint
         this.http = http;
     }
     
-    public List<TraktSearchMedia> textQuery(@Nonnull SearchType type, @Nonnull String queryString, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry... filters)
+    public List<TraktSearchItem> textQuery(@Nonnull TraktItemType type, @Nonnull String queryString, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
     {
         TraktQuery query = TraktQuery.create("search/{type}")
                                      .path("type", type)
@@ -28,10 +30,10 @@ public class TraktSearchEndpoint
                                      .query(extended)
                                      .query(filters);
         
-        return http.getAndParse(query, TraktTypeTokens.SEARCH_MEDIA);
+        return http.getAndParse(query, TraktTypeTokens.SEARCH_ITEM);
     }
     
-    public List<TraktSearchMedia> idLookup(@Nonnull IdType idType, @Nonnull String id, @Nonnull SearchType type, @Nullable Pagination pagination, @Nullable Extended extended)
+    public List<TraktSearchItem> idLookup(@Nonnull TraktIdType idType, @Nonnull String id, @Nonnull TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended)
     {
         TraktQuery query = TraktQuery.create("search/{id_type}/{id}")
                                      .path("id_type", idType)
@@ -40,6 +42,6 @@ public class TraktSearchEndpoint
                                      .query(pagination)
                                      .query(extended);
         
-        return http.getAndParse(query, TraktTypeTokens.SEARCH_MEDIA);
+        return http.getAndParse(query, TraktTypeTokens.SEARCH_ITEM);
     }
 }

@@ -1,10 +1,12 @@
 package com.wexalian.jtrakt.endpoint.genres;
 
+import com.wexalian.jtrakt.endpoint.TraktGenre;
+import com.wexalian.jtrakt.endpoint.TraktType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.info.Genre;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class TraktGenresEndpoint
@@ -16,16 +18,10 @@ public class TraktGenresEndpoint
         this.http = http;
     }
     
-    public List<Genre> getShowGenres()
+    public List<TraktGenre> getGenres(@Nonnull TraktType type)
     {
-        TraktQuery query = TraktQuery.create("genres/shows");
-        
-        return http.getAndParse(query, TraktTypeTokens.GENRES);
-    }
-    
-    public List<Genre> getMovieGenres()
-    {
-        TraktQuery query = TraktQuery.create("genres/movies");
+        TraktQuery query = TraktQuery.create("genres/{type}")
+                                     .path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.GENRES);
     }

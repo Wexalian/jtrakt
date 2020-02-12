@@ -50,15 +50,15 @@ public class TraktQuery
         return this;
     }
     
-    public final TraktQuery query(Filter.FilterEntry... filterEntries)
+    public final TraktQuery query(Filter.FilterEntry<?>... filterEntries)
     {
         if (filterEntries == null || filterEntries.length == 0) return this;
     
-        for (Filter.FilterEntry filterEntry : filterEntries)
+        for (Filter.FilterEntry<?> filterEntry : filterEntries)
         {
-            Filter filter = filterEntry.getFilter();
+            Filter<?> filter = filterEntry.getFilter();
             Object value = filterEntry.getValue();
-            
+        
             List<String> values = filters.get(filter);
             if (values == null)
             {

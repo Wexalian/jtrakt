@@ -7,28 +7,10 @@ module com.wexalian.jtrakt {
     
     exports com.wexalian.jtrakt;
     
-    exports com.wexalian.jtrakt.media;
-    exports com.wexalian.jtrakt.media.calender;
-    exports com.wexalian.jtrakt.media.checkin;
-    exports com.wexalian.jtrakt.media.certification;
-    exports com.wexalian.jtrakt.media.comment;
-    exports com.wexalian.jtrakt.media.info;
-    exports com.wexalian.jtrakt.media.movie;
-    exports com.wexalian.jtrakt.media.people;
-    exports com.wexalian.jtrakt.media.scrobble;
-    exports com.wexalian.jtrakt.media.search;
-    exports com.wexalian.jtrakt.media.show;
-    exports com.wexalian.jtrakt.media.sync;
-    exports com.wexalian.jtrakt.media.sync.activity;
-    exports com.wexalian.jtrakt.media.sync.collection;
-    exports com.wexalian.jtrakt.media.sync.history;
-    exports com.wexalian.jtrakt.media.sync.watched;
-    exports com.wexalian.jtrakt.media.sync.rating;
-    exports com.wexalian.jtrakt.media.sync.watchlist;
-    
     exports com.wexalian.jtrakt.http;
     exports com.wexalian.jtrakt.http.query;
     
+    exports com.wexalian.jtrakt.endpoint;
     exports com.wexalian.jtrakt.endpoint.auth;
     exports com.wexalian.jtrakt.endpoint.calendars;
     exports com.wexalian.jtrakt.endpoint.checkin;
@@ -47,7 +29,13 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt.endpoint.seasons;
     exports com.wexalian.jtrakt.endpoint.shows;
     exports com.wexalian.jtrakt.endpoint.sync;
+    exports com.wexalian.jtrakt.endpoint.sync.activity;
+    exports com.wexalian.jtrakt.endpoint.sync.collection;
+    exports com.wexalian.jtrakt.endpoint.sync.watched;
+    exports com.wexalian.jtrakt.endpoint.sync.rating;
     exports com.wexalian.jtrakt.endpoint.users;
+    exports com.wexalian.jtrakt.endpoint.users.follow;
+    exports com.wexalian.jtrakt.endpoint.users.hidden;
     
     opens com.wexalian.jtrakt.json to com.google.gson;
 }

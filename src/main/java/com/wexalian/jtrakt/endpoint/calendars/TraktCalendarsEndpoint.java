@@ -6,8 +6,6 @@ import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Filter;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-import com.wexalian.jtrakt.media.calender.TraktCalendarEpisode;
-import com.wexalian.jtrakt.media.calender.TraktCalendarMovie;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
