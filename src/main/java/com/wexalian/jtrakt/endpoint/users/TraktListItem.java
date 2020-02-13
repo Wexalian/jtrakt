@@ -1,6 +1,11 @@
 package com.wexalian.jtrakt.endpoint.users;
 
-import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.TraktItemType;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
+import com.wexalian.jtrakt.endpoint.people.TraktPerson;
+import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 

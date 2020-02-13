@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.users.follow;
 
-import com.wexalian.jtrakt.endpoint.TraktUser;
+import com.wexalian.jtrakt.endpoint.users.TraktUser;
 
 import java.time.OffsetDateTime;
 

@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.sync.collection;
 
 import com.google.gson.annotations.SerializedName;
 

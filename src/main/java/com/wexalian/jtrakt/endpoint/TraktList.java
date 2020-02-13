@@ -1,5 +1,7 @@
 package com.wexalian.jtrakt.endpoint;
 
+import com.wexalian.jtrakt.endpoint.users.TraktUser;
+
 import java.time.OffsetDateTime;
 
 public class TraktList

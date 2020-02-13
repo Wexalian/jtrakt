@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.endpoint.comments;
 
-import com.wexalian.jtrakt.endpoint.TraktComment;
 import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.http.TraktHTTP;

@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.endpoint.sync.collection;
 
-import com.wexalian.jtrakt.endpoint.TraktItemMetadata;
-import com.wexalian.jtrakt.endpoint.TraktMovie;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.time.OffsetDateTime;
 

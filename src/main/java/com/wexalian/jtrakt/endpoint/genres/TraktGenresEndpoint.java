@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.endpoint.genres;
 
-import com.wexalian.jtrakt.endpoint.TraktGenre;
 import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;

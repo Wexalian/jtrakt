@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.endpoint.sync.watched;
 
-import com.wexalian.jtrakt.endpoint.TraktMovie;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 import java.util.List;

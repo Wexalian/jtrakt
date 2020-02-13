@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.endpoint.people;
 
 import com.google.gson.annotations.SerializedName;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.util.List;
 

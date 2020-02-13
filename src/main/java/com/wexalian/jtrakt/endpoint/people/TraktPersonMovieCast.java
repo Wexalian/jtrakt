@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.endpoint.people;
 
 import com.google.gson.annotations.SerializedName;
-import com.wexalian.jtrakt.endpoint.TraktMovie;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.util.List;
 

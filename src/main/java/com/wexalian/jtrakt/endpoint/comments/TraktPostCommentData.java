@@ -1,6 +1,11 @@
 package com.wexalian.jtrakt.endpoint.comments;
 
-import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.TraktList;
+import com.wexalian.jtrakt.endpoint.TraktSharing;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
+import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 public class TraktPostCommentData
 {

@@ -1,7 +1,5 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-import com.wexalian.jtrakt.endpoint.TraktMovie;
-
 public class TraktWatchedMovie
 {
     private int watcher_count;

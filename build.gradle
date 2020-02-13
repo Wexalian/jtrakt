@@ -4,16 +4,20 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 11
 
+
 group 'com.wexalian.jtrakt'
-version 'unreleased'
+version = externalVersion
 
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -30,4 +34,49 @@ compileJava {
         ]
         classpath = files()
     }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'jtrakt'
+                description = 'A Java wrapper and utility library for the trakt.tv API'
+                url = 'http://www.wexalian.com/jtrakt'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'Wexalian'
+                        name = 'Lars Gerrits'
+                        email = 'larsgerrits99@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/Wexalian/jtrakt.git'
+                    developerConnection = 'scm:git:ssh://github.com/Wexalian/jtrakt.git'
+                    url = 'http://www.github.com/Wexalian/jtrakt'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name 'deploy'
+            url = version.endsWith('SNAPSHOT') ? deployRepoUrlSnapshot : deployRepoUrl
+            credentials {
+                username = deployRepoUsername
+                password = deployRepoPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
 }

@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.calendars;
 
-import com.wexalian.jtrakt.endpoint.TraktMovie;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.time.OffsetDateTime;
 

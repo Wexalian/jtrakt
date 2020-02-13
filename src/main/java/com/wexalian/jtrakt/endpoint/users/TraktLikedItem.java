@@ -1,8 +1,8 @@
 package com.wexalian.jtrakt.endpoint.users;
 
-import com.wexalian.jtrakt.endpoint.TraktComment;
 import com.wexalian.jtrakt.endpoint.TraktItemType;
 import com.wexalian.jtrakt.endpoint.TraktList;
+import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 
 import java.time.OffsetDateTime;
 

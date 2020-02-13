@@ -1,4 +1,6 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.seasons;
+
+import com.wexalian.jtrakt.endpoint.TraktIds;
 
 public class TraktSeason
 {

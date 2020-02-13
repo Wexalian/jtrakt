@@ -1,7 +1,5 @@
 package com.wexalian.jtrakt.endpoint.shows;
 
-import com.wexalian.jtrakt.endpoint.TraktShow;
-
 public class TraktListedShow
 {
     private int list_count;

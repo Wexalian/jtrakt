@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.endpoint.sync.collection;
 
-import com.wexalian.jtrakt.endpoint.TraktItemMetadata;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 import java.util.List;
