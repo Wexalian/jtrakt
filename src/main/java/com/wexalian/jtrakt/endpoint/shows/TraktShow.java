@@ -1,8 +1,10 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.shows;
 
+import com.wexalian.jtrakt.endpoint.Genre;
+import com.wexalian.jtrakt.endpoint.TraktAirsInfo;
+import com.wexalian.jtrakt.endpoint.TraktIds;
 import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
-import com.wexalian.jtrakt.endpoint.shows.TraktStatus;
 
 import java.time.OffsetDateTime;
 import java.util.List;

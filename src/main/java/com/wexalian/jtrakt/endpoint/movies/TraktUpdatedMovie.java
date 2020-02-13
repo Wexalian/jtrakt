@@ -1,7 +1,5 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-import com.wexalian.jtrakt.endpoint.TraktMovie;
-
 import java.time.OffsetDateTime;
 
 public class TraktUpdatedMovie

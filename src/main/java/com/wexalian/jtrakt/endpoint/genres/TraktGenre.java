@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.genres;
 
 public class TraktGenre
 {

@@ -1,6 +1,7 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.users;
 
 import com.google.gson.annotations.SerializedName;
+import com.wexalian.jtrakt.endpoint.TraktIds;
 
 import java.time.OffsetDateTime;
 

@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.endpoint.scrobble;
 
-import com.wexalian.jtrakt.endpoint.TraktMovie;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 public class TraktScrobbleData
 {

@@ -1,7 +1,9 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
 import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.users.TraktUser;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;

@@ -2,7 +2,10 @@ package com.wexalian.jtrakt.endpoint.shows;
 
 import com.wexalian.jtrakt.endpoint.*;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
+import com.wexalian.jtrakt.endpoint.comments.TraktComment;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.users.TraktUser;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;

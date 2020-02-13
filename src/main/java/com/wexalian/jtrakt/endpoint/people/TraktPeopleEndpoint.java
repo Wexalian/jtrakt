@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.endpoint.people;
 
 import com.wexalian.jtrakt.endpoint.TraktList;
-import com.wexalian.jtrakt.endpoint.TraktPerson;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;

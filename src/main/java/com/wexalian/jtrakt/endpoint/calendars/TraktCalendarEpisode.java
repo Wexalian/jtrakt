@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.endpoint.calendars;
 
-import com.wexalian.jtrakt.endpoint.TraktEpisode;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 

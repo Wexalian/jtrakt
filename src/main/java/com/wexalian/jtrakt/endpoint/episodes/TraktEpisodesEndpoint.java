@@ -1,7 +1,12 @@
 package com.wexalian.jtrakt.endpoint.episodes;
 
-import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.TraktList;
+import com.wexalian.jtrakt.endpoint.TraktRating;
+import com.wexalian.jtrakt.endpoint.TraktStats;
+import com.wexalian.jtrakt.endpoint.TraktTranslation;
+import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.users.TraktUser;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;

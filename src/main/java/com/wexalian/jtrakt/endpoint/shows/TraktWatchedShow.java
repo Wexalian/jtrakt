@@ -1,7 +1,5 @@
 package com.wexalian.jtrakt.endpoint.shows;
 
-import com.wexalian.jtrakt.endpoint.TraktShow;
-
 public class TraktWatchedShow
 {
     private int watcher_count;

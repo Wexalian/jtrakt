@@ -16,6 +16,9 @@ import java.util.function.BiConsumer;
 
 public class TraktAuthenticationEndpoint
 {
+    //TODO add method for revoking token
+    //TODO add method for oauth2
+    
     private final JTraktV2 jtrakt;
     private final TraktHTTP http;
     
@@ -25,6 +28,11 @@ public class TraktAuthenticationEndpoint
         this.http = http;
     }
     
+    /**
+     * @param codeVerificationUrlConsumer consumer that takes the user code and verification url, for the user to verify themselves with trakt.tv
+     *
+     * @return a valid TraktAccessToken, or null if something failed
+     */
     @Nullable
     public TraktAccessToken setupDeviceOAuth(BiConsumer<String, String> codeVerificationUrlConsumer)
     {
@@ -40,7 +48,7 @@ public class TraktAuthenticationEndpoint
         for (int expires = 0; expires < authCode.getExpiresInSeconds(); expires += authCode.getInterval())
         {
             TraktAccessToken token = http.postAndParse(tokenQuery, data, TraktTypeTokens.ACCESS_TOKEN);
-    
+            
             if (isAccessTokenEmpty(token))
             {
                 boolean interrupted = sleep(authCode.getInterval());
@@ -73,7 +81,7 @@ public class TraktAuthenticationEndpoint
     public TraktAccessToken refreshAccessToken(@Nonnull TraktAccessToken oldToken)
     {
         TraktRefreshTokenData data = new TraktRefreshTokenData(oldToken.getRefreshToken(), jtrakt.getClientId(), jtrakt.getSecretId());
-        
+    
         TraktQuery query = TraktQuery.create("oauth/token");
         return http.postAndParse(query, data, TraktTypeTokens.ACCESS_TOKEN);
     }

@@ -1,4 +1,6 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.episodes;
+
+import com.wexalian.jtrakt.endpoint.TraktIds;
 
 public class TraktEpisode
 {

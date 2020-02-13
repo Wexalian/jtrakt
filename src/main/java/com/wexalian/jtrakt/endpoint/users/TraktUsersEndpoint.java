@@ -1,7 +1,10 @@
 package com.wexalian.jtrakt.endpoint.users;
 
-import com.wexalian.jtrakt.endpoint.*;
+import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemType;
+import com.wexalian.jtrakt.endpoint.TraktList;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
+import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 import com.wexalian.jtrakt.endpoint.comments.TraktItemComment;
 import com.wexalian.jtrakt.endpoint.sync.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.TraktSyncItems;

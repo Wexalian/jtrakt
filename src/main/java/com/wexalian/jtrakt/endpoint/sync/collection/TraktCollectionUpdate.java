@@ -1,10 +1,10 @@
 package com.wexalian.jtrakt.endpoint.sync.collection;
 
 import com.google.gson.annotations.SerializedName;
-import com.wexalian.jtrakt.endpoint.TraktEpisode;
-import com.wexalian.jtrakt.endpoint.TraktMovie;
-import com.wexalian.jtrakt.endpoint.TraktSeason;
-import com.wexalian.jtrakt.endpoint.TraktShow;
+import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
+import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
