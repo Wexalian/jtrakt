@@ -1,7 +1,7 @@
 package com.wexalian.jtrakt.http.query;
 
-import com.wexalian.jtrakt.endpoint.Genre;
 import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
+import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.endpoint.shows.TraktStatus;
 
@@ -10,7 +10,7 @@ public class Filter<T>
     //common filters
     public static final Filter<String> QUERY = new Filter<>("query", false);
     public static final Filter<Range> YEARS = new Filter<>("years", false);
-    public static final Filter<Genre[]> GENRES = new Filter<>("genres", true);
+    public static final Filter<TraktGenre[]> GENRES = new Filter<>("genres", true);
     public static final Filter<TraktLanguage> LANGUAGES = new Filter<>("languages", true);
     public static final Filter<String> COUNTRIES = new Filter<>("countries", true); //TODO Change to enum?
     public static final Filter<Range> RUNTIMES = new Filter<>("runtimes", false);

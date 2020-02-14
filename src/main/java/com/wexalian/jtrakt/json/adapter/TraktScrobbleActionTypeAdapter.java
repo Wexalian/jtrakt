@@ -5,9 +5,9 @@ import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleAction;
 
 import java.lang.reflect.Type;
 
-public class ScrobbleActionTypeAdapter implements JsonSerializer<TraktScrobbleAction>, JsonDeserializer<TraktScrobbleAction>
+public class TraktScrobbleActionTypeAdapter implements JsonSerializer<TraktScrobbleAction>, JsonDeserializer<TraktScrobbleAction>
 {
-    public static ScrobbleActionTypeAdapter INSTANCE = new ScrobbleActionTypeAdapter();
+    public static TraktScrobbleActionTypeAdapter INSTANCE = new TraktScrobbleActionTypeAdapter();
     
     @Override
     public TraktScrobbleAction deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException

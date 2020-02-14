@@ -5,9 +5,9 @@ import com.wexalian.jtrakt.endpoint.shows.TraktStatus;
 
 import java.lang.reflect.Type;
 
-public class StatusTypeAdapter implements JsonSerializer<TraktStatus>, JsonDeserializer<TraktStatus>
+public class TraktStatusTypeAdapter implements JsonSerializer<TraktStatus>, JsonDeserializer<TraktStatus>
 {
-    public static StatusTypeAdapter INSTANCE = new StatusTypeAdapter();
+    public static TraktStatusTypeAdapter INSTANCE = new TraktStatusTypeAdapter();
     
     @Override
     public TraktStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
