@@ -1,9 +1,9 @@
 package com.wexalian.jtrakt.endpoint.shows;
 
-import com.wexalian.jtrakt.endpoint.Genre;
 import com.wexalian.jtrakt.endpoint.TraktAirsInfo;
 import com.wexalian.jtrakt.endpoint.TraktIds;
 import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
+import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 
 import java.time.OffsetDateTime;
@@ -33,7 +33,7 @@ public class TraktShow
     private int comment_count;
     private TraktLanguage language;
     private List<TraktLanguage> available_translations;
-    private List<Genre> genres;
+    private List<TraktGenre> genres;
     private int aired_episodes;
     
     public TraktShow() {}
@@ -140,7 +140,7 @@ public class TraktShow
         return available_translations;
     }
     
-    public List<Genre> getGenres()
+    public List<TraktGenre> getGenres()
     {
         return genres;
     }

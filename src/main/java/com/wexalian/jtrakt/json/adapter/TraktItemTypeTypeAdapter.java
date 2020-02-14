@@ -5,9 +5,9 @@ import com.wexalian.jtrakt.endpoint.TraktItemType;
 
 import java.lang.reflect.Type;
 
-public class MediaTypeTypeAdapter implements JsonSerializer<TraktItemType>, JsonDeserializer<TraktItemType>
+public class TraktItemTypeTypeAdapter implements JsonSerializer<TraktItemType>, JsonDeserializer<TraktItemType>
 {
-    public static MediaTypeTypeAdapter INSTANCE = new MediaTypeTypeAdapter();
+    public static TraktItemTypeTypeAdapter INSTANCE = new TraktItemTypeTypeAdapter();
     
     @Override
     public TraktItemType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException

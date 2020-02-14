@@ -4,6 +4,7 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
@@ -18,6 +19,14 @@ repositories {
     mavenCentral()
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -38,10 +47,11 @@ compileJava {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
             pom {
                 name = 'jtrakt'
+                packaging = 'jar'
                 description = 'A Java wrapper and utility library for the trakt.tv API'
                 url = 'http://www.wexalian.com/jtrakt'
                 licenses {
@@ -55,6 +65,8 @@ publishing {
                         id = 'Wexalian'
                         name = 'Lars Gerrits'
                         email = 'larsgerrits99@gmail.com'
+                        organization = 'wexalian'
+                        organizationUrl = 'http://wexalian.com'
                     }
                 }
                 scm {
@@ -78,5 +90,5 @@ publishing {
 }
 
 signing {
-    sign publishing.publications.maven
+    sign publishing.publications.mavenJava
 }
