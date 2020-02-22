@@ -4,16 +4,20 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
+plugins {
+    id 'org.javamodularity.moduleplugin' version '1.6.0' apply false
+}
+
 apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'org.javamodularity.moduleplugin'
 
 targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 11
 
-
 group 'com.wexalian.jtrakt'
-version = externalVersion
+//archivesBaseName = 'jtrakt'
+version = '0.0.1'
 
 repositories {
     mavenCentral()
@@ -28,36 +32,40 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    compile 'com.google.code.findbugs:jsr305:3.0.2'
-    compile 'com.google.guava:guava:26.0-jre'
-//    compile 'org.apache.commons:commons-lang3:3.8.1'
-//    compile 'org.apache.commons:commons-io:1.3.2'
-}
-compileJava {
-    doFirst {
-        options.compilerArgs = [
-                '--module-path', classpath.asPath,
-        ]
-        classpath = files()
-    }
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.google.guava:guava:26.0-jre'
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            pom {
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: deployRepoUsername, password: deployRepoPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: deployRepoUsername, password: deployRepoPassword)
+            }
+
+            pom.project {
                 name = 'jtrakt'
                 packaging = 'jar'
-                description = 'A Java wrapper and utility library for the trakt.tv API'
+                description = 'A Java wrapper and utility library for the trakt.tv API v2'
                 url = 'http://www.wexalian.com/jtrakt'
+
                 licenses {
                     license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name = 'The Unlicense'
+                        url = 'https://unlicense.org/'
                     }
                 }
                 developers {
@@ -66,7 +74,7 @@ publishing {
                         name = 'Lars Gerrits'
                         email = 'larsgerrits99@gmail.com'
                         organization = 'wexalian'
-                        organizationUrl = 'http://wexalian.com'
+                        organizationUrl = 'http://www.wexalian.com'
                     }
                 }
                 scm {
@@ -77,18 +85,9 @@ publishing {
             }
         }
     }
-    repositories {
-        maven {
-            name 'deploy'
-            url = version.endsWith('SNAPSHOT') ? deployRepoUrlSnapshot : deployRepoUrl
-            credentials {
-                username = deployRepoUsername
-                password = deployRepoPassword
-            }
-        }
-    }
 }
 
+
 signing {
-    sign publishing.publications.mavenJava
+    sign configurations.archives
 }
