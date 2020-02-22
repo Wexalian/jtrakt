@@ -17,6 +17,7 @@ import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodeCast;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
+import com.wexalian.jtrakt.endpoint.lists.TraktLikedList;
 import com.wexalian.jtrakt.endpoint.movies.*;
 import com.wexalian.jtrakt.endpoint.networks.TraktNetwork;
 import com.wexalian.jtrakt.endpoint.people.TraktPerson;
@@ -81,6 +82,8 @@ public final class TraktTypeTokens
     
     //languages
     public static final TypeToken<List<TraktLanguage>> LANGUAGES = new TypeToken<>() {};
+    
+    public static final TypeToken<List<TraktLikedList>> LIKED_LISTS = new TypeToken<>() {};
     
     //movies
     public static final TypeToken<List<TraktMovie>> MOVIES = new TypeToken<>() {};

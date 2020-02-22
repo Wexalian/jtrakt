@@ -20,6 +20,7 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt.endpoint.episodes;
     exports com.wexalian.jtrakt.endpoint.genres;
     exports com.wexalian.jtrakt.endpoint.languages;
+    exports com.wexalian.jtrakt.endpoint.lists;
     exports com.wexalian.jtrakt.endpoint.movies;
     exports com.wexalian.jtrakt.endpoint.networks;
     exports com.wexalian.jtrakt.endpoint.people;
