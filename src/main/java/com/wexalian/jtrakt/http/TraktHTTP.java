@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.http;
 
 import com.google.gson.reflect.TypeToken;
-import com.wexalian.jtrakt.JTraktV2;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.json.TraktJSON;
 
@@ -26,12 +25,12 @@ public class TraktHTTP
     private static final String HEADER_TRAKT_API_VERSION = "trakt-api-version";
     private static final String HEADER_TRAKT_API_KEY = "trakt-api-key";
     
-    private JTraktV2 traktApi;
-    private HttpClient client;
+    private final String clientId;
+    private final HttpClient client;
     
-    public TraktHTTP(JTraktV2 traktApi)
+    public TraktHTTP(@Nonnull String clientId)
     {
-        this.traktApi = traktApi;
+        this.clientId = clientId;
         this.client = HttpClient.newBuilder()
                                 .version(HttpClient.Version.HTTP_2)
                                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -50,7 +49,7 @@ public class TraktHTTP
                                                  .uri(URI.create(query.format()))
                                                  .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
                                                  .header(HEADER_TRAKT_API_VERSION, API_VERSION)
-                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+                                                 .header(HEADER_TRAKT_API_KEY, clientId);
         
         if (accessToken != null)
         {
@@ -70,7 +69,7 @@ public class TraktHTTP
                                                  .uri(URI.create(query.format()))
                                                  .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
                                                  .header(HEADER_TRAKT_API_VERSION, API_VERSION)
-                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+                                                 .header(HEADER_TRAKT_API_KEY, clientId);
         
         if (accessToken != null)
         {
@@ -92,7 +91,7 @@ public class TraktHTTP
                                                  .uri(URI.create(query.format()))
                                                  .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
                                                  .header(HEADER_TRAKT_API_VERSION, API_VERSION)
-                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+                                                 .header(HEADER_TRAKT_API_KEY, clientId);
         
         if (accessToken != null)
         {
@@ -112,7 +111,7 @@ public class TraktHTTP
                                                  .uri(URI.create(query.format()))
                                                  .header(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_JSON)
                                                  .header(HEADER_TRAKT_API_VERSION, API_VERSION)
-                                                 .header(HEADER_TRAKT_API_KEY, traktApi.getClientId());
+                                                 .header(HEADER_TRAKT_API_KEY, clientId);
         
         if (accessToken != null)
         {
