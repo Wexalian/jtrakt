@@ -16,8 +16,7 @@ apply plugin: 'org.javamodularity.moduleplugin'
 targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 11
 
 group 'com.wexalian.jtrakt'
-//archivesBaseName = 'jtrakt'
-version = '0.0.1'
+version = '0.0.3'
 
 repositories {
     mavenCentral()
