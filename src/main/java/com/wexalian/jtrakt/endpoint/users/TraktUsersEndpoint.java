@@ -71,18 +71,18 @@ public class TraktUsersEndpoint
         http.delete(query, token);
     }
     
-    public List<TraktHiddenItem> getHiddenItems(@Nonnull String section, @Nullable TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token)
+    public List<TraktHiddenItem> getHiddenItems(@Nonnull TraktHiddenItem.Section section, @Nullable TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/hidden/{section}/{type}")
                                      .path("section", section)
                                      .path("type", type)
                                      .query(pagination)
                                      .query(extended);
-        
+    
         return http.getAndParse(query, TraktTypeTokens.HIDDEN_ITEMS, token);
     }
     
-    public TraktSyncUpdate addHiddenItems(@Nonnull String section, @Nonnull TraktSyncItems<TraktHiddenUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate addHiddenItems(@Nonnull TraktHiddenItem.Section section, @Nonnull TraktSyncItems<TraktHiddenUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/hidden/{section}")
                                      .path("section", section);
@@ -90,7 +90,7 @@ public class TraktUsersEndpoint
         return http.getAndParse(query, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public TraktSyncUpdate removeHiddenItems(@Nonnull String section, @Nonnull TraktSyncItems<TraktHiddenUpdate> items, @Nonnull TraktAccessToken token)
+    public TraktSyncUpdate removeHiddenItems(@Nonnull TraktHiddenItem.Section section, @Nonnull TraktSyncItems<TraktHiddenUpdate> items, @Nonnull TraktAccessToken token)
     {
         TraktQuery query = TraktQuery.create("users/hidden/{section}/remove")
                                      .path("section", section);
