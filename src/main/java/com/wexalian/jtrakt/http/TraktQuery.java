@@ -9,76 +9,64 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TraktQuery
-{
+public class TraktQuery {
     private final String endpoint;
     
-    private HashMap<String, String> pathVars = new HashMap<>();
-    private HashMap<String, String> queryVars = new HashMap<>();
+    private final HashMap<String, String> pathVars = new HashMap<>();
+    private final HashMap<String, String> queryVars = new HashMap<>();
+    private final HashMap<Filter, List<String>> filters = new HashMap<>();
     private Extended extended = null;
     private Pagination pagination = null;
-    private HashMap<Filter, List<String>> filters = new HashMap<>();
     
-    private TraktQuery(String endpoint)
-    {
+    private TraktQuery(String endpoint) {
         this.endpoint = endpoint;
     }
     
-    public TraktQuery path(String pathVar, Object varValue)
-    {
+    public TraktQuery path(String pathVar, Object varValue) {
         String value = varValue == null ? "" : varValue.toString();
         pathVars.put(pathVar, value);
         return this;
     }
     
-    public TraktQuery query(String queryVar, Object varValue)
-    {
+    public TraktQuery query(String queryVar, Object varValue) {
         String value = varValue == null ? "" : varValue.toString();
         queryVars.put(queryVar, value);
         return this;
     }
     
-    public TraktQuery query(Extended extended)
-    {
+    public TraktQuery query(Extended extended) {
         this.extended = extended;
         return this;
     }
     
-    public TraktQuery query(Pagination pagination)
-    {
+    public TraktQuery query(Pagination pagination) {
         this.pagination = pagination;
         return this;
     }
     
-    public final TraktQuery query(Filter.FilterEntry<?>... filterEntries)
-    {
+    public final TraktQuery query(Filter.FilterEntry<?>... filterEntries) {
         if (filterEntries == null || filterEntries.length == 0) return this;
-    
-        for (Filter.FilterEntry<?> filterEntry : filterEntries)
-        {
+        
+        for (Filter.FilterEntry<?> filterEntry : filterEntries) {
             Filter<?> filter = filterEntry.getFilter();
             Object value = filterEntry.getValue();
-        
+            
             List<String> values = filters.get(filter);
-            if (values == null)
-            {
+            if (values == null) {
                 values = new ArrayList<>();
                 values.add(value.toString());
                 filters.put(filter, values);
             }
-            else if (filter.multiplesAllowed())
-            {
+            else if (filter.multiplesAllowed()) {
                 values.add(value.toString());
             }
         }
         return this;
     }
     
-    public String format()
-    {
+    public String format(String apiUrl) {
         String endpoint = this.endpoint;
-        for (Map.Entry<String, String> entry : pathVars.entrySet())
-        {
+        for (Map.Entry<String, String> entry : pathVars.entrySet()) {
             endpoint = endpoint.replace("{" + entry.getKey() + "}", entry.getValue());
         }
         
@@ -86,12 +74,10 @@ public class TraktQuery
         
         List<String> fullQueryVars = new ArrayList<>();
         
-        if (extended != null)
-        {
-            fullQueryVars.add("extended=" + extended.toString());
+        if (extended != null) {
+            fullQueryVars.add("extended=" + extended);
         }
-        if (pagination != null)
-        {
+        if (pagination != null) {
             fullQueryVars.add("page=" + pagination.getPage());
             fullQueryVars.add("limit=" + pagination.getLimit());
         }
@@ -100,16 +86,14 @@ public class TraktQuery
         queryVars.forEach((k, v) -> fullQueryVars.add(k + "=" + v));
         
         String query = "";
-        if (!fullQueryVars.isEmpty())
-        {
-            query = "?" + String.join("&", fullQueryVars);
+        if (!fullQueryVars.isEmpty()) {
+            query = String.join("&", fullQueryVars);
         }
         
-        return TraktHTTP.API_URL + endpoint + query;
+        return "https://" + apiUrl + "/" + endpoint + "?" + query;
     }
     
-    public static TraktQuery create(String endpoint)
-    {
+    public static TraktQuery create(String endpoint) {
         return new TraktQuery(endpoint);
     }
 }

@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.http.query;
 
-public enum Extended
-{
+public enum Extended {
     FULL("full"), //complete info for an item
     NO_SEASONS("noseasons"), //only works with sync/getWatched
     EPISODES("episodes"),
@@ -11,14 +10,12 @@ public enum Extended
     
     private final String value;
     
-    Extended(String value)
-    {
+    Extended(String value) {
         this.value = value;
     }
     
     @Override
-    public String toString()
-    {
+    public String toString() {
         return value;
     }
 }

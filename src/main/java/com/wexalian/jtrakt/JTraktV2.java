@@ -22,11 +22,11 @@ import com.wexalian.jtrakt.endpoint.sync.TraktSyncEndpoint;
 import com.wexalian.jtrakt.endpoint.users.TraktUsersEndpoint;
 import com.wexalian.jtrakt.http.TraktHTTP;
 
-public final class JTraktV2
-{
+public final class JTraktV2 {
     //api
     private final String clientId;
     private final String secretId;
+    private final boolean staging;
     
     //api endpoints
     private final TraktAuthenticationEndpoint authentication;
@@ -50,17 +50,21 @@ public final class JTraktV2
     private final TraktSyncEndpoint sync;
     private final TraktUsersEndpoint users;
     
-    public JTraktV2(String clientId)
-    {
+    public JTraktV2(String clientId) {
         this(clientId, "");
     }
     
-    public JTraktV2(String clientId, String secretId)
-    {
+    public JTraktV2(String clientId, String secretId) {
+        this(clientId, secretId, false);
+    }
+    
+    public JTraktV2(String clientId, String secretId, boolean staging) {
         this.clientId = clientId;
         this.secretId = secretId;
-        //http
-        TraktHTTP http = new TraktHTTP(this.clientId);
+        this.staging = staging;
+        
+        TraktHTTP http = new TraktHTTP(this.clientId, staging);
+        
         authentication = new TraktAuthenticationEndpoint(this, http);
         calenders = new TraktCalendarsEndpoint(http);
         certifications = new TraktCertificationsEndpoint(http);
@@ -83,113 +87,95 @@ public final class JTraktV2
         users = new TraktUsersEndpoint(http);
     }
     
-    public String getClientId()
-    {
+    public String getClientId() {
         return clientId;
     }
     
-    public String getSecretId()
-    {
+    public String getSecretId() {
         return secretId;
     }
     
-    public TraktAuthenticationEndpoint getAuthenticationEndpoint()
-    {
+    public boolean isStaging() {
+        return staging;
+    }
+    
+    public TraktAuthenticationEndpoint getAuthenticationEndpoint() {
         return authentication;
     }
     
-    public TraktCalendarsEndpoint getCalendersEndpoint()
-    {
+    public TraktCalendarsEndpoint getCalendersEndpoint() {
         return calenders;
     }
     
-    public TraktCertificationsEndpoint getCertificationsEndpoint()
-    {
+    public TraktCertificationsEndpoint getCertificationsEndpoint() {
         return certifications;
     }
     
-    public TraktCheckinEndpoint getCheckinEndpoint()
-    {
+    public TraktCheckinEndpoint getCheckinEndpoint() {
         return checkin;
     }
     
-    public TraktCommentsEndpoint getCommentsEndpoint()
-    {
+    public TraktCommentsEndpoint getCommentsEndpoint() {
         return comments;
     }
     
-    public TraktCountriesEndpoint getCountriesEndpoint()
-    {
+    public TraktCountriesEndpoint getCountriesEndpoint() {
         return countries;
     }
     
-    public TraktEpisodesEndpoint getEpisodesEndpoint()
-    {
+    public TraktEpisodesEndpoint getEpisodesEndpoint() {
         return episodes;
     }
     
-    public TraktGenresEndpoint getGenresEndpoint()
-    {
+    public TraktGenresEndpoint getGenresEndpoint() {
         return genres;
     }
     
-    public TraktLanguagesEndpoint getLanguagesEndpoint()
-    {
+    public TraktLanguagesEndpoint getLanguagesEndpoint() {
         return languages;
     }
     
-    public TraktListsEndpoint getListsEndpoint()
-    {
+    public TraktListsEndpoint getListsEndpoint() {
         return lists;
     }
     
-    public TraktMoviesEndpoint getMoviesEndpoint()
-    {
+    public TraktMoviesEndpoint getMoviesEndpoint() {
         return movies;
     }
     
-    public TraktNetworksEndpoint getNetworksEndpoint()
-    {
+    public TraktNetworksEndpoint getNetworksEndpoint() {
         return networks;
     }
     
-    public TraktPeopleEndpoint getPeopleEndpoint()
-    {
+    public TraktPeopleEndpoint getPeopleEndpoint() {
         return people;
     }
     
-    public TraktRecommendationsEndpoint getRecommendationsEndpoint()
-    {
+    public TraktRecommendationsEndpoint getRecommendationsEndpoint() {
         return recommendations;
     }
     
-    public TraktScrobbleEndpoint getScrobbleEndpoint()
-    {
+    public TraktScrobbleEndpoint getScrobbleEndpoint() {
         return scrobble;
     }
     
-    public TraktSearchEndpoint getSearchEndpoint()
-    {
+    public TraktSearchEndpoint getSearchEndpoint() {
         return search;
     }
     
-    public TraktSeasonsEndpoint getSeasonsEndpoint()
-    {
+    public TraktSeasonsEndpoint getSeasonsEndpoint() {
         return seasons;
     }
     
-    public TraktShowsEndpoint getShowsEndpoint()
-    {
+    public TraktShowsEndpoint getShowsEndpoint() {
         return shows;
     }
     
-    public TraktSyncEndpoint getSyncEndpoint()
-    {
+    public TraktSyncEndpoint getSyncEndpoint() {
         return sync;
     }
     
-    public TraktUsersEndpoint getUsersEndpoint()
-    {
+    public TraktUsersEndpoint getUsersEndpoint() {
         return users;
     }
 }

@@ -1,14 +1,13 @@
 package com.wexalian.jtrakt.endpoint.search;
 
 import com.wexalian.jtrakt.endpoint.TraktItemType;
-import com.wexalian.jtrakt.endpoint.TraktList;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.lists.TraktList;
 import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
 import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
-public class TraktSearchItem
-{
+public class TraktSearchItem {
     private float score;
     
     private TraktItemType type;
@@ -18,38 +17,31 @@ public class TraktSearchItem
     private TraktEpisode episode;
     private TraktList list;
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public float getScore()
-    {
+    public float getScore() {
         return score;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
     
-    public TraktList getList()
-    {
+    public TraktList getList() {
         return list;
     }
 }

@@ -6,10 +6,8 @@ import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class TraktCollectionProgress
-{
-    public static class Show
-    {
+public class TraktCollectionProgress {
+    public static class Show {
         private int aired;
         private int completed;
         private OffsetDateTime last_collected_at;
@@ -18,88 +16,72 @@ public class TraktCollectionProgress
         private TraktEpisode next_episode;
         private TraktEpisode last_episode;
         
-        public int getAired()
-        {
+        public int getAired() {
             return aired;
         }
         
-        public int getCompleted()
-        {
+        public int getCompleted() {
             return completed;
         }
         
-        public OffsetDateTime getLastCollectedAt()
-        {
+        public OffsetDateTime getLastCollectedAt() {
             return last_collected_at;
         }
         
-        public List<Season> getSeasons()
-        {
+        public List<Season> getSeasons() {
             return seasons;
         }
         
-        public List<TraktSeason> getHiddenSeasons()
-        {
+        public List<TraktSeason> getHiddenSeasons() {
             return hidden_seasons;
         }
         
-        public TraktEpisode getNextEpisode()
-        {
+        public TraktEpisode getNextEpisode() {
             return next_episode;
         }
         
-        public TraktEpisode getLastEpisode()
-        {
+        public TraktEpisode getLastEpisode() {
             return last_episode;
         }
     }
     
-    public static class Season
-    {
+    public static class Season {
         private int number;
         private int aired;
         private int completed;
         private List<Episode> episodes;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public int getAired()
-        {
+        public int getAired() {
             return aired;
         }
         
-        public int getCompleted()
-        {
+        public int getCompleted() {
             return completed;
         }
         
-        public List<Episode> getEpisodes()
-        {
+        public List<Episode> getEpisodes() {
             return episodes;
         }
     }
     
-    public static class Episode
-    {
+    public static class Episode {
         private int number;
         private boolean completed;
         private OffsetDateTime collected_at;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public boolean isCompleted()
-        {
+        public boolean isCompleted() {
             return completed;
         }
         
-        public OffsetDateTime getCollectedAt()
-        {
+        public OffsetDateTime getCollectedAt() {
             return collected_at;
         }
     }

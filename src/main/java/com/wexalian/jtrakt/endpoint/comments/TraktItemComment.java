@@ -1,14 +1,13 @@
 package com.wexalian.jtrakt.endpoint.comments;
 
 import com.wexalian.jtrakt.endpoint.TraktItemType;
-import com.wexalian.jtrakt.endpoint.TraktList;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.lists.TraktList;
 import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
 import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
-public class TraktItemComment
-{
+public class TraktItemComment {
     private TraktItemType type;
     private TraktMovie movie;
     private TraktShow show;
@@ -18,38 +17,31 @@ public class TraktItemComment
     
     private TraktComment comment;
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
     
-    public TraktList getList()
-    {
+    public TraktList getList() {
         return list;
     }
     
-    public TraktComment getComment()
-    {
+    public TraktComment getComment() {
         return comment;
     }
 }

@@ -2,18 +2,15 @@ package com.wexalian.jtrakt.endpoint.shows;
 
 import java.time.OffsetDateTime;
 
-public class TraktUpdatedShow
-{
+public class TraktUpdatedShow {
     private OffsetDateTime updated_at;
     private TraktShow show;
     
-    public OffsetDateTime getUpdatedAt()
-    {
+    public OffsetDateTime getUpdatedAt() {
         return updated_at;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
 }

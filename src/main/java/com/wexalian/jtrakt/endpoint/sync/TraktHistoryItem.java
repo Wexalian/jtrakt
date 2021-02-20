@@ -8,8 +8,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktHistoryItem
-{
+public class TraktHistoryItem {
     private long id;
     private OffsetDateTime watched_at;
     private String action;
@@ -20,43 +19,35 @@ public class TraktHistoryItem
     private TraktSeason season;
     private TraktEpisode episode;
     
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
     
-    public OffsetDateTime getWatchedAt()
-    {
+    public OffsetDateTime getWatchedAt() {
         return watched_at;
     }
     
-    public String getAction()
-    {
+    public String getAction() {
         return action;
     }
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
 }

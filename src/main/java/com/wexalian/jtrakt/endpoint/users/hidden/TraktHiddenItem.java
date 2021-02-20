@@ -7,8 +7,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktHiddenItem
-{
+public class TraktHiddenItem {
     private OffsetDateTime hidden_at;
     
     private TraktItemType type;
@@ -16,55 +15,46 @@ public class TraktHiddenItem
     private TraktShow show;
     private TraktSeason season;
     
-    public OffsetDateTime getHiddenAt()
-    {
+    public OffsetDateTime getHiddenAt() {
         return hidden_at;
     }
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public enum Section
-    {
+    public enum Section {
         CALENDAR("calendar"),
         PROGRESS_WATCHED("progress_watched"),
         PROGRESS_WATCHED_RESET("progress_watched_reset"),
         PROGRESS_COLLECTED("progress_collected"),
         RECOMMENDATIONS("recommendations");
         
-        private String name;
+        private final String name;
         
-        Section(String name)
-        {
+        Section(String name) {
             this.name = name;
         }
         
-        @Override
-        public String toString()
-        {
-            return getName();
+        public String getName() {
+            return name;
         }
         
-        public String getName()
-        {
-            return name;
+        @Override
+        public String toString() {
+            return getName();
         }
     }
 }

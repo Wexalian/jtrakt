@@ -2,15 +2,13 @@ package com.wexalian.jtrakt.endpoint.shows;
 
 import com.wexalian.jtrakt.endpoint.TraktAirsInfo;
 import com.wexalian.jtrakt.endpoint.TraktIds;
-import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class TraktShow
-{
+public class TraktShow {
     //standard
     private String title;
     private int year;
@@ -21,13 +19,13 @@ public class TraktShow
     private OffsetDateTime first_aired;
     private TraktAirsInfo airs;
     private int runtime;
-    private TraktCertification certification;
+    private String certification;
     private String network;
     private String country;
     private OffsetDateTime updated_at;
     private String trailer;
     private String homepage;
-    private TraktStatus status;
+    private TraktShowStatus status;
     private double rating;
     private int votes;
     private int comment_count;
@@ -38,115 +36,93 @@ public class TraktShow
     
     public TraktShow() {}
     
-    public TraktShow(String title, int year, TraktIds ids)
-    {
+    public TraktShow(String title, int year, TraktIds ids) {
         this.title = title;
         this.year = year;
         this.ids = ids;
     }
     
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
     
-    public int getYear()
-    {
+    public int getYear() {
         return year;
     }
     
-    public TraktIds getIds()
-    {
+    public TraktIds getIds() {
         return ids;
     }
     
-    public String getOverview()
-    {
+    public String getOverview() {
         return overview;
     }
     
-    public OffsetDateTime getFirstAired()
-    {
+    public OffsetDateTime getFirstAired() {
         return first_aired;
     }
     
-    public TraktAirsInfo getAirs()
-    {
+    public TraktAirsInfo getAirs() {
         return airs;
     }
     
-    public int getRuntime()
-    {
+    public int getRuntime() {
         return runtime;
     }
     
-    public TraktCertification getCertification()
-    {
+    public String getCertification() {
         return certification;
     }
     
-    public String getNetwork()
-    {
+    public String getNetwork() {
         return network;
     }
     
-    public String getCountry()
-    {
+    public String getCountry() {
         return country;
     }
     
-    public OffsetDateTime getUpdatedAt()
-    {
+    public OffsetDateTime getUpdatedAt() {
         return updated_at;
     }
     
-    public String getTrailer()
-    {
+    public String getTrailer() {
         return trailer;
     }
     
-    public String getHomepage()
-    {
+    public String getHomepage() {
         return homepage;
     }
     
-    public TraktStatus getStatus()
-    {
+    public TraktShowStatus getStatus() {
         return status;
     }
     
-    public double getRating()
-    {
+    public double getRating() {
         return rating;
     }
     
-    public int getVotes()
-    {
+    public int getVotes() {
         return votes;
     }
     
-    public int getCommentCount()
-    {
+    public int getCommentCount() {
         return comment_count;
     }
     
-    public TraktLanguage getLanguage()
-    {
+    public TraktLanguage getLanguage() {
         return language;
     }
     
-    public List<TraktLanguage> getAvailableTranslations()
-    {
+    public List<TraktLanguage> getAvailableTranslations() {
         return available_translations;
     }
     
-    public List<TraktGenre> getGenres()
-    {
+    public List<TraktGenre> getGenres() {
         return genres;
     }
     
-    public int getAiredEpisodes()
-    {
+    public int getAiredEpisodes() {
         return aired_episodes;
     }
     

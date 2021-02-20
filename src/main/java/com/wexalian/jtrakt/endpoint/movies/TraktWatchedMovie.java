@@ -1,29 +1,24 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-public class TraktWatchedMovie
-{
+public class TraktWatchedMovie {
     private int watcher_count;
     private int play_count;
     private int collected_count;
-    private TraktMovie show;
+    private TraktMovie movie;
     
-    public int getWatcherCount()
-    {
+    public int getWatcherCount() {
         return watcher_count;
     }
     
-    public int getPlayCount()
-    {
+    public int getPlayCount() {
         return play_count;
     }
     
-    public int getCollectedCount()
-    {
+    public int getCollectedCount() {
         return collected_count;
     }
     
-    public TraktMovie getShow()
-    {
-        return show;
+    public TraktMovie getMovie() {
+        return movie;
     }
 }

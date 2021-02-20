@@ -1,19 +1,16 @@
 package com.wexalian.jtrakt.endpoint.sync.collection;
 
 import com.google.gson.annotations.SerializedName;
-import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
-import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
-import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
-import com.wexalian.jtrakt.endpoint.shows.TraktShow;
+import com.wexalian.jtrakt.endpoint.sync.TraktSyncItems;
 
 import java.time.OffsetDateTime;
 
-public class TraktCollectionUpdate
-{
-    private TraktMovie movie;
-    private TraktShow show;
-    private TraktSeason season;
-    private TraktEpisode episode;
+public class TraktCollectionUpdate {
+    private TraktSyncItems.Movie movie;
+    private TraktSyncItems.Show show;
+    private TraktSyncItems.Season season;
+    private TraktSyncItems.Episode episode;
+    
     private OffsetDateTime collected_at;
     
     private String media_type;
@@ -24,28 +21,23 @@ public class TraktCollectionUpdate
     @SerializedName("3d")
     private boolean is3d;
     
-    public TraktCollectionUpdate(TraktMovie movie)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Movie movie) {
         this.movie = movie;
     }
     
-    public TraktCollectionUpdate(TraktShow show)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Show show) {
         this.show = show;
     }
     
-    public TraktCollectionUpdate(TraktSeason season)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Season season) {
         this.season = season;
     }
     
-    public TraktCollectionUpdate(TraktEpisode episode)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Episode episode) {
         this.episode = episode;
     }
     
-    public TraktCollectionUpdate(TraktMovie movie, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Movie movie, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d) {
         this.movie = movie;
         this.collected_at = collected_at;
         this.media_type = media_type;
@@ -56,8 +48,7 @@ public class TraktCollectionUpdate
         this.is3d = is3d;
     }
     
-    public TraktCollectionUpdate(TraktShow show, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Show show, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d) {
         this.show = show;
         this.collected_at = collected_at;
         this.media_type = media_type;
@@ -68,8 +59,7 @@ public class TraktCollectionUpdate
         this.is3d = is3d;
     }
     
-    public TraktCollectionUpdate(TraktSeason season, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Season season, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d) {
         this.season = season;
         this.collected_at = collected_at;
         this.media_type = media_type;
@@ -80,8 +70,7 @@ public class TraktCollectionUpdate
         this.is3d = is3d;
     }
     
-    public TraktCollectionUpdate(TraktEpisode episode, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d)
-    {
+    public TraktCollectionUpdate(TraktSyncItems.Episode episode, OffsetDateTime collected_at, String media_type, String resolution, String hdr, String audio, String audio_channels, boolean is3d) {
         this.episode = episode;
         this.collected_at = collected_at;
         this.media_type = media_type;

@@ -1,17 +1,14 @@
 package com.wexalian.jtrakt.endpoint.shows;
 
-public class TraktTrendingShow
-{
+public class TraktTrendingShow {
     private int watchers;
     private TraktShow show;
     
-    public int getWatchers()
-    {
+    public int getWatchers() {
         return watchers;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
 }

@@ -6,8 +6,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class TraktWatchedItem
-{
+public class TraktWatchedItem {
     private int plays;
     private OffsetDateTime last_watched_at;
     private OffsetDateTime last_updated_at;
@@ -16,65 +15,61 @@ public class TraktWatchedItem
     private TraktShow show;
     private List<Season> seasons;
     
-    public int getPlays()
-    {
+    public int getPlays() {
         return plays;
     }
     
-    public OffsetDateTime getLastWatchedAt()
-    {
+    public OffsetDateTime getLastWatchedAt() {
         return last_watched_at;
     }
     
-    public OffsetDateTime getLastUpdatedAt()
-    {
+    public OffsetDateTime getLastUpdatedAt() {
         return last_updated_at;
     }
     
-    public OffsetDateTime getResetAt()
-    {
+    public OffsetDateTime getResetAt() {
         return reset_at;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    private static class Season
-    {
+    public TraktShow getShow() {
+        return show;
+    }
+    
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+    
+    public static class Season {
         private int number;
         private List<Episode> episodes;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public List<Episode> getEpisodes()
-        {
+        public List<Episode> getEpisodes() {
             return episodes;
         }
     }
     
-    private static class Episode
-    {
+    public static class Episode {
         private int number;
         private int plays;
         private OffsetDateTime last_watched_at;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public int getPlays()
-        {
+        public int getPlays() {
             return plays;
         }
         
-        public OffsetDateTime getLastWatchedAt()
-        {
+        public OffsetDateTime getLastWatchedAt() {
             return last_watched_at;
         }
     }

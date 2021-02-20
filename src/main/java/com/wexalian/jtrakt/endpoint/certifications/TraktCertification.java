@@ -1,23 +1,19 @@
 package com.wexalian.jtrakt.endpoint.certifications;
 
-public class TraktCertification
-{
+public class TraktCertification {
     private String name;
     private String slug;
     private String description;
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
     
-    public String getSlug()
-    {
+    public String getSlug() {
         return slug;
     }
     
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 }

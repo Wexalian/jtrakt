@@ -1,11 +1,9 @@
 package com.wexalian.jtrakt.endpoint.networks;
 
-public class TraktNetwork
-{
+public class TraktNetwork {
     private String name;
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 }

@@ -2,8 +2,7 @@ package com.wexalian.jtrakt.endpoint.sync.activity;
 
 import java.time.OffsetDateTime;
 
-public class EpisodeActivity
-{
+public class EpisodeActivity {
     private OffsetDateTime watched_at;
     private OffsetDateTime collected_at;
     private OffsetDateTime rated_at;
@@ -11,33 +10,27 @@ public class EpisodeActivity
     private OffsetDateTime commented_at;
     private OffsetDateTime paused_at;
     
-    public OffsetDateTime getWatchedAt()
-    {
+    public OffsetDateTime getWatchedAt() {
         return watched_at;
     }
     
-    public OffsetDateTime getCollectedAt()
-    {
+    public OffsetDateTime getCollectedAt() {
         return collected_at;
     }
     
-    public OffsetDateTime getRatedAt()
-    {
+    public OffsetDateTime getRatedAt() {
         return rated_at;
     }
     
-    public OffsetDateTime getWatchlistedAt()
-    {
+    public OffsetDateTime getWatchlistedAt() {
         return watchlisted_at;
     }
     
-    public OffsetDateTime getCommentedAt()
-    {
+    public OffsetDateTime getCommentedAt() {
         return commented_at;
     }
     
-    public OffsetDateTime getPausedAt()
-    {
+    public OffsetDateTime getPausedAt() {
         return paused_at;
     }
 }

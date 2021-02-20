@@ -2,30 +2,25 @@ package com.wexalian.jtrakt.endpoint.sync.activity;
 
 import java.time.OffsetDateTime;
 
-public class SeasonActivity
-{
+public class SeasonActivity {
     private OffsetDateTime rated_at;
     private OffsetDateTime watchlisted_at;
     private OffsetDateTime commented_at;
     private OffsetDateTime hidden_at;
     
-    public OffsetDateTime getRatedAt()
-    {
+    public OffsetDateTime getRatedAt() {
         return rated_at;
     }
     
-    public OffsetDateTime getWatchlistedAt()
-    {
+    public OffsetDateTime getWatchlistedAt() {
         return watchlisted_at;
     }
     
-    public OffsetDateTime getCommentedAt()
-    {
+    public OffsetDateTime getCommentedAt() {
         return commented_at;
     }
     
-    public OffsetDateTime getHiddenAt()
-    {
+    public OffsetDateTime getHiddenAt() {
         return hidden_at;
     }
 }

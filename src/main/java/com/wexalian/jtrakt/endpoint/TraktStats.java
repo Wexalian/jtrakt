@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt.endpoint;
 
-public class TraktStats
-{
+public class TraktStats {
     private int watchers;
     private int plays;
     private int collectors;
@@ -10,38 +9,31 @@ public class TraktStats
     private int lists;
     private int votes;
     
-    public int getWatchers()
-    {
+    public int getWatchers() {
         return watchers;
     }
     
-    public int getPlays()
-    {
+    public int getPlays() {
         return plays;
     }
     
-    public int getCollectors()
-    {
+    public int getCollectors() {
         return collectors;
     }
     
-    public int getCollectedEpisodes()
-    {
+    public int getCollectedEpisodes() {
         return collected_episodes;
     }
     
-    public int getComments()
-    {
+    public int getComments() {
         return comments;
     }
     
-    public int getLists()
-    {
+    public int getLists() {
         return lists;
     }
     
-    public int getVotes()
-    {
+    public int getVotes() {
         return votes;
     }
 }

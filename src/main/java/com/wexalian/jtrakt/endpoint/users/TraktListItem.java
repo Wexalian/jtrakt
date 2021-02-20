@@ -9,8 +9,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktListItem
-{
+public class TraktListItem {
     private int rank;
     private long id;
     private OffsetDateTime listed_at;

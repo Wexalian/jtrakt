@@ -1,48 +1,40 @@
 package com.wexalian.jtrakt.endpoint.users;
 
-import com.wexalian.jtrakt.endpoint.TraktRating;
+import com.wexalian.jtrakt.endpoint.TraktRatings;
 
-public class TraktUserStats
-{
+public class TraktUserStats {
     private Movies movies;
     private Shows shows;
     private Seasons seasons;
     private Episodes episodes;
     private Network network;
-    private TraktRating ratings;
+    private TraktRatings ratings;
     
-    public Movies getMovies()
-    {
+    public Movies getMovies() {
         return movies;
     }
     
-    public Shows getShows()
-    {
+    public Shows getShows() {
         return shows;
     }
     
-    public Seasons getSeasons()
-    {
+    public Seasons getSeasons() {
         return seasons;
     }
     
-    public Episodes getEpisodes()
-    {
+    public Episodes getEpisodes() {
         return episodes;
     }
     
-    public Network getNetwork()
-    {
+    public Network getNetwork() {
         return network;
     }
     
-    public TraktRating getRatings()
-    {
+    public TraktRatings getRatings() {
         return ratings;
     }
     
-    public static class Movies
-    {
+    public static class Movies {
         private int plays;
         private int watched;
         private int minutes;
@@ -50,83 +42,68 @@ public class TraktUserStats
         private int ratings;
         private int comments;
         
-        public int getPlays()
-        {
+        public int getPlays() {
             return plays;
         }
         
-        public int getWatched()
-        {
+        public int getWatched() {
             return watched;
         }
         
-        public int getMinutes()
-        {
+        public int getMinutes() {
             return minutes;
         }
         
-        public int getCollected()
-        {
+        public int getCollected() {
             return collected;
         }
         
-        public int getRatings()
-        {
+        public int getRatings() {
             return ratings;
         }
         
-        public int getComments()
-        {
+        public int getComments() {
             return comments;
         }
     }
     
-    public static class Shows
-    {
+    public static class Shows {
         private int watched;
         private int collected;
         private int ratings;
         private int comments;
         
-        public int getWatched()
-        {
+        public int getWatched() {
             return watched;
         }
         
-        public int getCollected()
-        {
+        public int getCollected() {
             return collected;
         }
         
-        public int getRatings()
-        {
+        public int getRatings() {
             return ratings;
         }
         
-        public int getComments()
-        {
+        public int getComments() {
             return comments;
         }
     }
     
-    public static class Seasons
-    {
+    public static class Seasons {
         private int ratings;
         private int comments;
         
-        public int getRatings()
-        {
+        public int getRatings() {
             return ratings;
         }
         
-        public int getComments()
-        {
+        public int getComments() {
             return comments;
         }
     }
     
-    public static class Episodes
-    {
+    public static class Episodes {
         private int plays;
         private int watched;
         private int minutes;
@@ -134,55 +111,45 @@ public class TraktUserStats
         private int ratings;
         private int comments;
         
-        public int getPlays()
-        {
+        public int getPlays() {
             return plays;
         }
         
-        public int getWatched()
-        {
+        public int getWatched() {
             return watched;
         }
         
-        public int getMinutes()
-        {
+        public int getMinutes() {
             return minutes;
         }
         
-        public int getCollected()
-        {
+        public int getCollected() {
             return collected;
         }
         
-        public int getRatings()
-        {
+        public int getRatings() {
             return ratings;
         }
         
-        public int getComments()
-        {
+        public int getComments() {
             return comments;
         }
     }
     
-    public static class Network
-    {
+    public static class Network {
         private int friends;
         private int followers;
         private int following;
         
-        public int getFriends()
-        {
+        public int getFriends() {
             return friends;
         }
         
-        public int getFollowers()
-        {
+        public int getFollowers() {
             return followers;
         }
         
-        public int getFollowing()
-        {
+        public int getFollowing() {
             return following;
         }
     }

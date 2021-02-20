@@ -4,18 +4,15 @@ import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.time.OffsetDateTime;
 
-public class TraktCalendarMovie
-{
+public class TraktCalendarMovie {
     private OffsetDateTime released;
     private TraktMovie movie;
     
-    public OffsetDateTime getReleased()
-    {
+    public OffsetDateTime getReleased() {
         return released;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
 }

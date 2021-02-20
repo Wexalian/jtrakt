@@ -5,67 +5,55 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class TraktCollectionShow
-{
+public class TraktCollectionShow {
     private OffsetDateTime last_collected_at;
     private OffsetDateTime last_updated_at;
     private TraktShow show;
     private List<Season> seasons;
     
-    public OffsetDateTime getLastCollectedAt()
-    {
+    public OffsetDateTime getLastCollectedAt() {
         return last_collected_at;
     }
     
-    public OffsetDateTime getLastUpdatedAt()
-    {
+    public OffsetDateTime getLastUpdatedAt() {
         return last_updated_at;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public List<Season> getSeasons()
-    {
+    public List<Season> getSeasons() {
         return seasons;
     }
     
-    public static class Season
-    {
+    public static class Season {
         private int number;
         private List<Episode> episodes;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public List<Episode> getEpisodes()
-        {
+        public List<Episode> getEpisodes() {
             return episodes;
         }
     }
     
-    public static class Episode
-    {
+    public static class Episode {
         private int number;
         private OffsetDateTime collected_at;
         private TraktItemMetadata metadata;
         
-        public int getNumber()
-        {
+        public int getNumber() {
             return number;
         }
         
-        public OffsetDateTime getCollectedAt()
-        {
+        public OffsetDateTime getCollectedAt() {
             return collected_at;
         }
         
-        public TraktItemMetadata getMetadata()
-        {
+        public TraktItemMetadata getMetadata() {
             return metadata;
         }
     }

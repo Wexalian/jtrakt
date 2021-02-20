@@ -2,8 +2,7 @@ package com.wexalian.jtrakt.endpoint.languages;
 
 import java.util.HashMap;
 
-public enum TraktLanguage
-{
+public enum TraktLanguage {
     ALL("all", "All Languages"),
     ABKHAZIAN("ab", "Abkhazian"),
     AFAR("aa", "Afar"),
@@ -161,10 +160,8 @@ public enum TraktLanguage
     
     private static final HashMap<String, TraktLanguage> STRING_MAPPING = new HashMap<>();
     
-    static
-    {
-        for (TraktLanguage language : values())
-        {
+    static {
+        for (TraktLanguage language : values()) {
             STRING_MAPPING.put(language.toString(), language);
         }
     }
@@ -172,30 +169,25 @@ public enum TraktLanguage
     private final String code;
     private final String name;
     
-    TraktLanguage(String code, String name)
-    {
+    TraktLanguage(String code, String name) {
         this.code = code;
         this.name = name;
     }
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
     
-    @Override
-    public String toString()
-    {
-        return getCode();
-    }
-    
-    public String getCode()
-    {
+    public String getCode() {
         return code;
     }
     
-    public static TraktLanguage fromCode(String code)
-    {
+    public static TraktLanguage fromCode(String code) {
         return STRING_MAPPING.get(code);
+    }
+    
+    @Override
+    public String toString() {
+        return getCode();
     }
 }

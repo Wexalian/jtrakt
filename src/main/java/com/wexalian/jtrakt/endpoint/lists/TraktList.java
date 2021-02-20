@@ -1,11 +1,11 @@
-package com.wexalian.jtrakt.endpoint;
+package com.wexalian.jtrakt.endpoint.lists;
 
+import com.wexalian.jtrakt.endpoint.TraktIds;
 import com.wexalian.jtrakt.endpoint.users.TraktUser;
 
 import java.time.OffsetDateTime;
 
-public class TraktList
-{
+public class TraktList {
     private String name;
     private String description;
     private String privacy;
@@ -21,78 +21,63 @@ public class TraktList
     private TraktIds ids;
     private TraktUser user;
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
     
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
     
-    public String getPrivacy()
-    {
+    public String getPrivacy() {
         return privacy;
     }
     
-    public boolean isDisplayNumbers()
-    {
+    public boolean isDisplayNumbers() {
         return display_numbers;
     }
     
-    public boolean isAllowComments()
-    {
+    public boolean isAllowComments() {
         return allow_comments;
     }
     
-    public String getSortBy()
-    {
+    public String getSortBy() {
         return sort_by;
     }
     
-    public String getSortHow()
-    {
+    public String getSortHow() {
         return sort_how;
     }
     
-    public OffsetDateTime getCreatedAt()
-    {
+    public OffsetDateTime getCreatedAt() {
         return created_at;
     }
     
-    public OffsetDateTime getUpdatedAt()
-    {
+    public OffsetDateTime getUpdatedAt() {
         return updated_at;
     }
     
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return item_count;
     }
     
-    public int getCommentCount()
-    {
+    public int getCommentCount() {
         return comment_count;
     }
     
-    public int getLikes()
-    {
+    public int getLikes() {
         return likes;
     }
     
-    public TraktIds getIds()
-    {
+    public TraktIds getIds() {
         return ids;
     }
     
-    public TraktUser getUser()
-    {
+    public TraktUser getUser() {
         return user;
     }
     
-    public enum Type
-    {
+    public enum Type {
         ALL("all"),
         PERSONAL("personal"),
         OFFICIAL("official"),
@@ -100,20 +85,17 @@ public class TraktList
         
         private final String type;
         
-        Type(String type)
-        {
+        Type(String type) {
             this.type = type;
         }
         
         @Override
-        public String toString()
-        {
+        public String toString() {
             return type;
         }
     }
     
-    public enum Sort
-    {
+    public enum Sort {
         POPULAR("popular"),
         LIKES("likes"),
         COMMENTS("comments"),
@@ -123,14 +105,12 @@ public class TraktList
         
         private final String sort;
         
-        Sort(String sort)
-        {
+        Sort(String sort) {
             this.sort = sort;
         }
         
         @Override
-        public String toString()
-        {
+        public String toString() {
             return sort;
         }
     }

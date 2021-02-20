@@ -7,8 +7,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktPlayback
-{
+public class TraktPlayback {
     private float progress;
     private OffsetDateTime paused_at;
     private int id;
@@ -17,38 +16,31 @@ public class TraktPlayback
     private TraktShow show;
     private TraktEpisode episode;
     
-    public float getProgress()
-    {
+    public float getProgress() {
         return progress;
     }
     
-    public OffsetDateTime getPausedAt()
-    {
+    public OffsetDateTime getPausedAt() {
         return paused_at;
     }
     
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
 }
