@@ -1,17 +1,14 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-public class TraktTrendingMovie
-{
+public class TraktTrendingMovie {
     private int watchers;
     private TraktMovie movie;
     
-    public int getWatchers()
-    {
+    public int getWatchers() {
         return watchers;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
 }

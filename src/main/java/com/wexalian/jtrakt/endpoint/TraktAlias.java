@@ -1,17 +1,14 @@
 package com.wexalian.jtrakt.endpoint;
 
-public class TraktAlias
-{
+public class TraktAlias {
     private String title;
     private String country;
     
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
     
-    public String getCountry()
-    {
+    public String getCountry() {
         return country;
     }
 }

@@ -6,6 +6,7 @@ buildscript {
 
 plugins {
     id 'org.javamodularity.moduleplugin' version '1.6.0' apply false
+    id 'io.codearte.nexus-staging' version '0.21.2'
 }
 
 apply plugin: 'java-library'
@@ -16,16 +17,58 @@ apply plugin: 'org.javamodularity.moduleplugin'
 targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 11
 
 group 'com.wexalian.jtrakt'
-version = '0.0.3'
+version = '0.0.17'
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.google.guava:guava:26.0-jre'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.7.0'
+}
+
+test {
+    useJUnitPlatform() {
+        excludeTags 'staging'
+//        includeTags 'auth'
+        includeTags 'calendars'
+        includeTags 'certifications'
+        includeTags 'checkin'
+        includeTags 'comments'
+        includeTags 'countries'
+        includeTags 'episodes'
+        includeTags 'genres'
+        includeTags 'languages'
+        includeTags 'lists'
+        includeTags 'movies'
+        includeTags 'networks'
+        includeTags 'people'
+        includeTags 'recommendations'
+        includeTags 'scrobble'
+        includeTags 'search'
+        includeTags 'seasons'
+        includeTags 'shows'
+        includeTags 'sync'
+        includeTags 'users'
+//        includeTags 'test'
+    }
 }
 
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
     from javadoc
 }
+
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
@@ -35,11 +78,8 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-dependencies {
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-    implementation 'com.google.guava:guava:26.0-jre'
+signing {
+    sign configurations.archives
 }
 
 uploadArchives {
@@ -72,8 +112,8 @@ uploadArchives {
                         id = 'Wexalian'
                         name = 'Lars Gerrits'
                         email = 'larsgerrits99@gmail.com'
-                        organization = 'wexalian'
-                        organizationUrl = 'http://www.wexalian.com'
+//                        organization = 'wexalian'
+//                        organizationUrl = 'http://www.wexalian.com'
                     }
                 }
                 scm {
@@ -84,9 +124,4 @@ uploadArchives {
             }
         }
     }
-}
-
-
-signing {
-    sign configurations.archives
 }

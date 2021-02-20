@@ -2,8 +2,7 @@ package com.wexalian.jtrakt.endpoint.genres;
 
 import java.util.HashMap;
 
-public enum TraktGenre
-{
+public enum TraktGenre {
     ACTION("action", "Action"),
     ADVENTURE("adventure", "Adventure"),
     ANIMATION("animation", "Animation"),
@@ -40,10 +39,8 @@ public enum TraktGenre
     
     private static final HashMap<String, TraktGenre> STRING_MAPPING = new HashMap<>();
     
-    static
-    {
-        for (TraktGenre genre : values())
-        {
+    static {
+        for (TraktGenre genre : values()) {
             STRING_MAPPING.put(genre.toString(), genre);
         }
     }
@@ -51,30 +48,25 @@ public enum TraktGenre
     private final String slug;
     private final String name;
     
-    TraktGenre(String slug, String name)
-    {
+    TraktGenre(String slug, String name) {
         this.slug = slug;
         this.name = name;
     }
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
     
-    @Override
-    public String toString()
-    {
-        return getSlug();
-    }
-    
-    public String getSlug()
-    {
+    public String getSlug() {
         return slug;
     }
     
-    public static TraktGenre fromSlug(String slug)
-    {
+    public static TraktGenre fromSlug(String slug) {
         return STRING_MAPPING.get(slug);
+    }
+    
+    @Override
+    public String toString() {
+        return getSlug();
     }
 }

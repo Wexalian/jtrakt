@@ -7,19 +7,15 @@ import com.wexalian.jtrakt.json.TraktTypeTokens;
 
 import javax.annotation.Nonnull;
 
-public class TraktCertificationsEndpoint
-{
+public class TraktCertificationsEndpoint {
     private final TraktHTTP http;
     
-    public TraktCertificationsEndpoint(TraktHTTP http)
-    {
+    public TraktCertificationsEndpoint(TraktHTTP http) {
         this.http = http;
     }
     
-    public TraktCertifications getCertifications(@Nonnull TraktItemFilterType type)
-    {
-        TraktQuery query = TraktQuery.create("certifications/{type}")
-                                     .path("type", type);
+    public TraktCertifications getCertifications(@Nonnull TraktItemFilterType type) {
+        TraktQuery query = TraktQuery.create("certifications/{type}").path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.CERTIFICATIONS);
     }

@@ -2,8 +2,7 @@ package com.wexalian.jtrakt.endpoint.sync.collection;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TraktItemMetadata
-{
+public class TraktItemMetadata {
     private String media_type;
     private String resolution;
     private String hdr;
@@ -12,33 +11,27 @@ public class TraktItemMetadata
     @SerializedName("3d")
     private boolean is3d;
     
-    public String getMediaType()
-    {
+    public String getMediaType() {
         return media_type;
     }
     
-    public String getResolution()
-    {
+    public String getResolution() {
         return resolution;
     }
     
-    public String getHdr()
-    {
+    public String getHdr() {
         return hdr;
     }
     
-    public String getAudio()
-    {
+    public String getAudio() {
         return audio;
     }
     
-    public String getAudioChannels()
-    {
+    public String getAudioChannels() {
         return audio_channels;
     }
     
-    public boolean isIs3d()
-    {
+    public boolean isIs3d() {
         return is3d;
     }
 }

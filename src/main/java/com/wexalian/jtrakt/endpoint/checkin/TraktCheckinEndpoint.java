@@ -6,28 +6,23 @@ import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public class TraktCheckinEndpoint
-{
+public class TraktCheckinEndpoint {
     private final TraktHTTP http;
     
-    public TraktCheckinEndpoint(@Nonnull TraktHTTP http)
-    {
+    public TraktCheckinEndpoint(@Nonnull TraktHTTP http) {
         this.http = http;
     }
     
-    public TraktCheckinItem checkin(@Nonnull TraktCheckinData data, @Nullable TraktAccessToken token)
-    {
+    public TraktCheckinItem checkin(@Nonnull TraktCheckinData data, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("checkin");
-    
+        
         return http.postAndParse(query, data, TraktTypeTokens.CHECKIN, token);
     }
     
-    public void deleteAllCheckins(@Nullable TraktAccessToken token)
-    {
+    public void deleteAllCheckins(@Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("checkin");
-    
+        
         http.delete(query, token);
     }
 }

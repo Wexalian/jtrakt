@@ -12,17 +12,14 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TraktSearchEndpoint
-{
+public class TraktSearchEndpoint {
     private final TraktHTTP http;
     
-    public TraktSearchEndpoint(TraktHTTP http)
-    {
+    public TraktSearchEndpoint(TraktHTTP http) {
         this.http = http;
     }
     
-    public List<TraktSearchItem> textQuery(@Nonnull TraktItemType type, @Nonnull String queryString, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters)
-    {
+    public List<TraktSearchItem> textQuery(@Nonnull TraktItemType type, @Nonnull String queryString, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("search/{type}")
                                      .path("type", type)
                                      .query("query", queryString)
@@ -33,8 +30,7 @@ public class TraktSearchEndpoint
         return http.getAndParse(query, TraktTypeTokens.SEARCH_ITEM);
     }
     
-    public List<TraktSearchItem> idLookup(@Nonnull TraktIdType idType, @Nonnull String id, @Nonnull TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended)
-    {
+    public List<TraktSearchItem> idLookup(@Nonnull TraktIdType idType, @Nonnull String id, @Nonnull TraktItemType type, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("search/{id_type}/{id}")
                                      .path("id_type", idType)
                                      .path("id", id)

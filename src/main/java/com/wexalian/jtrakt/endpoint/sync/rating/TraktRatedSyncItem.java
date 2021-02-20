@@ -2,18 +2,15 @@ package com.wexalian.jtrakt.endpoint.sync.rating;
 
 import com.wexalian.jtrakt.endpoint.TraktIds;
 
-public class TraktRatedSyncItem
-{
-    private int rating;
+public class TraktRatedSyncItem {
+    private float rating;
     private TraktIds ids;
     
-    public int getRating()
-    {
+    public float getRating() {
         return rating;
     }
     
-    public TraktIds getIds()
-    {
+    public TraktIds getIds() {
         return ids;
     }
 }

@@ -7,31 +7,26 @@ import com.wexalian.jtrakt.json.TraktTypeTokens;
 
 import javax.annotation.Nonnull;
 
-public class TraktScrobbleEndpoint
-{
+public class TraktScrobbleEndpoint {
     private final TraktHTTP http;
     
-    public TraktScrobbleEndpoint(TraktHTTP http)
-    {
+    public TraktScrobbleEndpoint(TraktHTTP http) {
         this.http = http;
     }
     
-    public TraktScrobbleItem start(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token)
-    {
+    public TraktScrobbleItem start(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("scrobble/start");
         
         return http.postAndParse(query, data, TraktTypeTokens.SCROBBLE_ITEM, token);
     }
     
-    public TraktScrobbleItem pause(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token)
-    {
+    public TraktScrobbleItem pause(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("scrobble/pause");
         
         return http.postAndParse(query, data, TraktTypeTokens.SCROBBLE_ITEM, token);
     }
     
-    public TraktScrobbleItem stop(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token)
-    {
+    public TraktScrobbleItem stop(@Nonnull TraktScrobbleData data, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("scrobble/stop");
         
         return http.postAndParse(query, data, TraktTypeTokens.SCROBBLE_ITEM, token);

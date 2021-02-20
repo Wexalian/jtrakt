@@ -1,6 +1,7 @@
 package com.wexalian.jtrakt.endpoint.comments;
 
 import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktLike;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
@@ -12,99 +13,74 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TraktCommentsEndpoint
-{
+public class TraktCommentsEndpoint {
     private final TraktHTTP http;
     
-    public TraktCommentsEndpoint(TraktHTTP http)
-    {
+    public TraktCommentsEndpoint(TraktHTTP http) {
         this.http = http;
     }
     
-    public TraktComment postComment(@Nonnull TraktPostCommentData data, @Nonnull TraktAccessToken accessToken)
-    {
+    public TraktComment postComment(@Nonnull TraktNewCommentData data, @Nonnull TraktAccessToken accessToken) {
         TraktQuery query = TraktQuery.create("comments");
         
         return http.postAndParse(query, data, TraktTypeTokens.COMMENT, accessToken);
     }
     
-    public TraktComment getComment(int id)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}")
-                                     .path("id", id);
-    
+    public TraktComment getComment(int id) {
+        TraktQuery query = TraktQuery.create("comments/{id}").path("id", id);
+        
         return http.getAndParse(query, TraktTypeTokens.COMMENT);
     }
     
-    public TraktComment updateComment(int id, @Nonnull TraktPostCommentData data, @Nonnull TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}")
-                                     .path("id", id);
+    public TraktComment updateComment(int id, @Nonnull TraktCommentData data, @Nonnull TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("comments/{id}").path("id", id);
         
-        return http.postAndParse(query, data, TraktTypeTokens.COMMENT, token);
+        return http.putAndParse(query, data, TraktTypeTokens.COMMENT, token);
     }
     
-    public void deleteComment(int id, @Nonnull TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}")
-                                     .path("id", id);
+    public void deleteComment(int id, @Nonnull TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("comments/{id}").path("id", id);
         
         http.delete(query, token);
     }
     
-    public List<TraktComment> getReplies(int id, @Nullable Pagination pagination)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/replies")
-                                     .path("id", id)
-                                     .query(pagination);
+    public List<TraktComment> getReplies(int id, @Nullable Pagination pagination) {
+        TraktQuery query = TraktQuery.create("comments/{id}/replies").path("id", id).query(pagination);
         
         return http.getAndParse(query, TraktTypeTokens.COMMENTS);
     }
     
-    public TraktComment postReply(int id, @Nonnull TraktPostCommentData data, @Nonnull TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/replies")
-                                     .path("id", id);
+    public TraktComment postReply(int id, @Nonnull TraktCommentData data, @Nonnull TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("comments/{id}/replies").path("id", id);
         
         return http.postAndParse(query, data, TraktTypeTokens.COMMENT, token);
     }
     
-    public TraktAttachedMedia getAttachedMedia(int id, @Nullable Extended extended)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/item")
-                                     .path("id", id)
-                                     .query(extended);
+    public TraktAttachedMediaItem getAttachedMedia(int id, @Nullable Extended extended) {
+        TraktQuery query = TraktQuery.create("comments/{id}/item").path("id", id).query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.MEDIA);
     }
     
-    public List<TraktCommentLike> getCommentLikes(int id, @Nullable Pagination pagination)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/likes")
-                                     .path("id", id)
-                                     .query(pagination);
+    public List<TraktLike> getCommentLikes(int id, @Nullable Pagination pagination) {
+        TraktQuery query = TraktQuery.create("comments/{id}/likes").path("id", id).query(pagination);
         
-        return http.getAndParse(query, TraktTypeTokens.COMMENT_LIKES);
+        return http.getAndParse(query, TraktTypeTokens.LIKES);
     }
     
-    public void likeComment(int id, @Nullable TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/like")
-                                     .path("id", id);
+    public void likeComment(int id, @Nullable TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("comments/{id}/like").path("id", id);
         
         http.post(query, null, token);
     }
     
-    public void deleteCommentLike(int id, @Nullable TraktAccessToken token)
-    {
-        TraktQuery query = TraktQuery.create("comments/{id}/like")
-                                     .path("id", id);
+    public void deleteCommentLike(int id, @Nullable TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("comments/{id}/like").path("id", id);
         
         http.delete(query, token);
     }
     
-    public List<TraktItemComment> getTrendingComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended)
-    {
+    public List<TraktItemComment> getTrendingComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/trending/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)
@@ -115,8 +91,7 @@ public class TraktCommentsEndpoint
         return http.getAndParse(query, TraktTypeTokens.ITEM_COMMENTS);
     }
     
-    public List<TraktItemComment> getRecentComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended)
-    {
+    public List<TraktItemComment> getRecentComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/recent/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)
@@ -127,8 +102,7 @@ public class TraktCommentsEndpoint
         return http.getAndParse(query, TraktTypeTokens.ITEM_COMMENTS);
     }
     
-    public List<TraktItemComment> getUpdatesComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended)
-    {
+    public List<TraktItemComment> getCommentUpdates(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/updates/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)

@@ -1,17 +1,14 @@
 package com.wexalian.jtrakt.endpoint.movies;
 
-public class TraktBoxOfficeMovie
-{
+public class TraktBoxOfficeMovie {
     private int revenue;
     private TraktMovie movie;
     
-    public int getRevenue()
-    {
+    public int getRevenue() {
         return revenue;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
 }

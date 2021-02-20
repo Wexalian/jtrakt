@@ -2,8 +2,7 @@ package com.wexalian.jtrakt.endpoint.sync.activity;
 
 import java.time.OffsetDateTime;
 
-public class TraktActivity
-{
+public class TraktActivity {
     private OffsetDateTime all;
     private MovieActivity movies;
     private EpisodeActivity episodes;
@@ -12,38 +11,31 @@ public class TraktActivity
     private CommentActivity comments;
     private ListActivity lists;
     
-    public OffsetDateTime getAll()
-    {
+    public OffsetDateTime getAll() {
         return all;
     }
     
-    public MovieActivity getMovies()
-    {
+    public MovieActivity getMovies() {
         return movies;
     }
     
-    public EpisodeActivity getEpisodes()
-    {
+    public EpisodeActivity getEpisodes() {
         return episodes;
     }
     
-    public ShowActivity getShows()
-    {
+    public ShowActivity getShows() {
         return shows;
     }
     
-    public SeasonActivity getSeasons()
-    {
+    public SeasonActivity getSeasons() {
         return seasons;
     }
     
-    public CommentActivity getComments()
-    {
+    public CommentActivity getComments() {
         return comments;
     }
     
-    public ListActivity getLists()
-    {
+    public ListActivity getLists() {
         return lists;
     }
     

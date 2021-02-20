@@ -5,29 +5,24 @@ import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TraktAirsInfo
-{
+public class TraktAirsInfo {
     public Day day;
     public LocalTime time;
     public ZoneId timezone;
     
-    public Day getDay()
-    {
+    public Day getDay() {
         return day;
     }
     
-    public LocalTime getTime()
-    {
+    public LocalTime getTime() {
         return time;
     }
     
-    public ZoneId getTimezone()
-    {
+    public ZoneId getTimezone() {
         return timezone;
     }
     
-    public enum Day
-    {
+    public enum Day {
         MONDAY("Monday"),
         TUESDAY("Tuesday"),
         WEDNESDAY("Wednesday"),
@@ -38,30 +33,25 @@ public class TraktAirsInfo
         
         private static final Map<String, Day> STRING_MAPPING = new HashMap<>();
         
-        static
-        {
-            for (Day day : Day.values())
-            {
+        static {
+            for (Day day : Day.values()) {
                 STRING_MAPPING.put(day.toString(), day);
             }
         }
         
-        private String name;
+        private final String name;
         
-        Day(String name)
-        {
+        Day(String name) {
             this.name = name;
         }
         
-        @Override
-        public String toString()
-        {
-            return name;
+        public static Day fromValue(String value) {
+            return STRING_MAPPING.get(value);
         }
         
-        public static Day fromValue(String value)
-        {
-            return STRING_MAPPING.get(value);
+        @Override
+        public String toString() {
+            return name;
         }
     }
 }

@@ -4,25 +4,21 @@ import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.time.OffsetDateTime;
 
-public class TraktCollectionMovie
-{
+public class TraktCollectionMovie {
     private OffsetDateTime collected_at;
     private OffsetDateTime updated_at;
     private TraktMovie movie;
     private TraktItemMetadata metadata;
     
-    public OffsetDateTime getCollectedAt()
-    {
+    public OffsetDateTime getCollectedAt() {
         return collected_at;
     }
     
-    public OffsetDateTime getUpdatedAt()
-    {
+    public OffsetDateTime getUpdatedAt() {
         return updated_at;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
 }

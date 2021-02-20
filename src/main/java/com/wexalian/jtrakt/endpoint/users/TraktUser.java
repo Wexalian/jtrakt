@@ -5,8 +5,7 @@ import com.wexalian.jtrakt.endpoint.TraktIds;
 
 import java.time.OffsetDateTime;
 
-public class TraktUser
-{
+public class TraktUser {
     private String username;
     @SerializedName("private")
     private boolean is_private;
@@ -25,51 +24,41 @@ public class TraktUser
     private boolean vip_og;
     private int vip_years;
     
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
     
-    public boolean isPrivate()
-    {
+    public boolean isPrivate() {
         return is_private;
     }
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
     
-    public boolean isVip()
-    {
+    public boolean isVip() {
         return vip;
     }
     
-    public boolean isVipEp()
-    {
+    public boolean isVipEp() {
         return vip_ep;
     }
     
-    public TraktIds getIds()
-    {
+    public TraktIds getIds() {
         return ids;
     }
     
-    private static class Images
-    {
+    private static class Images {
         private Avatar avatar;
         
-        public Avatar getAvatar()
-        {
+        public Avatar getAvatar() {
             return avatar;
         }
         
-        private static class Avatar
-        {
+        private static class Avatar {
             private String full;
             
-            public String getFull()
-            {
+            public String getFull() {
                 return full;
             }
         }

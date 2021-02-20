@@ -8,10 +8,9 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktRatedItem
-{
+public class TraktRatedItem {
     private OffsetDateTime rated_at;
-    private int rating;
+    private float rating;
     
     private TraktItemType type;
     private TraktMovie movie;
@@ -19,38 +18,31 @@ public class TraktRatedItem
     private TraktSeason season;
     private TraktEpisode episode;
     
-    public OffsetDateTime getRatedAt()
-    {
+    public OffsetDateTime getRatedAt() {
         return rated_at;
     }
     
-    public int getRating()
-    {
+    public float getRating() {
         return rating;
     }
     
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
 }

@@ -4,8 +4,7 @@ import com.wexalian.jtrakt.endpoint.TraktSharing;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
 import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
-public class TraktCheckinData
-{
+public class TraktCheckinData {
     private TraktMovie movie;
     private TraktEpisode episode;
     
@@ -16,13 +15,11 @@ public class TraktCheckinData
     private String app_version;
     private String app_date;
     
-    public TraktCheckinData(TraktMovie movie)
-    {
+    public TraktCheckinData(TraktMovie movie) {
         this.movie = movie;
     }
     
-    public TraktCheckinData(TraktMovie movie, TraktSharing sharing, String message, String venue_id, String venue_name, String app_version, String app_date)
-    {
+    public TraktCheckinData(TraktMovie movie, TraktSharing sharing, String message, String venue_id, String venue_name, String app_version, String app_date) {
         this.movie = movie;
         this.sharing = sharing;
         this.message = message;
@@ -32,13 +29,11 @@ public class TraktCheckinData
         this.app_date = app_date;
     }
     
-    public TraktCheckinData(TraktEpisode episode)
-    {
+    public TraktCheckinData(TraktEpisode episode) {
         this.episode = episode;
     }
     
-    public TraktCheckinData(TraktEpisode episode, TraktSharing sharing, String message, String venue_id, String venue_name, String app_version, String app_date)
-    {
+    public TraktCheckinData(TraktEpisode episode, TraktSharing sharing, String message, String venue_id, String venue_name, String app_version, String app_date) {
         this.episode = episode;
         this.sharing = sharing;
         this.message = message;

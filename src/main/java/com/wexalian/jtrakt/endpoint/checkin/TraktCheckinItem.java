@@ -7,8 +7,7 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktCheckinItem
-{
+public class TraktCheckinItem {
     private long id;
     private OffsetDateTime watched_at;
     private TraktSharing sharing;
@@ -17,33 +16,27 @@ public class TraktCheckinItem
     private TraktShow show;
     private TraktEpisode episode;
     
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
     
-    public OffsetDateTime getWatchedAt()
-    {
+    public OffsetDateTime getWatchedAt() {
         return watched_at;
     }
     
-    public TraktSharing getSharing()
-    {
+    public TraktSharing getSharing() {
         return sharing;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
     }
 }

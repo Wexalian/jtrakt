@@ -8,19 +8,15 @@ import com.wexalian.jtrakt.json.TraktTypeTokens;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class TraktGenresEndpoint
-{
+public class TraktGenresEndpoint {
     private final TraktHTTP http;
     
-    public TraktGenresEndpoint(TraktHTTP http)
-    {
+    public TraktGenresEndpoint(TraktHTTP http) {
         this.http = http;
     }
     
-    public List<TraktGenre> getGenres(@Nonnull TraktItemFilterType type)
-    {
-        TraktQuery query = TraktQuery.create("genres/{type}")
-                                     .path("type", type);
+    public List<TraktGenre> getGenres(@Nonnull TraktItemFilterType type) {
+        TraktQuery query = TraktQuery.create("genres/{type}").path("type", type);
         
         return http.getAndParse(query, TraktTypeTokens.GENRES);
     }

@@ -2,14 +2,12 @@ package com.wexalian.jtrakt.endpoint;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TraktRating
-{
+public class TraktRatings {
     private float rating;
     private int votes;
     private Distribution distribution;
     
-    public static class Distribution
-    {
+    public static class Distribution {
         @SerializedName("1")
         private int one;
         @SerializedName("2")
@@ -31,53 +29,43 @@ public class TraktRating
         @SerializedName("10")
         private int ten;
         
-        public int getOneStarVotes()
-        {
+        public int getOneStarVotes() {
             return one;
         }
         
-        public int getTwoStarVotes()
-        {
+        public int getTwoStarVotes() {
             return two;
         }
         
-        public int getThreeStarVotes()
-        {
+        public int getThreeStarVotes() {
             return three;
         }
         
-        public int getFourStarVotes()
-        {
+        public int getFourStarVotes() {
             return four;
         }
         
-        public int getFiveStarVotes()
-        {
+        public int getFiveStarVotes() {
             return five;
         }
         
-        public int getSixStarVotes()
-        {
+        public int getSixStarVotes() {
             return six;
         }
         
-        public int getSevenStarVotes()
-        {
+        public int getSevenStarVotes() {
             return seven;
         }
         
-        public int getEightStarVotes()
-        {
+        public int getEightStarVotes() {
             return eight;
         }
         
-        public int getNineStarVotes()
-        {
+        public int getNineStarVotes() {
             return nine;
         }
         
-        public int getTenStarVotes()
-        {
+        public int getTenStarVotes() {
             return ten;
         }
     }

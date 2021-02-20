@@ -4,18 +4,15 @@ import com.wexalian.jtrakt.endpoint.users.TraktUser;
 
 import java.time.OffsetDateTime;
 
-public class TraktFollower
-{
+public class TraktFollower {
     private OffsetDateTime followed_at;
     private TraktUser user;
     
-    public OffsetDateTime getFollowedAt()
-    {
+    public OffsetDateTime getFollowedAt() {
         return followed_at;
     }
     
-    public TraktUser getUser()
-    {
+    public TraktUser getUser() {
         return user;
     }
 }

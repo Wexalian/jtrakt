@@ -8,9 +8,8 @@ import com.wexalian.jtrakt.endpoint.calendars.TraktCalendarEpisode;
 import com.wexalian.jtrakt.endpoint.calendars.TraktCalendarMovie;
 import com.wexalian.jtrakt.endpoint.certifications.TraktCertifications;
 import com.wexalian.jtrakt.endpoint.checkin.TraktCheckinItem;
-import com.wexalian.jtrakt.endpoint.comments.TraktAttachedMedia;
+import com.wexalian.jtrakt.endpoint.comments.TraktAttachedMediaItem;
 import com.wexalian.jtrakt.endpoint.comments.TraktComment;
-import com.wexalian.jtrakt.endpoint.comments.TraktCommentLike;
 import com.wexalian.jtrakt.endpoint.comments.TraktItemComment;
 import com.wexalian.jtrakt.endpoint.countries.TraktCountry;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
@@ -18,11 +17,12 @@ import com.wexalian.jtrakt.endpoint.episodes.TraktEpisodeCast;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.endpoint.lists.TraktLikedList;
+import com.wexalian.jtrakt.endpoint.lists.TraktList;
 import com.wexalian.jtrakt.endpoint.movies.*;
 import com.wexalian.jtrakt.endpoint.networks.TraktNetwork;
+import com.wexalian.jtrakt.endpoint.people.TraktMovieCredits;
 import com.wexalian.jtrakt.endpoint.people.TraktPerson;
-import com.wexalian.jtrakt.endpoint.people.TraktPersonMovieCast;
-import com.wexalian.jtrakt.endpoint.people.TraktPersonShowCast;
+import com.wexalian.jtrakt.endpoint.people.TraktShowCredits;
 import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleItem;
 import com.wexalian.jtrakt.endpoint.search.TraktSearchItem;
 import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
@@ -30,12 +30,12 @@ import com.wexalian.jtrakt.endpoint.shows.*;
 import com.wexalian.jtrakt.endpoint.sync.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.TraktPlayback;
 import com.wexalian.jtrakt.endpoint.sync.TraktSyncUpdate;
-import com.wexalian.jtrakt.endpoint.sync.TraktWatchlistItem;
 import com.wexalian.jtrakt.endpoint.sync.activity.TraktActivity;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionMovie;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionShow;
 import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatedItem;
 import com.wexalian.jtrakt.endpoint.sync.watched.TraktWatchedItem;
+import com.wexalian.jtrakt.endpoint.sync.watchlist.TraktWatchlistItem;
 import com.wexalian.jtrakt.endpoint.users.*;
 import com.wexalian.jtrakt.endpoint.users.follow.TraktFollowRequest;
 import com.wexalian.jtrakt.endpoint.users.follow.TraktFollower;
@@ -45,14 +45,14 @@ import com.wexalian.jtrakt.endpoint.users.hidden.TraktHiddenItem;
 
 import java.util.List;
 
-public final class TraktTypeTokens
-{
+public final class TraktTypeTokens {
     //general
     public static final TypeToken<TraktShow> SHOW = new TypeToken<>() {};
     public static final TypeToken<TraktMovie> MOVIE = new TypeToken<>() {};
     public static final TypeToken<TraktEpisode> EPISODE = new TypeToken<>() {};
     public static final TypeToken<TraktComment> COMMENT = new TypeToken<>() {};
-    public static final TypeToken<TraktAttachedMedia> MEDIA = new TypeToken<>() {};
+    public static final TypeToken<TraktAttachedMediaItem> MEDIA = new TypeToken<>() {};
+    public static final TypeToken<List<TraktLike>> LIKES = new TypeToken<>() {};
     
     //oauth
     public static final TypeToken<TraktAccessToken> ACCESS_TOKEN = new TypeToken<>() {};
@@ -71,7 +71,6 @@ public final class TraktTypeTokens
     public static final TypeToken<TraktCheckinItem> CHECKIN = new TypeToken<>() {};
     
     //comments
-    public static final TypeToken<List<TraktCommentLike>> COMMENT_LIKES = new TypeToken<>() {};
     public static final TypeToken<List<TraktItemComment>> ITEM_COMMENTS = new TypeToken<>() {};
     
     //countries
@@ -83,7 +82,10 @@ public final class TraktTypeTokens
     //languages
     public static final TypeToken<List<TraktLanguage>> LANGUAGES = new TypeToken<>() {};
     
+    //lists
+    public static final TypeToken<TraktList> LIST = new TypeToken<>() {};
     public static final TypeToken<List<TraktLikedList>> LIKED_LISTS = new TypeToken<>() {};
+    public static final TypeToken<List<TraktListItem>> LIST_ITEMS = new TypeToken<>() {};
     
     //movies
     public static final TypeToken<List<TraktMovie>> MOVIES = new TypeToken<>() {};
@@ -100,8 +102,8 @@ public final class TraktTypeTokens
     
     //people
     public static final TypeToken<TraktPerson> PERSON = new TypeToken<>() {};
-    public static final TypeToken<List<TraktPersonMovieCast>> PERSON_MOVIE_CASTS = new TypeToken<>() {};
-    public static final TypeToken<List<TraktPersonShowCast>> PERSON_SHOW_CASTS = new TypeToken<>() {};
+    public static final TypeToken<TraktMovieCredits> MOVIE_CREDITS = new TypeToken<>() {};
+    public static final TypeToken<TraktShowCredits> SHOW_CREDITS = new TypeToken<>() {};
     
     //scrobble
     public static final TypeToken<TraktScrobbleItem> SCROBBLE_ITEM = new TypeToken<>() {};
@@ -124,7 +126,7 @@ public final class TraktTypeTokens
     public static final TypeToken<List<TraktTranslation>> TRANSLATIONS = new TypeToken<>() {};
     public static final TypeToken<TraktCollectionProgress.Show> COLLECTED_PROGRESS = new TypeToken<>() {};
     public static final TypeToken<TraktWatchedProgress.Show> WATCHED_PROGRESS = new TypeToken<>() {};
-    public static final TypeToken<TraktRating> RATINGS = new TypeToken<>() {};
+    public static final TypeToken<TraktRatings> RATINGS = new TypeToken<>() {};
     public static final TypeToken<TraktStats> STATS = new TypeToken<>() {};
     public static final TypeToken<List<TraktUser>> USERS = new TypeToken<>() {};
     public static final TypeToken<TraktShowCast> SHOW_CAST = new TypeToken<>() {};
@@ -151,9 +153,7 @@ public final class TraktTypeTokens
     public static final TypeToken<List<TraktHiddenItem>> HIDDEN_ITEMS = new TypeToken<>() {};
     public static final TypeToken<List<TraktLikedItem>> LIKED_ITEMS = new TypeToken<>() {};
     public static final TypeToken<TraktUser> USER = new TypeToken<>() {};
-    public static final TypeToken<TraktList> LIST = new TypeToken<>() {};
     public static final TypeToken<TraktListReorderUpdate> LIST_REORDER_UPDATE = new TypeToken<>() {};
-    public static final TypeToken<List<TraktListItem>> LIST_ITEMS = new TypeToken<>() {};
     public static final TypeToken<TraktFollowRequest> FOLLOW_REQUEST = new TypeToken<>() {};
     public static final TypeToken<List<TraktFollower>> USER_FOLLOWERS = new TypeToken<>() {};
     public static final TypeToken<List<TraktFriend>> USER_FRIENDS = new TypeToken<>() {};

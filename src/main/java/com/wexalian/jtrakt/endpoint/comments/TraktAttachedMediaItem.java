@@ -1,56 +1,41 @@
-package com.wexalian.jtrakt.endpoint.sync;
+package com.wexalian.jtrakt.endpoint.comments;
 
 import com.wexalian.jtrakt.endpoint.TraktItemType;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
+import com.wexalian.jtrakt.endpoint.lists.TraktList;
 import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
 import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
-import java.time.OffsetDateTime;
-
-public class TraktWatchlistItem
-{
-    private int rank;
-    private OffsetDateTime listed_at;
-    
+public class TraktAttachedMediaItem {
     private TraktItemType type;
     private TraktMovie movie;
     private TraktShow show;
     private TraktSeason season;
     private TraktEpisode episode;
+    private TraktList list;
     
-    public int getRank()
-    {
-        return rank;
-    }
-    
-    public OffsetDateTime getListedAt()
-    {
-        return listed_at;
-    }
-    
-    public TraktItemType getType()
-    {
+    public TraktItemType getType() {
         return type;
     }
     
-    public TraktMovie getMovie()
-    {
+    public TraktMovie getMovie() {
         return movie;
     }
     
-    public TraktShow getShow()
-    {
+    public TraktShow getShow() {
         return show;
     }
     
-    public TraktSeason getSeason()
-    {
+    public TraktSeason getSeason() {
         return season;
     }
     
-    public TraktEpisode getEpisode()
-    {
+    public TraktEpisode getEpisode() {
         return episode;
+    }
+    
+    public TraktList getList() {
+        return list;
     }
 }
