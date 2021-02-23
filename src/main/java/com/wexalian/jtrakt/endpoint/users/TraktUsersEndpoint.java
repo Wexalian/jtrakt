@@ -2,17 +2,17 @@ package com.wexalian.jtrakt.endpoint.users;
 
 import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
 import com.wexalian.jtrakt.endpoint.TraktItemType;
+import com.wexalian.jtrakt.endpoint.TraktWatchedItem;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 import com.wexalian.jtrakt.endpoint.comments.TraktItemComment;
 import com.wexalian.jtrakt.endpoint.lists.TraktList;
-import com.wexalian.jtrakt.endpoint.sync.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.TraktSyncItems;
 import com.wexalian.jtrakt.endpoint.sync.TraktSyncUpdate;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionMovie;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionShow;
+import com.wexalian.jtrakt.endpoint.sync.history.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatedItem;
-import com.wexalian.jtrakt.endpoint.sync.watched.TraktWatchedItem;
 import com.wexalian.jtrakt.endpoint.sync.watchlist.TraktWatchlistItem;
 import com.wexalian.jtrakt.endpoint.users.data.ListReorder;
 import com.wexalian.jtrakt.endpoint.users.follow.TraktFollowRequest;
@@ -290,8 +290,8 @@ public class TraktUsersEndpoint {
                                      .path("id", id)
                                      .path("type", type)
                                      .query(extended);
-        
-        return http.getAndParse(query, TraktTypeTokens.SYNC_WATCHED_ITEMS, token);
+    
+        return http.getAndParse(query, TraktTypeTokens.WATCHED_ITEMS, token);
     }
     
     public TraktUserStats getStats(@Nonnull String id, @Nullable TraktAccessToken token) {

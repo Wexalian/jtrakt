@@ -27,14 +27,14 @@ import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleItem;
 import com.wexalian.jtrakt.endpoint.search.TraktSearchItem;
 import com.wexalian.jtrakt.endpoint.seasons.TraktSeason;
 import com.wexalian.jtrakt.endpoint.shows.*;
-import com.wexalian.jtrakt.endpoint.sync.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.TraktPlayback;
 import com.wexalian.jtrakt.endpoint.sync.TraktSyncUpdate;
 import com.wexalian.jtrakt.endpoint.sync.activity.TraktActivity;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionMovie;
 import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionShow;
+import com.wexalian.jtrakt.endpoint.sync.history.TraktHistoryItem;
 import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatedItem;
-import com.wexalian.jtrakt.endpoint.sync.watched.TraktWatchedItem;
+import com.wexalian.jtrakt.endpoint.sync.recommendations.TraktRecommendationItem;
 import com.wexalian.jtrakt.endpoint.sync.watchlist.TraktWatchlistItem;
 import com.wexalian.jtrakt.endpoint.users.*;
 import com.wexalian.jtrakt.endpoint.users.follow.TraktFollowRequest;
@@ -137,13 +137,14 @@ public final class TraktTypeTokens {
     
     //sync
     public static final TypeToken<TraktActivity> LAST_ACTIVITY = new TypeToken<>() {};
-    public static final TypeToken<TraktPlayback> PLAYBACK = new TypeToken<>() {};
+    public static final TypeToken<List<TraktPlayback>> PLAYBACKS = new TypeToken<>() {};
     public static final TypeToken<List<TraktCollectionMovie>> MOVIE_COLLECTION = new TypeToken<>() {};
     public static final TypeToken<List<TraktCollectionShow>> SHOW_COLLECTION = new TypeToken<>() {};
     public static final TypeToken<TraktSyncUpdate> SYNC_UPDATE = new TypeToken<>() {};
-    public static final TypeToken<List<TraktWatchedItem>> SYNC_WATCHED_ITEMS = new TypeToken<>() {};
+    public static final TypeToken<List<TraktWatchedItem>> WATCHED_ITEMS = new TypeToken<>() {};
     public static final TypeToken<List<TraktHistoryItem>> HISTORY_ITEMS = new TypeToken<>() {};
     public static final TypeToken<List<TraktRatedItem>> RATED_ITEMS = new TypeToken<>() {};
+    public static final TypeToken<List<TraktRecommendationItem>> RECOMMENDATION_ITEMS = new TypeToken<>() {};
     public static final TypeToken<List<TraktWatchlistItem>> WATCHLIST_ITEMS = new TypeToken<>() {};
     
     //users

@@ -7,26 +7,17 @@ import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 public class JTraktV2Tests {
-    public static final boolean STAGING = false;
-    protected static final JTraktV2 TEST_TRAKT = getTrakt();
-    protected static final int TEST_LIST_ID = getListId();
-    protected static final TraktMovie TEST_MOVIE = getMovie();
-    protected static final TraktShow TEST_SHOW = getShow();
-    protected static final TraktEpisode TEST_EPISODE = getEpisode();
-    protected static final TraktAccessToken TEST_ACCESS_TOKEN = getAccessToken();
-    
-    // @Test
-    // public void testTest() {
-    //     for (int id = 1; id < 1500; id++) {
-    //         TraktList list = TEST_TRAKT.getListsEndpoint().getList(id);
-    //         if (list != null) {
-    //             System.out.println(list);
-    //         }
-    //     }
-    // }
+    public static final boolean STAGING = true;
+    protected static final String STAGING_TAG = STAGING ? "staging" : "not_staging";
+    protected static final JTraktV2 TRAKT = getTrakt();
+    protected static final int LIST_ID = getListId();
+    protected static final TraktMovie MOVIE = getMovie();
+    protected static final TraktShow SHOW = getShow();
+    protected static final TraktEpisode EPISODE = getEpisode();
+    protected static final TraktAccessToken ACCESS_TOKEN = getAccessToken();
     
     private static int getListId() {
-        return 86;
+        return 86; // only available list id (in range 1-1500) on staging
         // return STAGING ? 86 : 1248149; //random lists I chose
     }
     
@@ -49,10 +40,10 @@ public class JTraktV2Tests {
     }
     
     private static TraktShow getShow() {
-        return new TraktShow("The Walking Dead", 2010, TraktIds.imdb("tt1520211"));
+        return new TraktShow("Arrow", 2012, TraktIds.imdb("tt2193021"));
     }
     
     private static TraktEpisode getEpisode() {
-        return new TraktEpisode(1, 1, "Days Gone Bye", TraktIds.imdb("tt1520211"));
+        return new TraktEpisode(1, 1, "Days Gone Bye", TraktIds.imdb("tt1589921"));
     }
 }

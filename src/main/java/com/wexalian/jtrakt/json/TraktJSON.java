@@ -8,6 +8,7 @@ import com.wexalian.jtrakt.endpoint.TraktItemType;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import com.wexalian.jtrakt.endpoint.movies.TraktMovieStatus;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleAction;
 import com.wexalian.jtrakt.endpoint.shows.TraktShowStatus;
 import com.wexalian.jtrakt.json.adapter.*;
 
@@ -25,7 +26,7 @@ public class TraktJSON {
                                                       .registerTypeAdapter(TraktItemType.class, TraktItemTypeTypeAdapter.INSTANCE)//
                                                       .registerTypeAdapter(OffsetDateTime.class, OffsetDateTimeTypeAdapter.INSTANCE)//
                                                       .registerTypeAdapter(TraktMovieStatus.class, TraktMovieStatusTypeAdapter.INSTANCE)//
-                                                      .registerTypeAdapter(TraktScrobbleActionTypeAdapter.class, TraktScrobbleActionTypeAdapter.INSTANCE)//
+                                                      .registerTypeAdapter(TraktScrobbleAction.class, TraktScrobbleActionTypeAdapter.INSTANCE)//
                                                       .registerTypeAdapter(TraktShowStatus.class, TraktShowStatusTypeAdapter.INSTANCE)//
                                                       .registerTypeAdapter(ZoneId.class, ZoneIdTypeAdapter.INSTANCE)//
                                                       .setPrettyPrinting().create();

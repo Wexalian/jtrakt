@@ -32,9 +32,10 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt.endpoint.sync;
     exports com.wexalian.jtrakt.endpoint.sync.activity;
     exports com.wexalian.jtrakt.endpoint.sync.collection;
-    exports com.wexalian.jtrakt.endpoint.sync.watched;
-    exports com.wexalian.jtrakt.endpoint.sync.watchlist;
+    exports com.wexalian.jtrakt.endpoint.sync.history;
     exports com.wexalian.jtrakt.endpoint.sync.rating;
+    exports com.wexalian.jtrakt.endpoint.sync.recommendations;
+    exports com.wexalian.jtrakt.endpoint.sync.watchlist;
     exports com.wexalian.jtrakt.endpoint.users;
     exports com.wexalian.jtrakt.endpoint.users.follow;
     exports com.wexalian.jtrakt.endpoint.users.hidden;
@@ -64,8 +65,10 @@ module com.wexalian.jtrakt {
     opens com.wexalian.jtrakt.endpoint.sync to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.sync.activity to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.sync.collection to com.google.gson;
-    opens com.wexalian.jtrakt.endpoint.sync.watched to com.google.gson;
+    opens com.wexalian.jtrakt.endpoint.sync.history to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.sync.rating to com.google.gson;
+    opens com.wexalian.jtrakt.endpoint.sync.recommendations to com.google.gson;
+    opens com.wexalian.jtrakt.endpoint.sync.watchlist to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.users to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.users.data to com.google.gson;
     opens com.wexalian.jtrakt.endpoint.users.follow to com.google.gson;

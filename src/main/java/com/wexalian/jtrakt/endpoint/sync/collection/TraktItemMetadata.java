@@ -31,7 +31,7 @@ public class TraktItemMetadata {
         return audio_channels;
     }
     
-    public boolean isIs3d() {
+    public boolean is3d() {
         return is3d;
     }
 }

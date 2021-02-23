@@ -13,7 +13,7 @@ public class JTraktV2CountriesTests extends JTraktV2Tests {
     
     @Test
     public void testCountries() {
-        List<TraktCountry> countries = TEST_TRAKT.getCountriesEndpoint().getCountries(TraktItemFilterType.SHOWS);
+        List<TraktCountry> countries = TRAKT.getCountriesEndpoint().getCountries(TraktItemFilterType.SHOWS);
         
         Assertions.assertNotNull(countries, "countries are null");
         Assertions.assertTrue(countries.size() > 0, "countries size is 0");

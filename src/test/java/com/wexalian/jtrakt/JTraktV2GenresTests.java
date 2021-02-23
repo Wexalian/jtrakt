@@ -13,7 +13,7 @@ public class JTraktV2GenresTests extends JTraktV2Tests {
     
     @Test
     public void testGenres() {
-        List<TraktGenre> genres = TEST_TRAKT.getGenresEndpoint().getGenres(TraktItemFilterType.SHOWS);
+        List<TraktGenre> genres = TRAKT.getGenresEndpoint().getGenres(TraktItemFilterType.SHOWS);
         
         Assertions.assertNotNull(genres, "genres are null");
         Assertions.assertTrue(genres.size() > 0, "genres size is 0");

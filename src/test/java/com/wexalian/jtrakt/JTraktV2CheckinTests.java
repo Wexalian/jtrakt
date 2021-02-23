@@ -8,20 +8,20 @@ import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class JTraktV2CheckinTests extends JTraktV2Tests {
     
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     @Order(1)
     @Test
     public void testCheckin() {
-        TraktCheckinData data = new TraktCheckinData(TEST_EPISODE);
-        TraktCheckinItem checkin = TEST_TRAKT.getCheckinEndpoint().checkin(data, TEST_ACCESS_TOKEN);
-        
+        TraktCheckinData data = new TraktCheckinData(EPISODE);
+        TraktCheckinItem checkin = TRAKT.getCheckinEndpoint().checkin(data, ACCESS_TOKEN);
+    
         Assertions.assertNotNull(checkin, "checkin is null");
     }
     
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     @Order(2)
     @Test
     public void testDeleteAllCheckins() {
-        TEST_TRAKT.getCheckinEndpoint().deleteAllCheckins(TEST_ACCESS_TOKEN);
+        TRAKT.getCheckinEndpoint().deleteAllCheckins(ACCESS_TOKEN);
     }
 }

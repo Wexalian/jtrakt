@@ -13,7 +13,7 @@ public class JTraktV2LanguagesTests extends JTraktV2Tests {
     
     @Test
     public void testLanguages() {
-        List<TraktLanguage> languages = TEST_TRAKT.getLanguagesEndpoint().getLanguages(TraktItemFilterType.SHOWS);
+        List<TraktLanguage> languages = TRAKT.getLanguagesEndpoint().getLanguages(TraktItemFilterType.SHOWS);
         
         Assertions.assertNotNull(languages, "languages are null");
         Assertions.assertTrue(languages.size() > 0, "languages size is 0");

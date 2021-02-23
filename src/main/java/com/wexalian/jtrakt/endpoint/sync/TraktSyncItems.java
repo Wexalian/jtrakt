@@ -12,7 +12,7 @@ public class TraktSyncItems<T> {
     private final List<T> seasons = new ArrayList<>();
     private final List<T> episodes = new ArrayList<>();
     private final List<T> people = new ArrayList<>();
-    private final List<Long> ids = new ArrayList<>();
+    private final List<T> ids = new ArrayList<>();
     
     public void addMovie(T movie) {
         movies.add(movie);
@@ -34,7 +34,7 @@ public class TraktSyncItems<T> {
         people.add(person);
     }
     
-    public void addHistoryId(long id) {
+    public void addHistoryId(T id) {
         ids.add(id);
     }
     

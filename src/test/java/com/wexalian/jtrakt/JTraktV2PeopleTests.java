@@ -16,28 +16,28 @@ public class JTraktV2PeopleTests extends JTraktV2Tests {
     
     @Test
     public void testPerson() {
-        TraktPerson person = TEST_TRAKT.getPeopleEndpoint().getSummary("stephen-amell", Extended.FULL);
+        TraktPerson person = TRAKT.getPeopleEndpoint().getSummary("stephen-amell", Extended.FULL);
         
         Assertions.assertNotNull(person, "person is null");
     }
     
     @Test
     public void testMovies() {
-        TraktMovieCredits credits = TEST_TRAKT.getPeopleEndpoint().getMovieCredits("stephen-amell", null);
+        TraktMovieCredits credits = TRAKT.getPeopleEndpoint().getMovieCredits("stephen-amell", null);
         
         Assertions.assertNotNull(credits, "movie credits are null");
     }
     
     @Test
     public void testShows() {
-        TraktShowCredits credits = TEST_TRAKT.getPeopleEndpoint().getShowCredits("stephen-amell", null);
+        TraktShowCredits credits = TRAKT.getPeopleEndpoint().getShowCredits("stephen-amell", null);
         
         Assertions.assertNotNull(credits, "show credits are null");
     }
     
     @Test
     public void testLists() {
-        List<TraktList> lists = TEST_TRAKT.getPeopleEndpoint().getLists("stephen-amell", null, null, null);
+        List<TraktList> lists = TRAKT.getPeopleEndpoint().getLists("stephen-amell", null, null, null);
         
         Assertions.assertNotNull(lists, "people lists are null");
     }

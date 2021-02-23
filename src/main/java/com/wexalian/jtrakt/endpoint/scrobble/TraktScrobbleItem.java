@@ -26,4 +26,8 @@ public class TraktScrobbleItem {
     public TraktMovie getMovie() {
         return movie;
     }
+    
+    public TraktShow getShow() {
+        return show;
+    }
 }
