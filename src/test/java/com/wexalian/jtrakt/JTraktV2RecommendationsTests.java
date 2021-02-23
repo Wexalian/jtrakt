@@ -8,25 +8,25 @@ import org.junit.jupiter.api.Test;
 public class JTraktV2RecommendationsTests extends JTraktV2Tests {
     
     @Test
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     public void testMovies() {
         Assertions.fail();
     } //TODO
     
     @Test
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     public void testHideMovie() {
         Assertions.fail();
     } //TODO
     
     @Test
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     public void testShows() {
         Assertions.fail();
     } //TODO
     
     @Test
-    @Tag("staging")
+    @Tag(STAGING_TAG)
     public void testHideShow() {
         Assertions.fail();
     } //TODO

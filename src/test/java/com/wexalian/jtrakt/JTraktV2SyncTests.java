@@ -1,94 +1,235 @@
 package com.wexalian.jtrakt;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktWatchedItem;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleData;
+import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleItem;
+import com.wexalian.jtrakt.endpoint.sync.TraktPlayback;
+import com.wexalian.jtrakt.endpoint.sync.TraktSyncUpdate;
+import com.wexalian.jtrakt.endpoint.sync.activity.TraktActivity;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionData;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionMovie;
+import com.wexalian.jtrakt.endpoint.sync.collection.TraktCollectionShow;
+import com.wexalian.jtrakt.endpoint.sync.history.TraktHistoryData;
+import com.wexalian.jtrakt.endpoint.sync.history.TraktHistoryItem;
+import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatedItem;
+import com.wexalian.jtrakt.endpoint.sync.rating.TraktRatingData;
+import com.wexalian.jtrakt.endpoint.sync.recommendations.TraktRecommendationData;
+import com.wexalian.jtrakt.endpoint.sync.recommendations.TraktRecommendationItem;
+import com.wexalian.jtrakt.endpoint.sync.watchlist.TraktWatchlistData;
+import com.wexalian.jtrakt.endpoint.sync.watchlist.TraktWatchlistItem;
+import com.wexalian.jtrakt.http.query.Extended;
+import org.junit.jupiter.api.*;
+
+import java.time.OffsetDateTime;
+import java.util.List;
 
 @Tag("sync")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class JTraktV2SyncTests extends JTraktV2Tests {
+    
+    private TraktPlayback playback = null;
     
     @Test
     void testLastActivity() {
-        Assertions.fail();
+        TraktActivity lastActivity = TRAKT.getSyncEndpoint().getLastActivity(ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(lastActivity, "last activity is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(1)
     void testPlayback() {
-        Assertions.fail();
+        TraktScrobbleData data = new TraktScrobbleData(EPISODE, 25);
+        TraktScrobbleItem item = TRAKT.getScrobbleEndpoint().pause(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(item, "playback scrobble start item is null");
+        
+        List<TraktPlayback> playbacks = TRAKT.getSyncEndpoint().getPlaybacks(null, null, null, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(playbacks, "playbacks are null");
+        Assertions.assertFalse(playbacks.isEmpty(), "playbacks are empty");
+        playback = playbacks.get(0);
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(2)
     void testRemovePlayback() {
-        Assertions.fail();
+        if (playback != null) {
+            TRAKT.getSyncEndpoint().removePlayback(playback.getId(), ACCESS_TOKEN);
+            return;
+        }
+        Assertions.fail("No playback to delete");
     }
     
     @Test
     void testMovieCollection() {
-        Assertions.fail();
+        List<TraktCollectionMovie> movieCollection = TRAKT.getSyncEndpoint()
+                                                          .getMovieCollection(Extended.METADATA, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(movieCollection, "movie collection is null");
     }
     
     @Test
     void testShowCollection() {
-        Assertions.fail();
+        List<TraktCollectionShow> showCollection = TRAKT.getSyncEndpoint()
+                                                        .getShowCollection(Extended.METADATA, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(showCollection, "show collection is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
     void testAddToCollection() {
-        Assertions.fail();
+        TraktCollectionData data = new TraktCollectionData();
+        data.addShow(SHOW, OffsetDateTime.now(), null);
+        
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToCollection(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "trakt sync add update is null");
+        Assertions.assertTrue(traktSyncUpdate.getAdded().getEpisodes() > 0 || traktSyncUpdate.getUpdated()
+                                                                                             .getEpisodes() > 0, "no episodes added/updated");
     }
     
     @Test
+    @Tag(STAGING_TAG)
     void testRemoveFromCollection() {
-        Assertions.fail();
+        TraktCollectionData data = new TraktCollectionData();
+        data.addShow(SHOW, OffsetDateTime.now(), null);
+        
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromCollection(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "trakt sync remove update is null");
     }
     
     @Test
     void testWatchedItems() {
-        Assertions.fail();
+        List<TraktWatchedItem> watchedItems = TRAKT.getSyncEndpoint()
+                                                   .getWatchedItems(TraktItemFilterType.SHOWS, Extended.FULL, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(watchedItems, "watched items are null");
     }
     
     @Test
     void testHistory() {
-        Assertions.fail();
+        List<TraktHistoryItem> historyItems = TRAKT.getSyncEndpoint()
+                                                   .getHistory(TraktItemFilterType.EPISODES, -1, null, null, null, Extended.FULL, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(historyItems, "history items are null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(3)
     void testAddToHistory() {
-        Assertions.fail();
+        TraktHistoryData data = new TraktHistoryData();
+        data.addShow(SHOW, OffsetDateTime.now());
+        TraktSyncUpdate update = TRAKT.getSyncEndpoint().addToHistory(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(update, "add history update is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(4)
     void testRemoveFromHistory() {
-        Assertions.fail();
+        TraktHistoryData data = new TraktHistoryData();
+        data.addShow(SHOW);
+        TraktSyncUpdate update = TRAKT.getSyncEndpoint().removeFromHistory(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(update, "remove history update is null");
     }
     
     @Test
     void testRatings() {
-        Assertions.fail();
+        List<TraktRatedItem> ratings = TRAKT.getSyncEndpoint()
+                                            .getRatings(TraktItemFilterType.SHOWS, -1, null, Extended.FULL, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(ratings, "ratings are null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(5)
     void testAddToRatings() {
-        Assertions.fail();
+        TraktRatingData data = new TraktRatingData();
+        data.addShow(SHOW, 10, OffsetDateTime.now());
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToRatings(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "add ratings update is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(6)
     void testRemoveFromRatings() {
-        Assertions.fail();
+        TraktRatingData data = new TraktRatingData();
+        data.addShow(SHOW);
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromRatings(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "remove rating update is null");
     }
     
     @Test
     void testWatchlist() {
-        Assertions.fail();
+        List<TraktWatchlistItem> watchlist = TRAKT.getSyncEndpoint()
+                                                  .getWatchlist(TraktItemFilterType.SHOWS, null, null, null, ACCESS_TOKEN);
+    
+        Assertions.assertNotNull(watchlist, "watchlist is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(7)
     void testAddToWatchlist() {
-        Assertions.fail();
+        TraktWatchlistData data = new TraktWatchlistData();
+        data.addShow(SHOW);
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToWatchlist(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "add watchlist update is null");
     }
     
     @Test
+    @Tag(STAGING_TAG)
+    @Order(8)
     void testRemoveFromWatchlist() {
-        Assertions.fail();
+        TraktWatchlistData data = new TraktWatchlistData();
+        data.addShow(SHOW);
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromWatchlist(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "remove watchlist update is null");
+    }
+    
+    @Test
+    void testRecommendation() {
+        List<TraktRecommendationItem> recommendation = TRAKT.getSyncEndpoint()
+                                                            .getRecommendations(TraktItemFilterType.SHOWS, null, null, null, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(recommendation, "recommendation is null");
+    }
+    
+    @Test
+    @Tag(STAGING_TAG)
+    @Order(9)
+    void testAddToRecommendation() {
+        TraktRecommendationData data = new TraktRecommendationData();
+        data.addShow(SHOW, "Best Show Ever!");
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToRecommendation(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "add recommendation update is null");
+    }
+    
+    @Test
+    @Tag(STAGING_TAG)
+    @Order(10)
+    void testRemoveFromRecommendation() {
+        TraktRecommendationData data = new TraktRecommendationData();
+        data.addShow(SHOW, "");
+        TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromRecommendation(data, ACCESS_TOKEN);
+        
+        Assertions.assertNotNull(traktSyncUpdate, "remove recommendation update is null");
     }
 }

@@ -17,10 +17,10 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests {
     @Test
     @Order(1)
     public void testDeviceAuth() {
-        TraktAccessToken accessToken = TEST_TRAKT.getAuthenticationEndpoint().setupDeviceOAuth((code, url) -> {
+        TraktAccessToken accessToken = TRAKT.getAuthenticationEndpoint().setupDeviceOAuth((code, url) -> {
             Assertions.assertNotEquals("", code, "authentication code is empty");
             Assertions.assertNotEquals("", url, "authentication url is empty");
-            
+    
             System.out.println(code);
             browse(url);
         });
@@ -41,7 +41,7 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests {
     @Test
     @Order(2)
     public void testRefreshToken() {
-        TraktAccessToken accessToken = TEST_TRAKT.getAuthenticationEndpoint().refreshAccessToken(TEST_ACCESS_TOKEN);
+        TraktAccessToken accessToken = TRAKT.getAuthenticationEndpoint().refreshAccessToken(ACCESS_TOKEN);
         
         Assertions.assertNotEquals(null, accessToken);
         System.out.println("Refresh: " + TraktJSON.toJson(accessToken));

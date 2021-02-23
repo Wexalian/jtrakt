@@ -19,56 +19,56 @@ public class JTraktV2EpisodesTests extends JTraktV2Tests {
     
     @Test
     public void testEpisode() {
-        TraktEpisode episode = TEST_TRAKT.getEpisodesEndpoint().getEpisode("arrow", 1, 1, null);
+        TraktEpisode episode = TRAKT.getEpisodesEndpoint().getEpisode("arrow", 1, 1, null);
         
         Assertions.assertNotNull(episode, "episode is null");
     }
     
     @Test
     public void testTranslations() {
-        List<TraktTranslation> translations = TEST_TRAKT.getEpisodesEndpoint().getTranslations("arrow", 1, 1, null);
+        List<TraktTranslation> translations = TRAKT.getEpisodesEndpoint().getTranslations("arrow", 1, 1, null);
         
         Assertions.assertNotNull(translations, "translations are null");
     }
     
     @Test
     public void testComments() {
-        List<TraktComment> comments = TEST_TRAKT.getEpisodesEndpoint().getComments("arrow", 1, 1, null, null);
+        List<TraktComment> comments = TRAKT.getEpisodesEndpoint().getComments("arrow", 1, 1, null, null);
         
         Assertions.assertNotNull(comments, "comments are null");
     }
     
     @Test
     public void testLists() {
-        List<TraktList> lists = TEST_TRAKT.getEpisodesEndpoint().getLists("arrow", 1, 1, null, null, null);
+        List<TraktList> lists = TRAKT.getEpisodesEndpoint().getLists("arrow", 1, 1, null, null, null);
         
         Assertions.assertNotNull(lists, "lists are null");
     }
     
     @Test
     public void testPeople() {
-        TraktEpisodeCast cast = TEST_TRAKT.getEpisodesEndpoint().getPeople("arrow", 1, 1, null);
+        TraktEpisodeCast cast = TRAKT.getEpisodesEndpoint().getPeople("arrow", 1, 1, null);
         
         Assertions.assertNotNull(cast, "cast is null");
     }
     
     @Test
     public void testRatings() {
-        TraktRatings ratings = TEST_TRAKT.getEpisodesEndpoint().getRatings("arrow", 1, 1);
+        TraktRatings ratings = TRAKT.getEpisodesEndpoint().getRatings("arrow", 1, 1);
         
         Assertions.assertNotNull(ratings, "ratings are null");
     }
     
     @Test
     public void testStats() {
-        TraktStats stats = TEST_TRAKT.getEpisodesEndpoint().getStats("arrow", 1, 1);
+        TraktStats stats = TRAKT.getEpisodesEndpoint().getStats("arrow", 1, 1);
         
         Assertions.assertNotNull(stats, "stats are null");
     }
     
     @Test
     public void testWatching() {
-        List<TraktUser> users = TEST_TRAKT.getEpisodesEndpoint().getWatching("arrow", 1, 1);
+        List<TraktUser> users = TRAKT.getEpisodesEndpoint().getWatching("arrow", 1, 1);
         
         Assertions.assertNotNull(users, "users are null");
     }

@@ -11,9 +11,9 @@ public class JTraktV2CertificationsTests extends JTraktV2Tests {
     
     @Test
     public void testCertifications() {
-        TraktCertifications certifications = TEST_TRAKT.getCertificationsEndpoint()
-                                                       .getCertifications(TraktItemFilterType.MOVIES);
-        
+        TraktCertifications certifications = TRAKT.getCertificationsEndpoint()
+                                                  .getCertifications(TraktItemFilterType.MOVIES);
+    
         Assertions.assertNotNull(certifications, "certifications are null");
         Assertions.assertNotNull(certifications.getUs(), "us certifications are null");
         Assertions.assertTrue(certifications.getUs().size() > 0, "us certifications size is 0");

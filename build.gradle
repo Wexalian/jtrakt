@@ -39,7 +39,8 @@ dependencies {
 
 test {
     useJUnitPlatform() {
-        excludeTags 'staging'
+        excludeTags 'not_staging'
+        includeTags 'staging'
 //        includeTags 'auth'
         includeTags 'calendars'
         includeTags 'certifications'

@@ -14,7 +14,7 @@ public class TraktQuery {
     
     private final HashMap<String, String> pathVars = new HashMap<>();
     private final HashMap<String, String> queryVars = new HashMap<>();
-    private final HashMap<Filter, List<String>> filters = new HashMap<>();
+    private final HashMap<Filter<?>, List<String>> filters = new HashMap<>();
     private Extended extended = null;
     private Pagination pagination = null;
     
@@ -23,7 +23,18 @@ public class TraktQuery {
     }
     
     public TraktQuery path(String pathVar, Object varValue) {
-        String value = varValue == null ? "" : varValue.toString();
+        String value = "";
+        if (varValue != null) {
+            if (varValue instanceof Long) {
+                long v = (Long) varValue;
+                if (v > 0) {
+                    value = "" + v;
+                }
+            }
+            else {
+                value = varValue.toString();
+            }
+        }
         pathVars.put(pathVar, value);
         return this;
     }

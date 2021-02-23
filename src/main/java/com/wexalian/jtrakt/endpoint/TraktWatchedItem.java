@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint.sync.watched;
+package com.wexalian.jtrakt.endpoint;
 
 import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 import com.wexalian.jtrakt.endpoint.shows.TraktShow;

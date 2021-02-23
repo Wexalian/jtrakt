@@ -12,7 +12,7 @@ public class JTraktV2NetworksTests extends JTraktV2Tests {
     
     @Test
     public void testNetworks() {
-        List<TraktNetwork> networks = TEST_TRAKT.getNetworksEndpoint().getNetworks();
+        List<TraktNetwork> networks = TRAKT.getNetworksEndpoint().getNetworks();
         
         Assertions.assertNotNull(networks, "networks are null");
         Assertions.assertTrue(networks.size() > 0, "networks size is 0");

@@ -14,16 +14,16 @@ public class JTraktV2SearchTests extends JTraktV2Tests {
     
     @Test
     public void testTextQuery() {
-        List<TraktSearchItem> items = TEST_TRAKT.getSearchEndpoint().textQuery(TraktItemType.SHOW, "arrow", null, null);
+        List<TraktSearchItem> items = TRAKT.getSearchEndpoint().textQuery(TraktItemType.SHOW, "arrow", null, null);
         
         Assertions.assertNotNull(items, "text query results are null");
     }
     
     @Test
     public void testIdLookup() {
-        List<TraktSearchItem> items = TEST_TRAKT.getSearchEndpoint()
-                                                .idLookup(TraktIdType.IMDB, "tt2193021", TraktItemType.SHOW, null, null);
-        
+        List<TraktSearchItem> items = TRAKT.getSearchEndpoint()
+                                           .idLookup(TraktIdType.IMDB, "tt2193021", TraktItemType.SHOW, null, null);
+    
         Assertions.assertNotNull(items, "id lookup results are null");
     }
     

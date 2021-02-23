@@ -5,11 +5,11 @@ import com.wexalian.jtrakt.endpoint.TraktIds;
 import java.util.List;
 
 public class TraktSyncUpdate {
-    private Data added;
-    private Data updated;
-    private Data existing;
-    private Data deleted;
-    private NotFound not_found;
+    private final Data added = new Data();
+    private final Data updated = new Data();
+    private final Data existing = new Data();
+    private final Data deleted = new Data();
+    private final NotFound not_found = new NotFound();
     
     public Data getAdded() {
         return added;

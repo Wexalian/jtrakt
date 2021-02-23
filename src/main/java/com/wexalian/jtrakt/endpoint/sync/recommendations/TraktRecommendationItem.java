@@ -1,4 +1,4 @@
-package com.wexalian.jtrakt.endpoint.sync;
+package com.wexalian.jtrakt.endpoint.sync.recommendations;
 
 import com.wexalian.jtrakt.endpoint.TraktItemType;
 import com.wexalian.jtrakt.endpoint.episodes.TraktEpisode;
@@ -8,10 +8,9 @@ import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 import java.time.OffsetDateTime;
 
-public class TraktHistoryItem {
-    private long id;
-    private OffsetDateTime watched_at;
-    private String action;
+public class TraktRecommendationItem {
+    private int rank;
+    private OffsetDateTime listed_at;
     
     private TraktItemType type;
     private TraktMovie movie;
@@ -19,16 +18,12 @@ public class TraktHistoryItem {
     private TraktSeason season;
     private TraktEpisode episode;
     
-    public long getId() {
-        return id;
+    public int getRank() {
+        return rank;
     }
     
-    public OffsetDateTime getWatchedAt() {
-        return watched_at;
-    }
-    
-    public String getAction() {
-        return action;
+    public OffsetDateTime getListedAt() {
+        return listed_at;
     }
     
     public TraktItemType getType() {

@@ -11,7 +11,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-// @SuppressWarnings("DuplicatedCode")
 public class TraktHTTP {
     public static final String API_HOST = "api.trakt.tv";
     public static final String API_HOST_STAGING = "api-staging.trakt.tv";
@@ -49,7 +48,7 @@ public class TraktHTTP {
     }
     
     public void post(@Nonnull TraktQuery query, @Nullable Object postData, @Nullable TraktAccessToken accessToken) {
-        HttpRequest.Builder builder = getBuilder(query, accessToken).POST(HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData)));
+        HttpRequest.Builder builder = getBuilder(query, accessToken).POST(getPublisherForPostData(postData));
         
         sendAsync(builder);
     }
@@ -59,13 +58,17 @@ public class TraktHTTP {
     }
     
     public <T> T postAndParse(@Nonnull TraktQuery query, @Nullable Object postData, @Nonnull TypeToken<T> typeToken, @Nullable TraktAccessToken accessToken) {
-        HttpRequest.Builder builder = getBuilder(query, accessToken).POST(HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData)));
+        HttpRequest.Builder builder = getBuilder(query, accessToken).POST(getPublisherForPostData(postData));
         
         return sendAsync(builder, typeToken);
     }
     
+    private HttpRequest.BodyPublisher getPublisherForPostData(@Nullable Object postData) {
+        return HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData));
+    }
+    
     public <T> T putAndParse(@Nonnull TraktQuery query, @Nullable Object postData, @Nonnull TypeToken<T> typeToken, @Nullable TraktAccessToken accessToken) {
-        HttpRequest.Builder builder = getBuilder(query, accessToken).PUT(HttpRequest.BodyPublishers.ofString(TraktJSON.toJson(postData)));
+        HttpRequest.Builder builder = getBuilder(query, accessToken).PUT(getPublisherForPostData(postData));
         
         return sendAsync(builder, typeToken);
     }
@@ -83,6 +86,8 @@ public class TraktHTTP {
     private <T> T sendAsync(@Nonnull HttpRequest.Builder builder, @Nonnull TypeToken<T> typeToken) {
         return client.sendAsync(builder.build(), HttpResponse.BodyHandlers.ofString()).thenApply(stringHttpResponse -> {
             if (stringHttpResponse.statusCode() == 429) {
+                String requestUri = stringHttpResponse.request().uri().toString();
+                System.out.println("Status code 429, sleeping for 1s (" + requestUri + ")");
                 runUnchecked(() -> Thread.sleep(1000L));
                 return sendAsync(builder, typeToken);
             }
