@@ -100,10 +100,10 @@ publishing {
                 developers {
                     developer {
                         id = 'Wexalian'
-                        name = 'Lars Gerrits'
-                        email = 'larsgerrits99@gmail.com'
+                        name = 'Wexalian'
+                        email = 'wexalian@gmail.com'
                         organization = 'wexalian'
-                        organizationUrl = 'http://www.wexalian.com'
+                        organizationUrl = 'https://www.wexalian.com'
                     }
                 }
                 scm {
@@ -168,10 +168,10 @@ javadoc {
 //                developers {
 //                    developer {
 //                        id = 'Wexalian'
-//                        name = 'Lars Gerrits'
-//                        email = 'larsgerrits99@gmail.com'
-////                        organization = 'wexalian'
-////                        organizationUrl = 'http://www.wexalian.com'
+//                        name = 'Wexalian'
+//                        email = 'wexalian@gmail.com'
+//                        organization = 'wexalian'
+//                        organizationUrl = 'https://www.wexalian.com'
 //                    }
 //                }
 //                scm {
