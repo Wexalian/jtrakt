@@ -1,20 +1,20 @@
 package com.wexalian.jtrakt.json.adapter;
 
 import com.google.gson.*;
-import com.wexalian.jtrakt.endpoint.movies.TraktMovieStatus;
+import com.wexalian.jtrakt.endpoint.movies.TraktMovie;
 
 import java.lang.reflect.Type;
 
-public class TraktMovieStatusTypeAdapter implements JsonSerializer<TraktMovieStatus>, JsonDeserializer<TraktMovieStatus> {
+public class TraktMovieStatusTypeAdapter implements JsonSerializer<TraktMovie.Status>, JsonDeserializer<TraktMovie.Status> {
     public static TraktMovieStatusTypeAdapter INSTANCE = new TraktMovieStatusTypeAdapter();
     
     @Override
-    public TraktMovieStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        return TraktMovieStatus.fromValue(json.getAsString());
+    public TraktMovie.Status deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        return TraktMovie.Status.fromValue(json.getAsString());
     }
     
     @Override
-    public JsonElement serialize(TraktMovieStatus src, Type typeOfSrc, JsonSerializationContext context) {
+    public JsonElement serialize(TraktMovie.Status src, Type typeOfSrc, JsonSerializationContext context) {
         return new JsonPrimitive(src.toString());
     }
 }

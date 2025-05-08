@@ -7,7 +7,7 @@ import java.util.List;
 public class ListReorder {
     private final List<Integer> rank = new ArrayList<>();
     
-    public ListReorder(int[] ranks) {
-        Arrays.stream(ranks).forEach(rank::add);
+    public ListReorder(Integer[] ranks) {
+        rank.addAll(Arrays.asList(ranks));
     }
 }

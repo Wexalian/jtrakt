@@ -4,6 +4,7 @@ import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Filter;
 import com.wexalian.jtrakt.http.query.Pagination;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +57,7 @@ public class TraktQuery {
     }
     
     public final TraktQuery query(Filter.FilterEntry<?>... filterEntries) {
-        if (filterEntries == null || filterEntries.length == 0) return this;
+        if (filterEntries == null) return this;
         
         for (Filter.FilterEntry<?> filterEntry : filterEntries) {
             Filter<?> filter = filterEntry.getFilter();
@@ -75,7 +76,7 @@ public class TraktQuery {
         return this;
     }
     
-    public String format(String apiUrl) {
+    public URI format(String apiUrl) {
         String endpoint = this.endpoint;
         for (Map.Entry<String, String> entry : pathVars.entrySet()) {
             endpoint = endpoint.replace("{" + entry.getKey() + "}", entry.getValue());
@@ -96,12 +97,9 @@ public class TraktQuery {
         filters.forEach((f, v) -> fullQueryVars.add(f.getParameter() + "=" + String.join(",", v)));
         queryVars.forEach((k, v) -> fullQueryVars.add(k + "=" + v));
         
-        String query = "";
-        if (!fullQueryVars.isEmpty()) {
-            query = String.join("&", fullQueryVars);
-        }
+        String query = String.join("&", fullQueryVars);
         
-        return "https://" + apiUrl + "/" + endpoint + "?" + query;
+        return URI.create("https://" + apiUrl + "/" + endpoint + "?" + query);
     }
     
     public static TraktQuery create(String endpoint) {

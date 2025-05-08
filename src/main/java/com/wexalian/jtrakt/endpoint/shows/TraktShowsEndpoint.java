@@ -13,9 +13,9 @@ import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Filter;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -39,7 +39,7 @@ public class TraktShowsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostPlayed(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktWatchedShow> getMostPlayed(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("shows/played/{period}")
                                      .path("period", period)
                                      .query(pagination)
@@ -49,7 +49,7 @@ public class TraktShowsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.WATCHED_SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostWatched(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktWatchedShow> getMostWatched(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("shows/watched/{period}")
                                      .path("period", period)
                                      .query(pagination)
@@ -59,7 +59,7 @@ public class TraktShowsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.WATCHED_SHOWS);
     }
     
-    public List<TraktWatchedShow> getMostCollected(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktWatchedShow> getMostCollected(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("shows/collected/{period}")
                                      .path("period", period)
                                      .query(pagination)

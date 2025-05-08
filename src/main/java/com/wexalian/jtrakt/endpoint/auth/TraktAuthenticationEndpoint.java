@@ -1,6 +1,5 @@
 package com.wexalian.jtrakt.endpoint.auth;
 
-import com.google.common.base.Strings;
 import com.wexalian.jtrakt.JTraktV2;
 import com.wexalian.jtrakt.endpoint.auth.data.TraktAuthCode;
 import com.wexalian.jtrakt.endpoint.auth.data.TraktClientID;
@@ -9,9 +8,10 @@ import com.wexalian.jtrakt.endpoint.auth.data.TraktRefreshTokenData;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.jtrakt.util.Strings;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
 
 public class TraktAuthenticationEndpoint {

@@ -7,9 +7,9 @@ import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class TraktRecommendationsEndpoint {
@@ -26,10 +26,10 @@ public class TraktRecommendationsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.MOVIES, token);
     }
     
-    public void hideMovie(@Nonnull String id, @Nonnull TraktAccessToken token) {
+    public boolean hideMovie(@Nonnull String id, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("recommendations/movies/{id}").path("id", id);
         
-        http.delete(query, token);
+        return http.delete(query, token);
     }
     
     public List<TraktShow> getShows(boolean ignoreCollected, int limit, @Nonnull TraktAccessToken token, @Nullable Extended extended) {
@@ -41,9 +41,9 @@ public class TraktRecommendationsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.SHOWS, token);
     }
     
-    public void hideShow(@Nonnull String id, @Nonnull TraktAccessToken token) {
+    public boolean hideShow(@Nonnull String id, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("recommendations/show/{id}").path("id", id);
         
-        http.delete(query, token);
+        return http.delete(query, token);
     }
 }

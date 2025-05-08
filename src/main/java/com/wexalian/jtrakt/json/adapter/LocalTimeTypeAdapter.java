@@ -1,6 +1,7 @@
 package com.wexalian.jtrakt.json.adapter;
 
 import com.google.gson.*;
+import com.wexalian.jtrakt.util.Strings;
 
 import java.lang.reflect.Type;
 import java.time.LocalTime;
@@ -11,6 +12,9 @@ public class LocalTimeTypeAdapter implements JsonSerializer<LocalTime>, JsonDese
     
     @Override
     public LocalTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        if (Strings.isNullOrEmpty(json.getAsString())) {
+            return LocalTime.MIDNIGHT;
+        }
         return LocalTime.parse(json.getAsString());
     }
     

@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint;
 
-public enum TraktTimePeriod {
+public enum TraktPeriod {
     WEEKLY("weekly"),
     MONTHLY("monthly"),
     YEARLY("yearly"),
@@ -8,7 +8,7 @@ public enum TraktTimePeriod {
     
     private final String name;
     
-    TraktTimePeriod(String name) {
+    TraktPeriod(String name) {
         
         this.name = name;
     }

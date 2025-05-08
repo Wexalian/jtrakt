@@ -1,7 +1,8 @@
 package com.wexalian.jtrakt.endpoint.lists;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.TraktLike;
+import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.endpoint.comments.TraktComment;
 import com.wexalian.jtrakt.endpoint.users.TraktListItem;
 import com.wexalian.jtrakt.http.TraktHTTP;
@@ -9,8 +10,9 @@ import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class TraktListsEndpoint {
@@ -44,7 +46,17 @@ public class TraktListsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.LIKES);
     }
     
-    public List<TraktListItem> getListItems(int id, @Nullable TraktItemFilterType type, @Nullable Pagination pagination, @Nullable Extended extended) {
+    public boolean listLike(int id, @Nonnull TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("lists/{id}/like").path("id", id);
+        return http.post(query, null, token);
+    }
+    
+    public boolean listDeleteLike(int id, @Nonnull TraktAccessToken token) {
+        TraktQuery query = TraktQuery.create("lists/{id}/like").path("id", id);
+        return http.delete(query, token);
+    }
+    
+    public List<TraktListItem> getListItems(int id, @Nullable TraktItemsType type, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("lists/{id}/items/{type}")
                                      .path("id", id)
                                      .path("type", type)

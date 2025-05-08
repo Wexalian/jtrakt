@@ -1,6 +1,7 @@
 package com.wexalian.jtrakt.json.adapter;
 
 import com.google.gson.*;
+import com.wexalian.jtrakt.util.Strings;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
@@ -11,6 +12,9 @@ public class LocalDateTypeAdapter implements JsonSerializer<LocalDate>, JsonDese
     
     @Override
     public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        if (Strings.isNullOrEmpty(json.getAsString())) {
+            return LocalDate.EPOCH;
+        }
         return LocalDate.parse(json.getAsString());
     }
     

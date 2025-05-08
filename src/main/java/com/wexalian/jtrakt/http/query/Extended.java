@@ -6,7 +6,8 @@ public enum Extended {
     EPISODES("episodes"),
     FULL_EPISODES("full,episodes"),
     GUEST_STARS("guest_stars"),
-    METADATA("metadata");
+    METADATA("metadata"),
+    VIP("vip");
     
     private final String value;
     

@@ -22,44 +22,43 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
     void testTrending() {
         List<TraktTrendingShow> trendingShows = TRAKT.getShowsEndpoint().getTrending(null, null);
         
-        Assertions.assertNotNull(trendingShows, "trending shows are null");
+        notNull(trendingShows, "trending shows are null");
     }
     
     @Test
     void testPopular() {
         List<TraktShow> popularShows = TRAKT.getShowsEndpoint().getPopular(null, Extended.FULL);
         
-        Assertions.assertNotNull(popularShows, "popular shows is null");
+        notNull(popularShows, "popular shows is null");
     }
     
     @Test
     void testMostPlayed() {
-        List<TraktWatchedShow> mostPlayed = TRAKT.getShowsEndpoint().getMostPlayed(TraktTimePeriod.WEEKLY, null, null);
-    
-        Assertions.assertNotNull(mostPlayed, "most played is null");
+        List<TraktWatchedShow> mostPlayed = TRAKT.getShowsEndpoint().getMostPlayed(TraktPeriod.WEEKLY, null, null);
+        
+        notNull(mostPlayed, "most played is null");
     }
     
     @Test
     void testMostWatched() {
-        List<TraktWatchedShow> mostWatched = TRAKT.getShowsEndpoint()
-                                                  .getMostWatched(TraktTimePeriod.WEEKLY, null, null);
-    
-        Assertions.assertNotNull(mostWatched, "most watched is null");
+        List<TraktWatchedShow> mostWatched = TRAKT.getShowsEndpoint().getMostWatched(TraktPeriod.WEEKLY, null, null);
+        
+        notNull(mostWatched, "most watched is null");
     }
     
     @Test
     void testMostCollected() {
         List<TraktWatchedShow> mostCollected = TRAKT.getShowsEndpoint()
-                                                    .getMostCollected(TraktTimePeriod.WEEKLY, null, null);
-    
-        Assertions.assertNotNull(mostCollected, "most collected is null");
+                                                    .getMostCollected(TraktPeriod.WEEKLY, null, null);
+        
+        notNull(mostCollected, "most collected is null");
     }
     
     @Test
     void testMostAnticipated() {
         List<TraktListedShow> mostAnticipated = TRAKT.getShowsEndpoint().getMostAnticipated(null, null);
         
-        Assertions.assertNotNull(mostAnticipated, "most anticipated is null");
+        notNull(mostAnticipated, "most anticipated is null");
     }
     
     @Test
@@ -67,15 +66,15 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
         List<TraktUpdatedShow> recentlyUpdated = TRAKT.getShowsEndpoint()
                                                       .getUpdates(OffsetDateTime.now()
                                                                                 .minus(Period.ofWeeks(1)), null, null);
-    
-        Assertions.assertNotNull(recentlyUpdated, "recently updated is null");
+        
+        notNull(recentlyUpdated, "recently updated is null");
     }
     
     @Test
     void testSummary() {
         TraktShow show = TRAKT.getShowsEndpoint().getSummary(SHOW.getIds().getImdbId(), Extended.FULL);
         
-        Assertions.assertNotNull(show, "summary for show is null");
+        notNull(show, "summary for show is null");
     }
     
     @Test
@@ -83,29 +82,29 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
     
         List<TraktAlias> aliases = TRAKT.getShowsEndpoint().getAliases(SHOW.getIds().getImdbId(), null);
         
-        Assertions.assertNotNull(aliases, "aliases are null");
+        notNull(aliases, "aliases are null");
     }
     
     @Test
     void testTranslations() {
         List<TraktTranslation> translations = TRAKT.getShowsEndpoint().getTranslations(SHOW.getIds().getImdbId(), null);
-    
-        Assertions.assertNotNull(translations, "translations are null");
+        
+        notNull(translations, "translations are null");
     }
     
     @Test
     void testComments() {
         List<TraktComment> comments = TRAKT.getShowsEndpoint()
                                            .getComments(SHOW.getIds().getImdbId(), TraktComment.Sort.NEWEST, null);
-    
-        Assertions.assertNotNull(comments, "comments are null");
+        
+        notNull(comments, "comments are null");
     }
     
     @Test
     void testLists() {
         List<TraktList> lists = TRAKT.getShowsEndpoint().getLists(SHOW.getIds().getImdbId(), null, null, null);
-    
-        Assertions.assertNotNull(lists, "lists are null");
+        
+        notNull(lists, "lists are null");
     }
     
     @Test
@@ -113,8 +112,8 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
         TraktCollectionProgress.Show show = TRAKT.getShowsEndpoint()
                                                  .getCollectionProgress(SHOW.getIds()
                                                                             .getImdbId(), false, false, false, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(show, "show collection is null");
+        
+        notNull(show, "show collection is null");
     }
     
     @Test
@@ -123,43 +122,43 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
         TraktWatchedProgress.Show show = TRAKT.getShowsEndpoint()
                                               .getWatchedProgress(SHOW.getIds()
                                                                       .getImdbId(), false, false, false, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(show, "show watched is null");
+        
+        notNull(show, "show watched is null");
     }
     
     @Test
     void testPeople() {
         TraktShowCast cast = TRAKT.getShowsEndpoint().getPeople(SHOW.getIds().getImdbId(), null);
         
-        Assertions.assertNotNull(cast, "cast is null");
+        notNull(cast, "cast is null");
     }
     
     @Test
     void testRatings() {
         TraktRatings ratings = TRAKT.getShowsEndpoint().getRatings(SHOW.getIds().getImdbId());
         
-        Assertions.assertNotNull(ratings, "ratings are null");
+        notNull(ratings, "ratings are null");
     }
     
     @Test
     void testRelated() {
         List<TraktShow> related = TRAKT.getShowsEndpoint().getRelated(SHOW.getIds().getImdbId(), null, null);
         
-        Assertions.assertNotNull(related, "related are null");
+        notNull(related, "related are null");
     }
     
     @Test
     void testStats() {
         TraktStats ratings = TRAKT.getShowsEndpoint().getStats(SHOW.getIds().getImdbId());
         
-        Assertions.assertNotNull(ratings, "stats are null");
+        notNull(ratings, "stats are null");
     }
     
     @Test
     void testWatching() {
         List<TraktUser> users = TRAKT.getShowsEndpoint().getWatchingUsers(SHOW.getIds().getImdbId(), null);
         
-        Assertions.assertNotNull(users, "users are null");
+        notNull(users, "users are null");
     }
     
     @Test
@@ -173,6 +172,6 @@ public class JTraktV2ShowsTests extends JTraktV2Tests {
     void testLastEpisode() {
         TraktEpisode lastEpisode = TRAKT.getShowsEndpoint().getLastEpisode(SHOW.getIds().getImdbId(), null);
         
-        Assertions.assertNotNull(lastEpisode, "last episode is null");
+        notNull(lastEpisode, "last episode is null");
     }
 }

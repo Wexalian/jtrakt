@@ -50,10 +50,6 @@ public final class JTraktV2 {
     private final TraktSyncEndpoint sync;
     private final TraktUsersEndpoint users;
     
-    public JTraktV2(String clientId) {
-        this(clientId, "");
-    }
-    
     public JTraktV2(String clientId, String secretId) {
         this(clientId, secretId, false);
     }
@@ -177,5 +173,18 @@ public final class JTraktV2 {
     
     public TraktUsersEndpoint getUsersEndpoint() {
         return users;
+    }
+    
+    public static final class Data {
+        private String client_id;
+        private String secret_id;
+        
+        public String clientId() {
+            return client_id;
+        }
+        
+        public String secretId() {
+            return secret_id;
+        }
     }
 }

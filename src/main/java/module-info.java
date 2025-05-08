@@ -2,8 +2,7 @@ module com.wexalian.jtrakt {
     requires java.desktop;
     requires java.net.http;
     requires com.google.gson;
-    requires com.google.common;
-    requires jsr305;
+    requires com.wexalian.nullability;
     
     exports com.wexalian.jtrakt;
     
@@ -40,6 +39,7 @@ module com.wexalian.jtrakt {
     exports com.wexalian.jtrakt.endpoint.users.follow;
     exports com.wexalian.jtrakt.endpoint.users.hidden;
     
+    opens com.wexalian.jtrakt to com.google.gson;
     opens com.wexalian.jtrakt.json to com.google.gson;
     
     opens com.wexalian.jtrakt.endpoint to com.google.gson;

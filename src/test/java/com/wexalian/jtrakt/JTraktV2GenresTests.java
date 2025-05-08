@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -12,10 +12,30 @@ import java.util.List;
 public class JTraktV2GenresTests extends JTraktV2Tests {
     
     @Test
-    public void testGenres() {
-        List<TraktGenre> genres = TRAKT.getGenresEndpoint().getGenres(TraktItemFilterType.SHOWS);
+    public void testShowGenres() {
+        List<TraktGenre> genres = TRAKT.getGenresEndpoint().getGenres(TraktItemsType.SHOWS);
         
-        Assertions.assertNotNull(genres, "genres are null");
-        Assertions.assertTrue(genres.size() > 0, "genres size is 0");
+        notNull(genres, "genres are null");
+        Assertions.assertFalse(genres.isEmpty(), "genres size is 0");
+        
+        checkForUnused(genres);
+    }
+    
+    private void checkForUnused(List<TraktGenre> genres) {
+        for (TraktGenre genre : TraktGenre.values()) {
+            if (!genres.contains(genre)) {
+                System.out.println("Unused genre: " + genre.getSlug());
+            }
+        }
+    }
+    
+    @Test
+    public void testMovieGenres() {
+        List<TraktGenre> genres = TRAKT.getGenresEndpoint().getGenres(TraktItemsType.MOVIES);
+        
+        notNull(genres, "genres are null");
+        Assertions.assertFalse(genres.isEmpty(), "genres size is 0");
+        
+        checkForUnused(genres);
     }
 }

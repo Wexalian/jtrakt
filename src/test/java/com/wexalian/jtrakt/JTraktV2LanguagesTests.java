@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -13,9 +13,9 @@ public class JTraktV2LanguagesTests extends JTraktV2Tests {
     
     @Test
     public void testLanguages() {
-        List<TraktLanguage> languages = TRAKT.getLanguagesEndpoint().getLanguages(TraktItemFilterType.SHOWS);
+        List<TraktLanguage> languages = TRAKT.getLanguagesEndpoint().getLanguages(TraktItemsType.SHOWS);
         
-        Assertions.assertNotNull(languages, "languages are null");
-        Assertions.assertTrue(languages.size() > 0, "languages size is 0");
+        notNull(languages, "languages are null");
+        Assertions.assertFalse(languages.isEmpty(), "languages size is 0");
     }
 }

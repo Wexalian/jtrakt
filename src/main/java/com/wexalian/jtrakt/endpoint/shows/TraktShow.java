@@ -6,7 +6,9 @@ import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TraktShow {
     //standard
@@ -25,7 +27,7 @@ public class TraktShow {
     private OffsetDateTime updated_at;
     private String trailer;
     private String homepage;
-    private TraktShowStatus status;
+    private Status status;
     private double rating;
     private int votes;
     private int comment_count;
@@ -94,7 +96,7 @@ public class TraktShow {
         return homepage;
     }
     
-    public TraktShowStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
     
@@ -126,4 +128,33 @@ public class TraktShow {
         return aired_episodes;
     }
     
+    public enum Status {
+        ENDED("ended"),
+        RETURNING("returning series"),
+        CANCELED("canceled"),
+        IN_PRODUCTION("in production");
+        
+        private static final Map<String, Status> STRING_MAPPING = new HashMap<>();
+        
+        static {
+            for (Status status : Status.values()) {
+                STRING_MAPPING.put(status.toString(), status);
+            }
+        }
+        
+        private final String value;
+        
+        Status(String value) {
+            this.value = value;
+        }
+        
+        public static Status fromValue(String value) {
+            return STRING_MAPPING.get(value);
+        }
+        
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
 }

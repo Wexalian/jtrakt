@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.TraktWatchedItem;
 import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleData;
 import com.wexalian.jtrakt.endpoint.scrobble.TraktScrobbleItem;
@@ -35,7 +35,7 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
     void testLastActivity() {
         TraktActivity lastActivity = TRAKT.getSyncEndpoint().getLastActivity(ACCESS_TOKEN);
         
-        Assertions.assertNotNull(lastActivity, "last activity is null");
+        notNull(lastActivity, "last activity is null");
     }
     
     @Test
@@ -45,11 +45,11 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         TraktScrobbleData data = new TraktScrobbleData(EPISODE, 25);
         TraktScrobbleItem item = TRAKT.getScrobbleEndpoint().pause(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(item, "playback scrobble start item is null");
+        notNull(item, "playback scrobble start item is null");
         
         List<TraktPlayback> playbacks = TRAKT.getSyncEndpoint().getPlaybacks(null, null, null, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(playbacks, "playbacks are null");
+        notNull(playbacks, "playbacks are null");
         Assertions.assertFalse(playbacks.isEmpty(), "playbacks are empty");
         playback = playbacks.get(0);
     }
@@ -69,16 +69,16 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
     void testMovieCollection() {
         List<TraktCollectionMovie> movieCollection = TRAKT.getSyncEndpoint()
                                                           .getMovieCollection(Extended.METADATA, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(movieCollection, "movie collection is null");
+        
+        notNull(movieCollection, "movie collection is null");
     }
     
     @Test
     void testShowCollection() {
         List<TraktCollectionShow> showCollection = TRAKT.getSyncEndpoint()
                                                         .getShowCollection(Extended.METADATA, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(showCollection, "show collection is null");
+        
+        notNull(showCollection, "show collection is null");
     }
     
     @Test
@@ -89,7 +89,7 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToCollection(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "trakt sync add update is null");
+        notNull(traktSyncUpdate, "trakt sync add update is null");
         Assertions.assertTrue(traktSyncUpdate.getAdded().getEpisodes() > 0 || traktSyncUpdate.getUpdated()
                                                                                              .getEpisodes() > 0, "no episodes added/updated");
     }
@@ -102,23 +102,29 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromCollection(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "trakt sync remove update is null");
+        notNull(traktSyncUpdate, "trakt sync remove update is null");
     }
     
     @Test
     void testWatchedItems() {
         List<TraktWatchedItem> watchedItems = TRAKT.getSyncEndpoint()
-                                                   .getWatchedItems(TraktItemFilterType.SHOWS, Extended.FULL, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(watchedItems, "watched items are null");
+                                                   .getWatchedItems(TraktItemsType.SHOWS, Extended.FULL, ACCESS_TOKEN);
+        
+        notNull(watchedItems, "watched items are null");
     }
     
     @Test
     void testHistory() {
         List<TraktHistoryItem> historyItems = TRAKT.getSyncEndpoint()
-                                                   .getHistory(TraktItemFilterType.EPISODES, -1, null, null, null, Extended.FULL, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(historyItems, "history items are null");
+                                                   .getHistory(TraktItemsType.EPISODES,
+                                                               -1,
+                                                               null,
+                                                               null,
+                                                               null,
+                                                               Extended.FULL,
+                                                               ACCESS_TOKEN);
+        
+        notNull(historyItems, "history items are null");
     }
     
     @Test
@@ -126,10 +132,12 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
     @Order(3)
     void testAddToHistory() {
         TraktHistoryData data = new TraktHistoryData();
-        data.addShow(SHOW, OffsetDateTime.now());
+        TraktHistoryData.ShowData showData = data.addShow(SHOW, OffsetDateTime.now());
+        TraktHistoryData.ShowData.Season season = showData.addSeason(4, OffsetDateTime.now());
+        season.addEpisode(9, OffsetDateTime.now());
         TraktSyncUpdate update = TRAKT.getSyncEndpoint().addToHistory(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(update, "add history update is null");
+        notNull(update, "add history update is null");
     }
     
     @Test
@@ -140,15 +148,15 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW);
         TraktSyncUpdate update = TRAKT.getSyncEndpoint().removeFromHistory(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(update, "remove history update is null");
+        notNull(update, "remove history update is null");
     }
     
     @Test
     void testRatings() {
         List<TraktRatedItem> ratings = TRAKT.getSyncEndpoint()
-                                            .getRatings(TraktItemFilterType.SHOWS, -1, null, Extended.FULL, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(ratings, "ratings are null");
+                                            .getRatings(TraktItemsType.SHOWS, -1, null, Extended.FULL, ACCESS_TOKEN);
+        
+        notNull(ratings, "ratings are null");
     }
     
     @Test
@@ -159,7 +167,7 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW, 10, OffsetDateTime.now());
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToRatings(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "add ratings update is null");
+        notNull(traktSyncUpdate, "add ratings update is null");
     }
     
     @Test
@@ -170,15 +178,19 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW);
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromRatings(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "remove rating update is null");
+        notNull(traktSyncUpdate, "remove rating update is null");
     }
     
     @Test
     void testWatchlist() {
         List<TraktWatchlistItem> watchlist = TRAKT.getSyncEndpoint()
-                                                  .getWatchlist(TraktItemFilterType.SHOWS, null, null, null, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(watchlist, "watchlist is null");
+                                                  .getWatchlist(TraktItemsType.SHOWS,
+                                                                null,
+                                                                null,
+                                                                Extended.FULL,
+                                                                ACCESS_TOKEN);
+        
+        notNull(watchlist, "watchlist is null");
     }
     
     @Test
@@ -189,7 +201,7 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW);
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToWatchlist(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "add watchlist update is null");
+        notNull(traktSyncUpdate, "add watchlist update is null");
     }
     
     @Test
@@ -200,15 +212,19 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW);
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromWatchlist(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "remove watchlist update is null");
+        notNull(traktSyncUpdate, "remove watchlist update is null");
     }
     
     @Test
     void testRecommendation() {
         List<TraktRecommendationItem> recommendation = TRAKT.getSyncEndpoint()
-                                                            .getRecommendations(TraktItemFilterType.SHOWS, null, null, null, ACCESS_TOKEN);
+                                                            .getRecommendations(TraktItemsType.SHOWS,
+                                                                                null,
+                                                                                null,
+                                                                                Extended.FULL,
+                                                                                ACCESS_TOKEN);
         
-        Assertions.assertNotNull(recommendation, "recommendation is null");
+        notNull(recommendation, "recommendation is null");
     }
     
     @Test
@@ -219,7 +235,7 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW, "Best Show Ever!");
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().addToRecommendation(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "add recommendation update is null");
+        notNull(traktSyncUpdate, "add recommendation update is null");
     }
     
     @Test
@@ -230,6 +246,6 @@ public class JTraktV2SyncTests extends JTraktV2Tests {
         data.addShow(SHOW, "");
         TraktSyncUpdate traktSyncUpdate = TRAKT.getSyncEndpoint().removeFromRecommendation(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(traktSyncUpdate, "remove recommendation update is null");
+        notNull(traktSyncUpdate, "remove recommendation update is null");
     }
 }

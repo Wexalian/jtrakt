@@ -11,9 +11,9 @@ import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Filter;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -37,7 +37,17 @@ public class TraktMoviesEndpoint {
         return http.getAndParse(query, TraktTypeTokens.MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostPlayed(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktFavoritedMovie> getMostFavorited(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+        TraktQuery query = TraktQuery.create("movies/favorited/{period}")
+                                     .path("period", period)
+                                     .query(pagination)
+                                     .query(extended)
+                                     .query(filters);
+        
+        return http.getAndParse(query, TraktTypeTokens.FAVORITED_MOVIES);
+    }
+    
+    public List<TraktWatchedMovie> getMostPlayed(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("movies/played/{period}")
                                      .path("period", period)
                                      .query(pagination)
@@ -47,7 +57,7 @@ public class TraktMoviesEndpoint {
         return http.getAndParse(query, TraktTypeTokens.WATCHED_MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostWatched(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktWatchedMovie> getMostWatched(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("movies/watched/{period}")
                                      .path("period", period)
                                      .query(pagination)
@@ -57,7 +67,7 @@ public class TraktMoviesEndpoint {
         return http.getAndParse(query, TraktTypeTokens.WATCHED_MOVIES);
     }
     
-    public List<TraktWatchedMovie> getMostCollected(@Nonnull TraktTimePeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
+    public List<TraktWatchedMovie> getMostCollected(@Nonnull TraktPeriod period, @Nullable Pagination pagination, @Nullable Extended extended, @Nullable Filter.FilterEntry<?>... filters) {
         TraktQuery query = TraktQuery.create("movies/collected/{period}")
                                      .path("period", period)
                                      .query(pagination)
@@ -156,9 +166,21 @@ public class TraktMoviesEndpoint {
         return http.getAndParse(query, TraktTypeTokens.STATS);
     }
     
+    public List<TraktStudio> getStudios(@Nonnull String id) {
+        TraktQuery query = TraktQuery.create("movies/{id}/studios").path("id", id);
+        
+        return http.getAndParse(query, TraktTypeTokens.STUDIOS);
+    }
+    
     public List<TraktUser> getWatchingUsers(@Nonnull String id, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("movies/{id}/watching").path("id", id).query(extended);
         
         return http.getAndParse(query, TraktTypeTokens.USERS);
+    }
+    
+    public List<TraktVideo> getVideos(@Nonnull String id, @Nullable Extended extended) {
+        TraktQuery query = TraktQuery.create("movies/{id}/videos").path("id", id).query(extended);
+        
+        return http.getAndParse(query, TraktTypeTokens.VIDEOS);
     }
 }

@@ -8,9 +8,9 @@ public class TraktIds {
     private int tmdb;
     private int tvrage;
     
-    public TraktIds() {}
+    protected TraktIds() {}
     
-    public TraktIds(int trakt, String slug, int tvdb, String imdb, int tmdb, int tvrage) {
+    protected TraktIds(int trakt, String slug, int tvdb, String imdb, int tmdb, int tvrage) {
         this.trakt = trakt;
         this.slug = slug;
         this.tvdb = tvdb;
@@ -65,5 +65,9 @@ public class TraktIds {
     
     public static TraktIds tvrage(int tvrage) {
         return new TraktIds(0, "", 0, "", 0, tvrage);
+    }
+    
+    public static TraktIds of(int trakt, String slug, int tvdb, String imdb, int tmdb, int tvrage) {
+        return new TraktIds(trakt, slug, tvdb, imdb, tmdb, tvrage);
     }
 }

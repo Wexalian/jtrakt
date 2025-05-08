@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.TraktLike;
 import com.wexalian.jtrakt.endpoint.comments.*;
 import org.junit.jupiter.api.*;
@@ -12,73 +12,84 @@ import java.util.List;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class JTraktV2CommentsTests extends JTraktV2Tests {
     
-    private int commentId;
+    private int commentId = 731203;
     
     @Test
     public void testGetComment() {
         TraktComment comment = TRAKT.getCommentsEndpoint().getComment(1);
         
-        Assertions.assertNotNull(comment, "get comment is null");
+        notNull(comment, "get comment is null");
     }
     
     @Test
     public void testGetReplies() {
         List<TraktComment> commentReplies = TRAKT.getCommentsEndpoint().getReplies(1, null);
         
-        Assertions.assertNotNull(commentReplies, "comment replies are null");
+        notNull(commentReplies, "comment replies are null");
     }
     
     @Test
     public void testAttachedMedia() {
         TraktAttachedMediaItem media = TRAKT.getCommentsEndpoint().getAttachedMedia(1, null);
         
-        Assertions.assertNotNull(media, "attached comment media item is null");
+        notNull(media, "attached comment media item is null");
     }
     
     @Test
     public void testCommentLikes() {
         List<TraktLike> likes = TRAKT.getCommentsEndpoint().getCommentLikes(1, null);
         
-        Assertions.assertNotNull(likes, "comment likes are null");
+        notNull(likes, "comment likes are null");
     }
     
     @Test
     public void testTrendingComments() {
         List<TraktItemComment> trendingComments = TRAKT.getCommentsEndpoint()
-                                                       .getTrendingComments(TraktComment.Type.ALL, TraktItemFilterType.SHOWS, false, null, null);
-    
-        Assertions.assertNotNull(trendingComments, "trending comments are null");
-        Assertions.assertTrue(trendingComments.size() > 0, "trending comments are empty");
+                                                       .getTrendingComments(TraktComment.Type.ALL,
+                                                                            TraktItemsType.SHOWS,
+                                                                            false,
+                                                                            null,
+                                                                            null);
+        
+        notNull(trendingComments, "trending comments are null");
+        Assertions.assertFalse(trendingComments.isEmpty(), "trending comments are empty");
     }
     
     @Test
     public void testRecentComments() {
         List<TraktItemComment> recentComments = TRAKT.getCommentsEndpoint()
-                                                     .getRecentComments(TraktComment.Type.ALL, TraktItemFilterType.SHOWS, false, null, null);
-    
-        Assertions.assertNotNull(recentComments, "recent comments are null");
-        Assertions.assertTrue(recentComments.size() > 0, "recent comments are empty");
+                                                     .getRecentComments(TraktComment.Type.ALL,
+                                                                        TraktItemsType.SHOWS,
+                                                                        false,
+                                                                        null,
+                                                                        null);
+        
+        notNull(recentComments, "recent comments are null");
+        Assertions.assertFalse(recentComments.isEmpty(), "recent comments are empty");
     }
     
     @Test
     public void testCommentUpdates() {
         List<TraktItemComment> commentUpdates = TRAKT.getCommentsEndpoint()
-                                                     .getCommentUpdates(TraktComment.Type.ALL, TraktItemFilterType.SHOWS, false, null, null);
-    
-        Assertions.assertNotNull(commentUpdates, "comment updates are null");
-        Assertions.assertTrue(commentUpdates.size() > 0, "comment updates are empty");
+                                                     .getCommentUpdates(TraktComment.Type.ALL,
+                                                                        TraktItemsType.SHOWS,
+                                                                        false,
+                                                                        null,
+                                                                        null);
+        
+        notNull(commentUpdates, "comment updates are null");
+        Assertions.assertFalse(commentUpdates.isEmpty(), "comment updates are empty");
     }
     
     @Tag(STAGING_TAG)
     @Order(1)
     @Test
     public void testPostComment() {
-        TraktNewCommentData data = new TraktNewCommentData(EPISODE, "This is a test comment, because the staging API has been down for quite a while now and I need to test my code :/", false, null);
+        TraktNewCommentData data = new TraktNewCommentData(EPISODE, "This is a test comment for jtrakt", false, null);
         TraktComment comment = TRAKT.getCommentsEndpoint().postComment(data, ACCESS_TOKEN);
         commentId = comment.getId();
         
-        Assertions.assertNotNull(comment, "post comment is null");
-        
+        notNull(comment, "post comment is null");
     }
     
     @Tag(STAGING_TAG)
@@ -88,7 +99,7 @@ public class JTraktV2CommentsTests extends JTraktV2Tests {
         TraktCommentData data = new TraktCommentData("This is an updated test comment, because the staging API has been down for quite a while now!...", false);
         TraktComment comment = TRAKT.getCommentsEndpoint().updateComment(commentId, data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(comment, "updated comment is null");
+        notNull(comment, "updated comment is null");
     }
     
     @Tag(STAGING_TAG)
@@ -98,7 +109,7 @@ public class JTraktV2CommentsTests extends JTraktV2Tests {
         TraktCommentData data = new TraktCommentData("This is a test reply, because the staging API has been down for a really long time!...", false);
         TraktComment reply = TRAKT.getCommentsEndpoint().postReply(commentId, data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(reply, "reply is null");
+        notNull(reply, "reply is null");
     }
     
     @Tag(STAGING_TAG)
@@ -119,7 +130,7 @@ public class JTraktV2CommentsTests extends JTraktV2Tests {
     @Order(6)
     @Test
     public void testDeleteComment() {
-        TRAKT.getCommentsEndpoint().deleteComment(commentId, ACCESS_TOKEN);
+        TRAKT.getCommentsEndpoint().deleteComment(808763, ACCESS_TOKEN);
     }
     
 }

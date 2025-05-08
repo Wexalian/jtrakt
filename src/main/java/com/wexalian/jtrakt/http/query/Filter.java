@@ -3,7 +3,7 @@ package com.wexalian.jtrakt.http.query;
 import com.wexalian.jtrakt.endpoint.certifications.TraktCertification;
 import com.wexalian.jtrakt.endpoint.genres.TraktGenre;
 import com.wexalian.jtrakt.endpoint.languages.TraktLanguage;
-import com.wexalian.jtrakt.endpoint.shows.TraktShowStatus;
+import com.wexalian.jtrakt.endpoint.shows.TraktShow;
 
 public class Filter<T> {
     //common filters
@@ -18,7 +18,7 @@ public class Filter<T> {
     
     //show filters
     public static final Filter<String> NETWORKS = new Filter<>("networks", true);
-    public static final Filter<TraktShowStatus> STATUS = new Filter<>("status", true);
+    public static final Filter<TraktShow.Status> STATUS = new Filter<>("status", true);
     
     //search filters
     public static final Filter<String> SEARCH_FIELDS = new Filter<>("fields", true);

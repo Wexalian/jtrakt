@@ -23,7 +23,7 @@ public class TraktHistoryData {
     }
     
     public void addMovie(TraktMovie movie, OffsetDateTime watched_at) {
-        addMovie(movie, watched_at.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        addMovie(movie, watched_at.format(DateTimeFormatter.ISO_INSTANT));
     }
     
     public void addMovie(TraktMovie movie, String watched_at) {
@@ -38,7 +38,7 @@ public class TraktHistoryData {
     }
     
     public ShowData addShow(TraktShow show, OffsetDateTime watched_at) {
-        return addShow(show, watched_at.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        return addShow(show, watched_at.format(DateTimeFormatter.ISO_INSTANT));
     }
     
     public ShowData addShow(TraktShow show, String watched_at) {
@@ -55,7 +55,7 @@ public class TraktHistoryData {
     }
     
     public void addSeason(TraktSeason season, OffsetDateTime watched_at) {
-        addSeason(season, watched_at.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        addSeason(season, watched_at.format(DateTimeFormatter.ISO_INSTANT));
     }
     
     public void addSeason(TraktSeason season, String watched_at) {
@@ -70,7 +70,7 @@ public class TraktHistoryData {
     }
     
     public void addEpisode(TraktEpisode episode, OffsetDateTime watched_at) {
-        addEpisode(episode, watched_at.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        addEpisode(episode, watched_at.format(DateTimeFormatter.ISO_INSTANT));
     }
     
     public void addEpisode(TraktEpisode episode, String watched_at) {
@@ -126,35 +126,51 @@ public class TraktHistoryData {
             this.watched_at = watched_at;
         }
         
-        public Season addSeason(int number) {
+        public Season addSeason(int number, OffsetDateTime watched_at) {
+            return addSeason(number, watched_at.format(DateTimeFormatter.ISO_INSTANT));
+        }
+        
+        public Season addSeason(int number, String watched_at) {
             if (seasons == null) {
                 seasons = new ArrayList<>();
             }
-            Season season = new Season(number);
+            Season season = new Season(number, watched_at);
             seasons.add(season);
             return season;
         }
         
         public static class Season {
             private final int number;
+            private String watched_at;
             private List<Episode> episodes;
             
             public Season(int number) {
                 this.number = number;
             }
             
-            public void addEpisode(int number) {
+            public Season(int number, String watched_at) {
+                this.number = number;
+                this.watched_at = watched_at;
+            }
+            
+            public void addEpisode(int number, OffsetDateTime watched_at) {
+                addEpisode(number, watched_at.format(DateTimeFormatter.ISO_INSTANT));
+            }
+            
+            public void addEpisode(int number, String watched_at) {
                 if (episodes == null) {
                     episodes = new ArrayList<>();
                 }
-                episodes.add(new Episode(number));
+                episodes.add(new Episode(number, watched_at));
             }
             
             public static class Episode {
                 private final int number;
+                private final String watched_at;
                 
-                public Episode(int number) {
+                public Episode(int number, String watched_at) {
                     this.number = number;
+                    this.watched_at = watched_at;
                 }
             }
         }

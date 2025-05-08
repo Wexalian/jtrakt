@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.comments;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.TraktLike;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.http.TraktHTTP;
@@ -8,9 +8,9 @@ import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class TraktCommentsEndpoint {
@@ -38,10 +38,10 @@ public class TraktCommentsEndpoint {
         return http.putAndParse(query, data, TraktTypeTokens.COMMENT, token);
     }
     
-    public void deleteComment(int id, @Nonnull TraktAccessToken token) {
+    public boolean deleteComment(int id, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("comments/{id}").path("id", id);
         
-        http.delete(query, token);
+        return http.delete(query, token);
     }
     
     public List<TraktComment> getReplies(int id, @Nullable Pagination pagination) {
@@ -74,13 +74,13 @@ public class TraktCommentsEndpoint {
         http.post(query, null, token);
     }
     
-    public void deleteCommentLike(int id, @Nullable TraktAccessToken token) {
+    public boolean deleteCommentLike(int id, @Nullable TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("comments/{id}/like").path("id", id);
         
-        http.delete(query, token);
+        return http.delete(query, token);
     }
     
-    public List<TraktItemComment> getTrendingComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
+    public List<TraktItemComment> getTrendingComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemsType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/trending/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)
@@ -91,7 +91,7 @@ public class TraktCommentsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.ITEM_COMMENTS);
     }
     
-    public List<TraktItemComment> getRecentComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
+    public List<TraktItemComment> getRecentComments(@Nullable TraktComment.Type commentType, @Nullable TraktItemsType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/recent/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)
@@ -102,7 +102,7 @@ public class TraktCommentsEndpoint {
         return http.getAndParse(query, TraktTypeTokens.ITEM_COMMENTS);
     }
     
-    public List<TraktItemComment> getCommentUpdates(@Nullable TraktComment.Type commentType, @Nullable TraktItemFilterType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
+    public List<TraktItemComment> getCommentUpdates(@Nullable TraktComment.Type commentType, @Nullable TraktItemsType type, boolean includeReplies, @Nullable Pagination pagination, @Nullable Extended extended) {
         TraktQuery query = TraktQuery.create("comments/updates/{comment_type}/{type}")
                                      .path("comment_type", commentType)
                                      .path("type", type)

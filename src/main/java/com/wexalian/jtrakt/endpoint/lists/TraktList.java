@@ -4,15 +4,17 @@ import com.wexalian.jtrakt.endpoint.TraktIds;
 import com.wexalian.jtrakt.endpoint.users.TraktUser;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TraktList {
     private String name;
     private String description;
-    private String privacy;
+    private Privacy privacy;
     private boolean display_numbers;
     private boolean allow_comments;
-    private String sort_by;
-    private String sort_how;
+    private SortBy sort_by;
+    private SortHow sort_how;
     private OffsetDateTime created_at;
     private OffsetDateTime updated_at;
     private int item_count;
@@ -29,7 +31,7 @@ public class TraktList {
         return description;
     }
     
-    public String getPrivacy() {
+    public Privacy getPrivacy() {
         return privacy;
     }
     
@@ -41,11 +43,11 @@ public class TraktList {
         return allow_comments;
     }
     
-    public String getSortBy() {
+    public SortBy getSortBy() {
         return sort_by;
     }
     
-    public String getSortHow() {
+    public SortHow getSortHow() {
         return sort_how;
     }
     
@@ -81,7 +83,8 @@ public class TraktList {
         ALL("all"),
         PERSONAL("personal"),
         OFFICIAL("official"),
-        WATCHLISTS("watchlists");
+        WATCHLISTS("watchlists"),
+        RECOMMENDATIOND("recommendations");
         
         private final String type;
         
@@ -112,6 +115,101 @@ public class TraktList {
         @Override
         public String toString() {
             return sort;
+        }
+    }
+    
+    public enum Privacy {
+        PRIVATE("private"),
+        FRIENDS("friends"),
+        PUBLIC("public");
+        
+        private static final Map<String, Privacy> STRING_MAPPING = new HashMap<>();
+        
+        static {
+            for (Privacy type : values()) {
+                STRING_MAPPING.put(type.toString(), type);
+            }
+        }
+        
+        private final String type;
+        
+        Privacy(String type) {
+            this.type = type;
+        }
+        
+        public static Privacy fromValue(String value) {
+            return STRING_MAPPING.get(value);
+        }
+        
+        @Override
+        public String toString() {
+            return type;
+        }
+    }
+    
+    public enum SortBy {
+        RANK("rank"),
+        ADDED("added"),
+        TITLE("title"),
+        RELEASED("released"),
+        RUNTIME("runtime"),
+        POPULARITY("popularity"),
+        PERCENTAGE("percentage"),
+        VOTES("votes"),
+        MY_RATING("my_rating"),
+        RANDOM("random"),
+        WATCHED("watched"),
+        COLLECTED("collected");
+        
+        private static final Map<String, SortBy> STRING_MAPPING = new HashMap<>();
+        
+        static {
+            for (SortBy type : values()) {
+                STRING_MAPPING.put(type.toString(), type);
+            }
+        }
+        
+        private final String type;
+        
+        SortBy(String type) {
+            this.type = type;
+        }
+        
+        public static SortBy fromValue(String value) {
+            return STRING_MAPPING.get(value);
+        }
+        
+        @Override
+        public String toString() {
+            return type;
+        }
+    }
+    
+    public enum SortHow {
+        ASC("asc"),
+        DESC("desc");
+        
+        private static final Map<String, SortHow> STRING_MAPPING = new HashMap<>();
+        
+        static {
+            for (SortHow type : values()) {
+                STRING_MAPPING.put(type.toString(), type);
+            }
+        }
+        
+        private final String type;
+        
+        SortHow(String type) {
+            this.type = type;
+        }
+        
+        public static SortHow fromValue(String value) {
+            return STRING_MAPPING.get(value);
+        }
+        
+        @Override
+        public String toString() {
+            return type;
         }
     }
 }

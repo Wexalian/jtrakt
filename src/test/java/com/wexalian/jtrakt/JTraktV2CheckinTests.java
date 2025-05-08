@@ -14,8 +14,8 @@ public class JTraktV2CheckinTests extends JTraktV2Tests {
     public void testCheckin() {
         TraktCheckinData data = new TraktCheckinData(EPISODE);
         TraktCheckinItem checkin = TRAKT.getCheckinEndpoint().checkin(data, ACCESS_TOKEN);
-    
-        Assertions.assertNotNull(checkin, "checkin is null");
+        
+        notNull(checkin, "checkin is null");
     }
     
     @Tag(STAGING_TAG)

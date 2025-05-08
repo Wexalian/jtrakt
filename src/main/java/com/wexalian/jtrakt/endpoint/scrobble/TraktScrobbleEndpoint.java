@@ -4,8 +4,7 @@ import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.http.TraktHTTP;
 import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
-
-import javax.annotation.Nonnull;
+import com.wexalian.nullability.annotations.Nonnull;
 
 public class TraktScrobbleEndpoint {
     private final TraktHTTP http;

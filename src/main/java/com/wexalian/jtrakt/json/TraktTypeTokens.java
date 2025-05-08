@@ -90,6 +90,7 @@ public final class TraktTypeTokens {
     //movies
     public static final TypeToken<List<TraktMovie>> MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktTrendingMovie>> TRENDING_MOVIES = new TypeToken<>() {};
+    public static final TypeToken<List<TraktFavoritedMovie>> FAVORITED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktWatchedMovie>> WATCHED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktListedMovie>> LISTED_MOVIES = new TypeToken<>() {};
     public static final TypeToken<List<TraktUpdatedMovie>> UPDATED_MOVIES = new TypeToken<>() {};
@@ -128,7 +129,9 @@ public final class TraktTypeTokens {
     public static final TypeToken<TraktWatchedProgress.Show> WATCHED_PROGRESS = new TypeToken<>() {};
     public static final TypeToken<TraktRatings> RATINGS = new TypeToken<>() {};
     public static final TypeToken<TraktStats> STATS = new TypeToken<>() {};
+    public static final TypeToken<List<TraktStudio>> STUDIOS = new TypeToken<>() {};
     public static final TypeToken<List<TraktUser>> USERS = new TypeToken<>() {};
+    public static final TypeToken<List<TraktVideo>> VIDEOS = new TypeToken<>() {};
     public static final TypeToken<TraktShowCast> SHOW_CAST = new TypeToken<>() {};
     
     //episodes

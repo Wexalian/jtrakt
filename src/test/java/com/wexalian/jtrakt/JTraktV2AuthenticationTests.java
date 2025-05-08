@@ -1,7 +1,6 @@
 package com.wexalian.jtrakt;
 
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
-import com.wexalian.jtrakt.json.TraktJSON;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
@@ -20,13 +19,22 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests {
         TraktAccessToken accessToken = TRAKT.getAuthenticationEndpoint().setupDeviceOAuth((code, url) -> {
             Assertions.assertNotEquals("", code, "authentication code is empty");
             Assertions.assertNotEquals("", url, "authentication url is empty");
-    
-            System.out.println(code);
+            
+            System.out.println("Code: " + code);
             browse(url);
         });
         
         Assertions.assertNotEquals(null, accessToken);
-        System.out.println("Auth: " + TraktJSON.toJson(accessToken));
+        writeAccessToken(accessToken);
+    }
+    
+    @Test
+    @Order(2)
+    public void testRefreshToken() {
+        TraktAccessToken accessToken = TRAKT.getAuthenticationEndpoint().refreshAccessToken(ACCESS_TOKEN);
+        
+        Assertions.assertNotEquals(null, accessToken);
+        writeAccessToken(accessToken);
     }
     
     private void browse(String url) {
@@ -36,14 +44,5 @@ public class JTraktV2AuthenticationTests extends JTraktV2Tests {
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    @Test
-    @Order(2)
-    public void testRefreshToken() {
-        TraktAccessToken accessToken = TRAKT.getAuthenticationEndpoint().refreshAccessToken(ACCESS_TOKEN);
-        
-        Assertions.assertNotEquals(null, accessToken);
-        System.out.println("Refresh: " + TraktJSON.toJson(accessToken));
     }
 }

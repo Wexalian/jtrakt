@@ -7,33 +7,44 @@ public enum TraktGenre {
     ADVENTURE("adventure", "Adventure"),
     ANIMATION("animation", "Animation"),
     ANIME("anime", "Anime"),
+    BIOGRAPHY("biography", "Biography"),
+    CHILDREN("children", "Children"),
     COMEDY("comedy", "Comedy"),
     CRIME("crime", "Crime"),
-    DISASTER("disaster", ""),
+    // DISASTER("disaster", "Disaster"),
     DOCUMENTARY("documentary", "Documentary"),
+    DONGHUA("donghua", "Donghua"),
     DRAMA("drama", "Drama"),
-    EASTERN("eastern", "Eastern"),
+    // EASTERN("eastern", "Eastern"),
     FAMILY("family", "Family"),
-    FAN_FILM("fan-film", "Fan Film"),
+    // FAN_FILM("fan-film", "Fan Film"),
     FANTASY("fantasy", "Fantasy"),
-    FILM_NOIR("film-noir", "Film Noir"),
+    // FILM_NOIR("film-noir", "Film Noir"),
+    GAME_SHOW("game-show", "Game Show"),
     HISTORY("history", "History"),
     HOLIDAY("holiday", "Holiday"),
+    HOME_AND_GARDEN("home-and-garden", "Home And Garden"),
     HORROR("horror", "Horror"),
-    INDIE("indie", "indie"),
+    // INDIE("indie", "indie"),
+    MINI_SERIES("mini-series", "Mini Series"),
     MUSIC("music", "Music"),
     MUSICAL("musical", "Musical"),
     MYSTERY("mystery", "Mystery"),
+    NEWS("news", "News"),
     NONE("none", "None"),
-    ROAD("road", "Road"),
+    // ROAD("road", "Road"),
+    REALITY("reality", "Reality"),
     ROMANCE("romance", "Romance"),
     SCIENCE_FICTION("science-fiction", "Science Fiction"),
     SHORT("short", "Short"),
-    SPORTS("sports", "Sports"),
+    // SPORTS("sports", "Sports"),
+    SOAP("soap", "Soap"),
+    SPECIAL_INTEREST("special-interest", "Special Interest"),
     SPORTING_EVENT("sporting-event", "Sporting Event"),
+    SUPERHERO("superhero", "Superhero"),
     SUSPENSE("suspense", "Suspense"),
+    TALK_SHOW("talk-show", "Talk Show"),
     THRILLER("thriller", "Thriller"),
-    TV_MOVIE("tv-movie", "TV Movie"),
     WAR("war", "War"),
     WESTERN("western", "Western");
     
@@ -62,7 +73,11 @@ public enum TraktGenre {
     }
     
     public static TraktGenre fromSlug(String slug) {
-        return STRING_MAPPING.get(slug);
+        TraktGenre genre = STRING_MAPPING.get(slug);
+        if (genre == null) {
+            System.out.println("Unknown genre: " + slug);
+        }
+        return genre;
     }
     
     @Override

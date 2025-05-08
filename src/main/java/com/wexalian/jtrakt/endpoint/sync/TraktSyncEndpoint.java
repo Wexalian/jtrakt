@@ -1,6 +1,6 @@
 package com.wexalian.jtrakt.endpoint.sync;
 
-import com.wexalian.jtrakt.endpoint.TraktItemFilterType;
+import com.wexalian.jtrakt.endpoint.TraktItemsType;
 import com.wexalian.jtrakt.endpoint.TraktWatchedItem;
 import com.wexalian.jtrakt.endpoint.auth.TraktAccessToken;
 import com.wexalian.jtrakt.endpoint.sync.activity.TraktActivity;
@@ -20,9 +20,9 @@ import com.wexalian.jtrakt.http.TraktQuery;
 import com.wexalian.jtrakt.http.query.Extended;
 import com.wexalian.jtrakt.http.query.Pagination;
 import com.wexalian.jtrakt.json.TraktTypeTokens;
+import com.wexalian.nullability.annotations.Nonnull;
+import com.wexalian.nullability.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class TraktSyncEndpoint {
         return http.getAndParse(query, TraktTypeTokens.LAST_ACTIVITY, token);
     }
     
-    public List<TraktPlayback> getPlaybacks(@Nullable TraktItemFilterType type, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nonnull TraktAccessToken token) {
+    public List<TraktPlayback> getPlaybacks(@Nullable TraktItemsType type, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/playback/{type}")
                                      .path("type", type)
                                      .query("start_at", start_at)
@@ -48,10 +48,10 @@ public class TraktSyncEndpoint {
         return http.getAndParse(query, TraktTypeTokens.PLAYBACKS, token);
     }
     
-    public void removePlayback(int id, @Nonnull TraktAccessToken token) {
+    public boolean removePlayback(int id, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/playback/{id}").path("id", id);
         
-        http.delete(query, token);
+        return http.delete(query, token);
     }
     
     public List<TraktCollectionMovie> getMovieCollection(@Nullable Extended extended, @Nonnull TraktAccessToken token) {
@@ -78,13 +78,13 @@ public class TraktSyncEndpoint {
         return http.postAndParse(query, data, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktWatchedItem> getWatchedItems(@Nullable TraktItemFilterType type, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
+    public List<TraktWatchedItem> getWatchedItems(@Nullable TraktItemsType type, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/watched/{type}").path("type", type).query(extended);
     
         return http.getAndParse(query, TraktTypeTokens.WATCHED_ITEMS, token);
     }
     
-    public List<TraktHistoryItem> getHistory(@Nullable TraktItemFilterType type, long id, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
+    public List<TraktHistoryItem> getHistory(@Nullable TraktItemsType type, long id, @Nullable OffsetDateTime start_at, @Nullable OffsetDateTime end_at, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/history/{type}/{id}")
                                      .path("type", type)
                                      .path("id", id)
@@ -108,7 +108,7 @@ public class TraktSyncEndpoint {
         return http.postAndParse(query, data, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktRatedItem> getRatings(@Nullable TraktItemFilterType type, int rating, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
+    public List<TraktRatedItem> getRatings(@Nullable TraktItemsType type, int rating, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/ratings/{type}/{rating}")
                                      .path("type", type)
                                      .path("rating", rating)
@@ -130,7 +130,7 @@ public class TraktSyncEndpoint {
         return http.postAndParse(query, data, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktWatchlistItem> getWatchlist(@Nullable TraktItemFilterType type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
+    public List<TraktWatchlistItem> getWatchlist(@Nullable TraktItemsType type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/watchlist/{type}/{sort}")
                                      .path("type", type)
                                      .path("sort", sort)
@@ -152,7 +152,7 @@ public class TraktSyncEndpoint {
         return http.postAndParse(query, data, TraktTypeTokens.SYNC_UPDATE, token);
     }
     
-    public List<TraktRecommendationItem> getRecommendations(@Nullable TraktItemFilterType type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
+    public List<TraktRecommendationItem> getRecommendations(@Nullable TraktItemsType type, @Nullable String sort, @Nullable Pagination pagination, @Nullable Extended extended, @Nonnull TraktAccessToken token) {
         TraktQuery query = TraktQuery.create("sync/recommendations/{type}/{sort}")
                                      .path("type", type)
                                      .path("sort", sort)

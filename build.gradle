@@ -5,103 +5,92 @@ buildscript {
 }
 
 plugins {
-    id 'org.javamodularity.moduleplugin' version '1.6.0' apply false
-    id 'io.codearte.nexus-staging' version '0.21.2'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'org.javamodularity.moduleplugin' version '1.7.0'
 }
 
-apply plugin: 'java-library'
-apply plugin: 'maven'
-apply plugin: 'signing'
-apply plugin: 'org.javamodularity.moduleplugin'
-
-targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 11
+targetCompatibility = sourceCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 17
 
 group 'com.wexalian.jtrakt'
-version = '0.0.17'
+version = '0.0.30'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.6'
+    api 'com.wexalian.nullability:nullability:0.0.2'
 
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-    implementation 'com.google.guava:guava:26.0-jre'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.8.2'
+}
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.7.0'
+configurations {
+    testCompile
 }
 
 test {
     useJUnitPlatform() {
-        excludeTags 'not_staging'
-        includeTags 'staging'
-//        includeTags 'auth'
-        includeTags 'calendars'
-        includeTags 'certifications'
-        includeTags 'checkin'
-        includeTags 'comments'
-        includeTags 'countries'
-        includeTags 'episodes'
-        includeTags 'genres'
-        includeTags 'languages'
-        includeTags 'lists'
-        includeTags 'movies'
-        includeTags 'networks'
-        includeTags 'people'
-        includeTags 'recommendations'
-        includeTags 'scrobble'
-        includeTags 'search'
-        includeTags 'seasons'
-        includeTags 'shows'
-        includeTags 'sync'
-        includeTags 'users'
-//        includeTags 'test'
+
+
+        excludeTags 'auth'
+//        excludeTags 'not_staging'
+//        includeTags 'staging'
+
+//        excludeTags 'calendars'
+//        excludeTags 'certifications'
+//        excludeTags 'checkin'
+//        excludeTags 'comments'
+//        excludeTags 'countries'
+//        excludeTags 'episodes'
+//        excludeTags 'genres'
+//        excludeTags 'languages'
+//        excludeTags 'lists'
+//        excludeTags 'movies'
+//        excludeTags 'networks'
+        excludeTags 'notes'
+//        excludeTags 'people'
+        excludeTags 'recommendations'
+//        excludeTags 'scrobble'
+//        excludeTags 'search'
+//        excludeTags 'seasons'
+//        excludeTags 'shows'
+//        excludeTags 'sync'
+        excludeTags 'users'
     }
 }
 
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
+//task javadocJar(type: Jar) {
+//    classifier = 'javadoc'
+//    from javadoc
+//}
+//
+//task sourcesJar(type: Jar) {
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'jtrakt'
+            from components.java
 
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: deployRepoUsername, password: deployRepoPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: deployRepoUsername, password: deployRepoPassword)
-            }
-
-            pom.project {
+            pom {
                 name = 'jtrakt'
                 packaging = 'jar'
                 description = 'A Java wrapper and utility library for the trakt.tv API v2'
-                url = 'http://www.wexalian.com/jtrakt'
-
+                url = 'https://www.github.com/Wexalian/jtrakt'
                 licenses {
                     license {
                         name = 'The Unlicense'
@@ -113,16 +102,84 @@ uploadArchives {
                         id = 'Wexalian'
                         name = 'Lars Gerrits'
                         email = 'larsgerrits99@gmail.com'
-//                        organization = 'wexalian'
-//                        organizationUrl = 'http://www.wexalian.com'
+                        organization = 'wexalian'
+                        organizationUrl = 'http://www.wexalian.com'
                     }
                 }
                 scm {
                     connection = 'scm:git:git://github.com/Wexalian/jtrakt.git'
                     developerConnection = 'scm:git:ssh://github.com/Wexalian/jtrakt.git'
-                    url = 'http://www.github.com/Wexalian/jtrakt'
+                    url = 'https://www.github.com/Wexalian/jtrakt'
                 }
             }
         }
     }
+    repositories {
+        maven {
+            credentials {
+                username = deployRepoUsername
+                password = deployRepoPassword
+            }
+
+            url = deployRepoUrl
+        }
+    }
 }
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+//nexusStaging { TODO check
+//    serverUrl = "https://s01.oss.sonatype.org/service/local/"
+//}
+
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: deployRepoUsername, password: deployRepoPassword)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: deployRepoUsername, password: deployRepoPassword)
+//            }
+//
+//            pom.project {
+//                name = 'jtrakt'
+//                packaging = 'jar'
+//                description = 'A Java wrapper and utility library for the trakt.tv API v2'
+//                url = 'https://www.github.com/Wexalian/jtrakt'
+//
+//                licenses {
+//                    license {
+//                        name = 'The Unlicense'
+//                        url = 'https://unlicense.org/'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id = 'Wexalian'
+//                        name = 'Lars Gerrits'
+//                        email = 'larsgerrits99@gmail.com'
+////                        organization = 'wexalian'
+////                        organizationUrl = 'http://www.wexalian.com'
+//                    }
+//                }
+//                scm {
+//                    connection = 'scm:git:git://github.com/Wexalian/jtrakt.git'
+//                    developerConnection = 'scm:git:ssh://github.com/Wexalian/jtrakt.git'
+//                    url = 'https://www.github.com/Wexalian/jtrakt'
+//                }
+//            }
+//        }
+//    }
+//}

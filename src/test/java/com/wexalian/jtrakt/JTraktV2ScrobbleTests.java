@@ -14,7 +14,7 @@ public class JTraktV2ScrobbleTests extends JTraktV2Tests {
         TraktScrobbleData data = new TraktScrobbleData(EPISODE, 1);
         TraktScrobbleItem start = TRAKT.getScrobbleEndpoint().start(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(start, "scrobble start returned null");
+        notNull(start, "scrobble start returned null");
     }
     
     @Test
@@ -24,7 +24,7 @@ public class JTraktV2ScrobbleTests extends JTraktV2Tests {
         TraktScrobbleData data = new TraktScrobbleData(EPISODE, 50);
         TraktScrobbleItem pause = TRAKT.getScrobbleEndpoint().pause(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(pause, "scrobble pause returned null");
+        notNull(pause, "scrobble pause returned null");
     }
     
     @Test
@@ -34,7 +34,7 @@ public class JTraktV2ScrobbleTests extends JTraktV2Tests {
         TraktScrobbleData data = new TraktScrobbleData(EPISODE, 75);
         TraktScrobbleItem stop = TRAKT.getScrobbleEndpoint().stop(data, ACCESS_TOKEN);
         
-        Assertions.assertNotNull(stop, "scrobble stop returned null");
+        notNull(stop, "scrobble stop returned null");
     }
     
 }
